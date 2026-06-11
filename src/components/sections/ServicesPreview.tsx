@@ -9,10 +9,10 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const previewSlugs = [
   "business-setup",
+  "government-platform-management",
   "premium-residency",
   "serviced-offices",
   "accounting-services",
-  "visa-issuance",
   "saudi-partners",
 ];
 

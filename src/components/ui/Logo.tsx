@@ -59,9 +59,9 @@ export function Logo({
         width={1179}
         height={366}
         priority
-        sizes="(max-width: 640px) 126px, (max-width: 1536px) 148px, 168px"
+        sizes="(max-width: 640px) 126px, (max-width: 1700px) 148px, 168px"
         className={cn(
-          "h-auto w-[126px] object-contain transition-opacity duration-300 group-hover:opacity-90 sm:w-[148px] 2xl:w-[168px]",
+          "h-auto w-[126px] object-contain transition-opacity duration-300 group-hover:opacity-90 sm:w-[148px] min-[1700px]:w-[168px]",
           variant === "light" && "drop-shadow-[0_4px_10px_rgba(0,0,0,0.22)]"
         )}
       />

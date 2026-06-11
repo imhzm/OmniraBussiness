@@ -50,17 +50,17 @@ export function Header({ locale }: { locale: Locale }) {
           scrolled ? "border-b border-white/10 shadow-card" : "border-b border-white/5"
         )}
       >
-        <div className="container-x flex h-[68px] items-center justify-between gap-3 lg:h-[78px] 2xl:gap-4">
+        <div className="container-x flex h-[68px] items-center justify-between gap-3 lg:h-[78px] min-[1700px]:gap-4">
           <Logo locale={locale} variant="light" />
 
           {/* Desktop navigation */}
-          <nav className="hidden min-w-0 items-center gap-0.5 lg:flex 2xl:gap-1" aria-label="Main">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex min-[1700px]:gap-1" aria-label="Main">
             {mainNav.map((item) => (
               <div key={item.id} className={cn("group/nav", item.columns && "static")}>
                 <Link
                   href={localeHref(locale, item.href)}
                   className={cn(
-                    "relative flex items-center gap-1 rounded-full px-2.5 py-2 text-[13px] font-semibold leading-none whitespace-nowrap transition-colors 2xl:px-4 2xl:text-sm",
+                    "relative flex items-center gap-1 rounded-full px-2.5 py-2 text-[13px] font-semibold leading-none whitespace-nowrap transition-colors min-[1700px]:px-4 min-[1700px]:text-sm",
                     isActive(item.href) ? "text-gold-soft" : "text-white/78 hover:text-white"
                   )}
                 >
@@ -152,13 +152,13 @@ export function Header({ locale }: { locale: Locale }) {
           </nav>
 
           {/* Actions */}
-          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="ms-4 flex shrink-0 items-center gap-1.5 sm:gap-2 min-[1700px]:ms-5">
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="hidden h-10 w-10 items-center justify-center rounded-full bg-gold text-navy transition-colors hover:bg-gold-soft sm:flex"
+              className="hidden h-10 w-10 items-center justify-center rounded-full bg-gold text-navy transition-colors hover:bg-gold-soft min-[1700px]:flex"
             >
               <Icon name="message-circle" className="h-4.5 w-4.5" />
             </a>
@@ -178,18 +178,16 @@ export function Header({ locale }: { locale: Locale }) {
               <Icon name="globe" className="h-4 w-4" />
               <span>{otherLocale === "ar" ? "العربية" : "English"}</span>
             </Link>
-            <Button
-              href={localeHref(locale, "/contact")}
-              size="sm"
-              className="hidden xl:inline-flex"
-            >
-              {dict.common.bookConsultation}
-            </Button>
+            <span className="hidden min-[1700px]:inline-flex">
+              <Button href={localeHref(locale, "/contact")} size="sm">
+                {dict.common.bookConsultation}
+              </Button>
+            </span>
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
               aria-label={dict.nav.menu}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-white/85 transition-colors hover:bg-white/10 lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white/85 transition-colors hover:bg-white/10 xl:hidden"
             >
               <Icon name="menu" className="h-5 w-5" />
             </button>

@@ -28,7 +28,7 @@ const servicesColumns: NavColumn[] = serviceCategories.map((cat) => ({
 
 export const mainNav: NavItem[] = [
   { id: "home", label: { en: "Home", ar: "الرئيسية" }, href: "/" },
-  { id: "about", label: { en: "About", ar: "من نحن" }, href: "/about" },
+  { id: "about", label: { en: "About Us", ar: "من نحن" }, href: "/about" },
   {
     id: "kingdom",
     label: { en: "About Kingdom", ar: "عن المملكة" },
@@ -152,16 +152,16 @@ export const mainNav: NavItem[] = [
             icon: "building-2",
           },
           {
-            label: { en: "HR & PRO Packages", ar: "باقات الموارد البشرية" },
-            href: "/pricing#hr",
-            desc: { en: "Monthly workforce support", ar: "دعم شهري للقوى العاملة" },
-            icon: "users",
+            label: { en: "Platform Management", ar: "إدارة المنصات" },
+            href: "/pricing#management",
+            desc: { en: "Annual government-platform support", ar: "دعم سنوي للمنصات الحكومية" },
+            icon: "landmark",
           },
         ],
       },
     ],
   },
-  { id: "contact", label: { en: "Contact", ar: "تواصل معنا" }, href: "/contact" },
+  { id: "contact", label: { en: "Contact Us", ar: "تواصل معنا" }, href: "/contact" },
 ];
 
 /** Footer link groups (roadmap §31). */

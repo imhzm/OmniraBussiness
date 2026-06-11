@@ -58,9 +58,9 @@ export const marketStats: Stat[] = [
 
 /** Hero floating stats (roadmap §14.1 / reference design). */
 export const heroStats = [
-  { id: "businesses", icon: "building-2", value: 1200, suffix: "+" },
-  { id: "satisfaction", icon: "star", value: 98, suffix: "%" },
-  { id: "support", icon: "headset", value: 24, suffix: "/7" },
+  { id: "businesses", icon: "calendar-days", value: 4, suffix: "-8" },
+  { id: "satisfaction", icon: "shield-check", value: 0, suffix: "" },
+  { id: "support", icon: "clock", value: 1, suffix: "h" },
 ] as const;
 
 /** Business setup process steps (roadmap §14.5). */
@@ -102,18 +102,18 @@ export const processSteps: ProcessStep[] = [
 /** Trust bar points under the hero (roadmap §14.2). */
 export const trustPoints: { icon: string; label: L }[] = [
   { icon: "award", label: { en: "Saudi Market Expertise", ar: "خبرة عميقة بالسوق السعودي" } },
-  { icon: "shield-check", label: { en: "Government-Ready Process", ar: "إجراءات حكومية جاهزة" } },
-  { icon: "languages", label: { en: "Bilingual Team", ar: "فريق ثنائي اللغة" } },
-  { icon: "target", label: { en: "Clear, Fixed Scope", ar: "نطاق عمل واضح وثابت" } },
-  { icon: "headset", label: { en: "End-to-End Guidance", ar: "مرافقة من البداية للنهاية" } },
+  { icon: "banknote", label: { en: "Bank-Account Support", ar: "دعم الحساب البنكي" } },
+  { icon: "shield-check", label: { en: "No-Late-Fine Guarantee", ar: "ضمان بلا غرامات" } },
+  { icon: "clock", label: { en: "One-Business-Hour Response", ar: "رد خلال ساعة عمل" } },
+  { icon: "landmark", label: { en: "Government Platforms Managed", ar: "إدارة المنصات الحكومية" } },
 ];
 
-/** "Trusted by" marks — generic Saudi ecosystem names rendered as text marks. */
+/** Platform marks rendered as text in the hero. */
 export const trustedMarks: L[] = [
-  { en: "Riyadh Holding", ar: "الرياض القابضة" },
-  { en: "Najd Ventures", ar: "نجد فنتشرز" },
-  { en: "Red Sea Trading", ar: "البحر الأحمر التجارية" },
-  { en: "Gulf Bridge Co.", ar: "جسر الخليج" },
-  { en: "Tuwaiq Industrial", ar: "طويق الصناعية" },
-  { en: "Salam Logistics", ar: "سلام اللوجستية" },
+  { en: "MISA", ar: "وزارة الاستثمار" },
+  { en: "Qiwa", ar: "قوى" },
+  { en: "Muqeem", ar: "مقيم" },
+  { en: "ZATCA", ar: "زاتكا" },
+  { en: "GOSI", ar: "التأمينات" },
+  { en: "Mudad", ar: "مدد" },
 ];

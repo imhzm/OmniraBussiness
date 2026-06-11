@@ -51,11 +51,27 @@ export function PricingCard({
                   ? locale === "ar"
                     ? "شهريًا"
                     : "/month"
-                  : dict.common.oneTime}
+                  : pkg.period === "yearly"
+                    ? locale === "ar"
+                      ? "/ سنة"
+                      : "/year"
+                    : dict.common.oneTime}
               </span>
             </>
           )}
         </div>
+
+        {pkg.priceNote && (
+          <p className="mt-2 text-xs font-semibold text-gold-dark">
+            {t(pkg.priceNote, locale)}
+          </p>
+        )}
+
+        {pkg.highlight && (
+          <p className="mt-3 rounded-xl border border-gold/30 bg-gold-faint px-4 py-2 text-xs font-bold text-gold-dark">
+            {t(pkg.highlight, locale)}
+          </p>
+        )}
 
         <p className="mt-4 rounded-xl bg-ivory px-4 py-2.5 text-xs font-semibold text-muted">
           {dict.pricing.idealFor}: <span className="text-navy">{t(pkg.idealFor, locale)}</span>
@@ -95,7 +111,7 @@ export function PricingPreview({ locale }: { locale: Locale }) {
           text={dict.home.pricingText}
           action={{ label: dict.home.viewAllPackages, href: localeHref(locale, "/pricing") }}
         />
-        <div className="grid gap-5 pt-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 pt-4 md:grid-cols-3">
           {setupPackages.map((pkg, i) => (
             <PricingCard key={pkg.id} locale={locale} pkg={pkg} delay={i * 80} />
           ))}

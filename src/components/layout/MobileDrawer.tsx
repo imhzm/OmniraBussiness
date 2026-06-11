@@ -41,7 +41,7 @@ export function MobileDrawer({
 
   return (
     <div
-      className="fixed inset-0 z-[60] overflow-hidden lg:hidden"
+      className="fixed inset-0 z-[60] overflow-hidden xl:hidden"
       aria-hidden={false}
     >
       {/* Backdrop */}

@@ -144,7 +144,7 @@ export const services: Service[] = [
       { en: "All government platform accounts, activated", ar: "جميع حسابات المنصات الحكومية مفعّلة" },
       { en: "First-year compliance calendar", ar: "تقويم الامتثال للسنة الأولى" },
     ],
-    timeline: { en: "2–6 weeks depending on activity", ar: "2–6 أسابيع حسب النشاط" },
+    timeline: { en: "4-8 weeks depending on activity", ar: "4-8 أسابيع حسب النشاط" },
     bestFor: { en: "Foreign investors & regional expansions", ar: "المستثمرون الأجانب والتوسعات الإقليمية" },
     supportType: { en: "Dedicated account manager", ar: "مدير حساب مخصص" },
     faqs: [
@@ -159,6 +159,79 @@ export const services: Service[] = [
       {
         q: { en: "What is the minimum capital?", ar: "ما هو الحد الأدنى لرأس المال؟" },
         a: { en: "It varies by activity. Many service activities have no formal minimum, while trading entities typically require higher declared capital.", ar: "يختلف حسب النشاط. كثير من الأنشطة الخدمية بلا حد أدنى رسمي، بينما تتطلب أنشطة التجارة رأس مال معلنًا أعلى." },
+      },
+    ],
+  },
+  {
+    slug: "government-platform-management",
+    category: "business-support",
+    icon: "landmark",
+    featured: true,
+    title: { en: "Government Platform Management", ar: "إدارة المنصات الحكومية" },
+    excerpt: {
+      en: "Annual management for Qiwa, Muqeem, Absher Business, GOSI, ZATCA, Mudad, and renewal calendars.",
+      ar: "إدارة سنوية لقوى ومقيم وأبشر أعمال والتأمينات وزاتكا ومدد وتقويمات التجديد.",
+    },
+    overview: [
+      {
+        en: "After your company is formed, the real operational risk is missing a renewal, payroll filing, iqama date, tax return, or platform notice. We manage the government-platform calendar for you through one accountable Saudi team.",
+        ar: "بعد تأسيس الشركة، الخطر التشغيلي الحقيقي هو تفويت تجديد أو رواتب أو إقامة أو إقرار ضريبي أو إشعار منصة. ندير لك تقويم المنصات الحكومية عبر فريق سعودي واحد مسؤول.",
+      },
+      {
+        en: "Plans start from SAR 9,600/year and scale by employee count and platform scope. Each client gets a dedicated representative, due-date monitoring, and a no-late-fine guarantee when delays are caused by us after receiving documents on time.",
+        ar: "تبدأ الباقات من 9,600 ر.س سنوياً وتتوسع حسب عدد الموظفين ونطاق المنصات. لكل عميل مندوب مخصص، ومتابعة للمواعيد، وضمان بلا غرامات عند حدوث تأخير بسببنا بعد استلام المستندات في وقتها.",
+      },
+    ],
+    audience: [
+      { en: "New Saudi entities that want to stay compliant after setup", ar: "الكيانات السعودية الجديدة التي تريد الحفاظ على الامتثال بعد التأسيس" },
+      { en: "Founders who do not want to manage Qiwa, Muqeem, ZATCA, and GOSI manually", ar: "المؤسسون الذين لا يريدون متابعة قوى ومقيم وزاتكا والتأمينات يدوياً" },
+      { en: "Operating companies with payroll, iqama, and renewal obligations", ar: "الشركات العاملة التي لديها رواتب وإقامات وتجديدات" },
+    ],
+    benefits: [
+      { en: "No-late-fine guarantee for delays caused by our team", ar: "ضمان بلا غرامات عند حدوث التأخير من طرفنا" },
+      { en: "One-business-hour response through a dedicated representative", ar: "رد خلال ساعة عمل عبر مندوب مخصص" },
+      { en: "Due-date monitoring before service suspension risk", ar: "مراقبة الاستحقاقات قبل خطر إيقاف الخدمات" },
+      { en: "Annual plans with clear employee and branch add-ons", ar: "باقات سنوية واضحة مع إضافات للموظفين والفروع" },
+    ],
+    steps: [
+      {
+        title: { en: "Platform audit", ar: "تدقيق المنصات" },
+        text: { en: "We review current access, expiries, risks, and missing registrations.", ar: "نراجع الصلاحيات الحالية والانتهاءات والمخاطر والتسجيلات الناقصة." },
+      },
+      {
+        title: { en: "Calendar setup", ar: "إعداد التقويم" },
+        text: { en: "All renewals, filings, payroll dates, and iqama dates are mapped into a monitored calendar.", ar: "نربط كل التجديدات والإقرارات والرواتب والإقامات بتقويم متابعة." },
+      },
+      {
+        title: { en: "Monthly operation", ar: "التشغيل الشهري" },
+        text: { en: "Your representative follows up transactions, filings, alerts, and required documents.", ar: "يتابع مندوبك المعاملات والإقرارات والتنبيهات والمستندات المطلوبة." },
+      },
+      {
+        title: { en: "Reporting", ar: "التقارير" },
+        text: { en: "You receive clear status updates so management knows what is complete and what needs action.", ar: "تصلك تحديثات واضحة حتى تعرف الإدارة ما تم وما يحتاج إجراء." },
+      },
+    ],
+    requirements: [
+      { en: "Platform access or authorization for Qiwa, Muqeem, ZATCA, GOSI, and related portals", ar: "صلاحيات أو تفويض للمنصات مثل قوى ومقيم وزاتكا والتأمينات" },
+      { en: "CR, Chamber, national address, and authorized signatory details", ar: "السجل والغرفة والعنوان الوطني وبيانات المفوض" },
+      { en: "Employee list and current renewal calendar where available", ar: "قائمة الموظفين وتقويم التجديدات الحالي إن وجد" },
+    ],
+    deliverables: [
+      { en: "Managed government-platform calendar", ar: "تقويم مُدار للمنصات الحكومية" },
+      { en: "Dedicated representative and status updates", ar: "مندوب مخصص وتحديثات حالة" },
+      { en: "Renewal, payroll, iqama, and filing follow-up", ar: "متابعة التجديدات والرواتب والإقامات والإقرارات" },
+    ],
+    timeline: { en: "Onboarding in 3-5 business days", ar: "التهيئة خلال 3-5 أيام عمل" },
+    bestFor: { en: "Saudi entities after setup", ar: "الكيانات السعودية بعد التأسيس" },
+    supportType: { en: "Annual managed service", ar: "خدمة إدارة سنوية" },
+    faqs: [
+      {
+        q: { en: "Which platforms do you manage?", ar: "ما المنصات التي تديرونها؟" },
+        a: { en: "Scope depends on the plan, but commonly includes Qiwa, Muqeem, Absher Business, GOSI, ZATCA, Mudad, Etimad, Saber, and related renewal calendars.", ar: "يعتمد النطاق على الباقة، لكنه يشمل عادة قوى، مقيم، أبشر أعمال، التأمينات، زاتكا، مدد، اعتماد، سابر وتقويمات التجديد المرتبطة." },
+      },
+      {
+        q: { en: "Do you cover government fees?", ar: "هل تشمل الخدمة الرسوم الحكومية؟" },
+        a: { en: "No. Government fees are paid at cost by the client. Our fee covers management, follow-up, alerts, and execution support.", ar: "لا. الرسوم الحكومية تُدفع بالتكلفة الفعلية من العميل. رسومنا تغطي الإدارة والمتابعة والتنبيهات ودعم التنفيذ." },
       },
     ],
   },

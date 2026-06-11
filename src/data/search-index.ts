@@ -26,9 +26,9 @@ const staticPages: SearchEntry[] = [
   {
     type: "page",
     title: { en: "Pricing & Packages", ar: "الباقات والأسعار" },
-    description: { en: "Setup and HR packages with transparent pricing.", ar: "باقات التأسيس والموارد البشرية بأسعار شفافة." },
+    description: { en: "Setup and government-platform management packages with transparent Saudi pricing.", ar: "باقات التأسيس وإدارة المنصات الحكومية بأسعار سعودية واضحة." },
     href: "/pricing",
-    keywords: "pricing packages cost fees أسعار باقات رسوم تكلفة",
+    keywords: "pricing packages setup platform management government fees أسعار باقات تأسيس إدارة منصات رسوم حكومية",
   },
   {
     type: "page",
