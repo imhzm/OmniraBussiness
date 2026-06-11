@@ -1,0 +1,7 @@
+.next/
+node_modules/
+out/
+build/
+.deploy-tmp/
+*.log
+npm-debug.log*
