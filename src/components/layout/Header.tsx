@@ -50,25 +50,25 @@ export function Header({ locale }: { locale: Locale }) {
           scrolled ? "border-b border-white/10 shadow-card" : "border-b border-white/5"
         )}
       >
-        <div className="container-x flex h-[68px] items-center justify-between gap-3 lg:h-[78px] min-[1700px]:gap-4">
+        <div className="container-x flex h-[68px] items-center justify-between gap-2 lg:h-[78px] min-[1500px]:gap-3 min-[1700px]:gap-4">
           <Logo locale={locale} variant="light" />
 
           {/* Desktop navigation */}
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex min-[1700px]:gap-1" aria-label="Main">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0 xl:flex min-[1500px]:gap-0.5 min-[1700px]:gap-1" aria-label="Main">
             {mainNav.map((item) => (
               <div key={item.id} className={cn("group/nav", item.columns && "static")}>
                 <Link
                   href={localeHref(locale, item.href)}
                   className={cn(
-                    "relative flex items-center gap-1 rounded-full px-2.5 py-2 text-[13px] font-semibold leading-none whitespace-nowrap transition-colors min-[1700px]:px-4 min-[1700px]:text-sm",
+                    "relative flex items-center gap-1 rounded-full px-2 py-2 text-[12.5px] font-semibold leading-none whitespace-nowrap transition-colors min-[1500px]:px-2.5 min-[1500px]:text-[13px] min-[1700px]:px-4 min-[1700px]:text-sm",
                     isActive(item.href) ? "text-gold-soft" : "text-white/78 hover:text-white"
                   )}
                 >
-                  {t(item.label, locale)}
+                  <span className="whitespace-nowrap">{t(item.label, locale)}</span>
                   {item.columns && (
                     <Icon
                       name="chevron-down"
-                      className="h-3.5 w-3.5 transition-transform duration-300 group-hover/nav:rotate-180"
+                      className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover/nav:rotate-180"
                     />
                   )}
                   {isActive(item.href) && (
@@ -152,13 +152,13 @@ export function Header({ locale }: { locale: Locale }) {
           </nav>
 
           {/* Actions */}
-          <div className="ms-4 flex shrink-0 items-center gap-1.5 sm:gap-2 min-[1700px]:ms-5">
+          <div className="ms-1 flex shrink-0 items-center gap-1 min-[1500px]:ms-3 min-[1500px]:gap-1.5 min-[1700px]:ms-5 min-[1700px]:gap-2">
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="hidden h-10 w-10 items-center justify-center rounded-full bg-gold text-navy transition-colors hover:bg-gold-soft min-[1700px]:flex"
+              className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold text-navy transition-colors hover:bg-gold-soft xl:flex"
             >
               <Icon name="message-circle" className="h-4.5 w-4.5" />
             </a>
@@ -166,20 +166,20 @@ export function Header({ locale }: { locale: Locale }) {
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label={dict.nav.search}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white"
             >
               <Icon name="search" className="h-4.5 w-4.5" />
             </button>
             <Link
               href={switchLocalePath(pathname, otherLocale)}
-              className="flex h-10 items-center gap-1.5 rounded-full border border-white/10 px-3 text-sm font-semibold whitespace-nowrap text-white/82 transition-colors hover:bg-white/10 hover:text-white"
+              className="flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-white/10 px-2.5 text-[13px] font-semibold whitespace-nowrap text-white/82 transition-colors hover:bg-white/10 hover:text-white min-[1500px]:px-3 min-[1500px]:text-sm"
               aria-label={otherLocale === "ar" ? "العربية" : "English"}
             >
               <Icon name="globe" className="h-4 w-4" />
               <span>{otherLocale === "ar" ? "العربية" : "English"}</span>
             </Link>
-            <span className="hidden min-[1700px]:inline-flex">
-              <Button href={localeHref(locale, "/contact")} size="sm">
+            <span className="hidden shrink-0 xl:inline-flex">
+              <Button href={localeHref(locale, "/contact")} size="sm" className="px-4 text-[13px] min-[1500px]:px-5 min-[1500px]:text-sm">
                 {dict.common.bookConsultation}
               </Button>
             </span>
