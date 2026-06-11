@@ -39,7 +39,7 @@ export const mainNav: NavItem[] = [
         items: [
           {
             label: { en: "Why Saudi Arabia", ar: "لماذا السعودية" },
-            href: "/about-kingdom#why",
+            href: "/about-kingdom/why-invest",
             icon: "lightbulb",
           },
           {
@@ -49,12 +49,12 @@ export const mainNav: NavItem[] = [
           },
           {
             label: { en: "Life in Saudi Arabia", ar: "الحياة في السعودية" },
-            href: "/about-kingdom#life",
+            href: "/about-kingdom/life",
             icon: "heart-pulse",
           },
           {
             label: { en: "Investment Opportunities", ar: "الفرص الاستثمارية" },
-            href: "/about-kingdom#opportunities",
+            href: "/about-kingdom/investment-opportunities",
             icon: "trending-up",
           },
         ],
@@ -106,7 +106,7 @@ export const mainNav: NavItem[] = [
           },
           {
             label: { en: "Market Insights", ar: "رؤى السوق" },
-            href: "/resources/articles?cat=insight",
+            href: "/resources/market-insights",
             desc: { en: "Data-driven market views", ar: "قراءات مبنية على البيانات" },
             icon: "line-chart",
           },
@@ -129,7 +129,7 @@ export const mainNav: NavItem[] = [
           },
           {
             label: { en: "News", ar: "الأخبار" },
-            href: "/resources/articles?cat=news",
+            href: "/resources/news",
             desc: { en: "Regulatory updates", ar: "مستجدات تنظيمية" },
             icon: "megaphone",
           },
@@ -188,6 +188,7 @@ export const footerGroups: { title: L; items: NavLeaf[] }[] = [
     title: { en: "About Kingdom", ar: "عن المملكة" },
     items: [
       { label: { en: "Why Saudi Arabia", ar: "لماذا السعودية" }, href: "/about-kingdom" },
+      { label: { en: "Sectors", ar: "القطاعات" }, href: "/about-kingdom/sectors" },
       { label: { en: "Technology Sector", ar: "قطاع التقنية" }, href: "/about-kingdom/sectors/technology" },
       { label: { en: "Tourism Sector", ar: "قطاع السياحة" }, href: "/about-kingdom/sectors/tourism" },
       { label: { en: "Energy Sector", ar: "قطاع الطاقة" }, href: "/about-kingdom/sectors/energy" },

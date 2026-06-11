@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { site, whatsappLink } from "@/config/site";
+import { whatsappLink } from "@/config/site";
 import { mainNav } from "@/data/navigation";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
@@ -46,22 +46,22 @@ export function Header({ locale }: { locale: Locale }) {
     <>
       <header
         className={cn(
-          "sticky top-0 z-50 bg-white transition-shadow duration-300",
-          scrolled ? "border-b border-line shadow-card" : "border-b border-transparent"
+          "sticky top-0 z-50 bg-navy transition-shadow duration-300",
+          scrolled ? "border-b border-white/10 shadow-card" : "border-b border-white/5"
         )}
       >
-        <div className="container-x flex h-[68px] items-center justify-between gap-4 lg:h-[78px]">
-          <Logo locale={locale} />
+        <div className="container-x flex h-[68px] items-center justify-between gap-3 lg:h-[78px] 2xl:gap-4">
+          <Logo locale={locale} variant="light" />
 
           {/* Desktop navigation */}
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+          <nav className="hidden min-w-0 items-center gap-0.5 lg:flex 2xl:gap-1" aria-label="Main">
             {mainNav.map((item) => (
               <div key={item.id} className={cn("group/nav", item.columns && "static")}>
                 <Link
                   href={localeHref(locale, item.href)}
                   className={cn(
-                    "relative flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors xl:px-4",
-                    isActive(item.href) ? "text-gold-dark" : "text-navy hover:text-gold-dark"
+                    "relative flex items-center gap-1 rounded-full px-2.5 py-2 text-[13px] font-semibold leading-none whitespace-nowrap transition-colors 2xl:px-4 2xl:text-sm",
+                    isActive(item.href) ? "text-gold-soft" : "text-white/78 hover:text-white"
                   )}
                 >
                   {t(item.label, locale)}
@@ -152,13 +152,13 @@ export function Header({ locale }: { locale: Locale }) {
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="hidden h-10 w-10 items-center justify-center rounded-full bg-gold-faint text-gold-dark transition-colors hover:bg-gold hover:text-navy sm:flex"
+              className="hidden h-10 w-10 items-center justify-center rounded-full bg-gold text-navy transition-colors hover:bg-gold-soft sm:flex"
             >
               <Icon name="message-circle" className="h-4.5 w-4.5" />
             </a>
@@ -166,13 +166,13 @@ export function Header({ locale }: { locale: Locale }) {
               type="button"
               onClick={() => setSearchOpen(true)}
               aria-label={dict.nav.search}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-navy transition-colors hover:bg-ivory"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white"
             >
               <Icon name="search" className="h-4.5 w-4.5" />
             </button>
             <Link
               href={switchLocalePath(pathname, otherLocale)}
-              className="flex h-10 items-center gap-1.5 rounded-full px-3 text-sm font-semibold text-navy transition-colors hover:bg-ivory"
+              className="flex h-10 items-center gap-1.5 rounded-full border border-white/10 px-3 text-sm font-semibold whitespace-nowrap text-white/82 transition-colors hover:bg-white/10 hover:text-white"
               aria-label={otherLocale === "ar" ? "العربية" : "English"}
             >
               <Icon name="globe" className="h-4 w-4" />
@@ -189,7 +189,7 @@ export function Header({ locale }: { locale: Locale }) {
               type="button"
               onClick={() => setDrawerOpen(true)}
               aria-label={dict.nav.menu}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-navy transition-colors hover:bg-ivory lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white/85 transition-colors hover:bg-white/10 lg:hidden"
             >
               <Icon name="menu" className="h-5 w-5" />
             </button>

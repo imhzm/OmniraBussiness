@@ -4,7 +4,6 @@ import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { localeHref, t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Badge";
 import { CountUp } from "@/components/ui/CountUp";
 import { Icon } from "@/components/ui/Icon";
 import { Pattern } from "@/components/ui/Pattern";
@@ -20,33 +19,38 @@ export function Hero({ locale }: { locale: Locale }) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-ivory">
-      <Pattern id="hero-pattern" className="absolute inset-0 text-navy opacity-[0.025]" />
-      <div
-        className="pointer-events-none absolute -top-40 end-0 h-[480px] w-[480px] rounded-full bg-gold/10 blur-3xl"
-        aria-hidden="true"
+    <section className="relative overflow-hidden border-b border-line bg-ivory">
+      <Image
+        src="/images/hero/omnira-riyadh-hero.png"
+        alt={locale === "ar" ? "أفق أعمال حديث في الرياض" : "Modern Riyadh business skyline"}
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
       />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#f8f5ee_0%,rgba(248,245,238,0.94)_27%,rgba(248,245,238,0.52)_55%,rgba(248,245,238,0.04)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ivory via-ivory/78 to-transparent" />
+      <Pattern id="hero-pattern" className="absolute inset-0 text-navy opacity-[0.018]" />
 
-      <div className="container-x relative grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24">
+      <div className="container-x relative grid min-h-[590px] items-center gap-12 py-14 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
         {/* Copy */}
         <Reveal>
-          <Eyebrow>{dict.home.heroLabel}</Eyebrow>
-          <h1 className="text-4xl font-bold leading-[1.15] tracking-tight text-navy sm:text-5xl lg:text-[3.4rem]">
+          <h1 className="max-w-xl text-4xl font-bold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-[3.55rem]">
             {dict.home.heroTitle}
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">{dict.home.heroText}</p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-navy/72 sm:text-lg">{dict.home.heroText}</p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button href={localeHref(locale, "/contact")} size="lg" arrow>
+            <Button href={localeHref(locale, "/contact")} variant="navy" size="lg" arrow>
               {dict.common.startYourBusiness}
             </Button>
-            <Button href={localeHref(locale, "/services")} variant="secondary" size="lg">
-              {dict.common.exploreServices}
+            <Button href={localeHref(locale, "/about-kingdom")} variant="white" size="lg">
+              {dict.common.exploreOpportunities}
             </Button>
           </div>
 
           {/* Trusted-by text marks */}
-          <div className="mt-12">
+          <div className="mt-12 hidden lg:block">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-faint">
               {dict.home.trustedBy}
             </p>
@@ -64,26 +68,14 @@ export function Hero({ locale }: { locale: Locale }) {
         </Reveal>
 
         {/* Visual */}
-        <Reveal delay={150} className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-card-hover sm:aspect-[5/4] lg:aspect-[4/4.6]">
-            <Image
-              src="/images/hero/riyadh-skyline.webp"
-              alt={locale === "ar" ? "أفق مدينة الرياض" : "Riyadh city skyline"}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-navy/10 to-transparent" />
-          </div>
-
+        <Reveal delay={150} className="relative min-h-[330px] lg:min-h-[430px]">
           {/* Floating stat cards */}
-          <div className="absolute -start-4 bottom-8 flex flex-col gap-3 sm:-start-8">
+          <div className="absolute bottom-4 end-0 flex w-full max-w-[300px] flex-col gap-3 sm:end-8 lg:bottom-8">
             {heroStats.map((stat, i) => (
               <Reveal
                 key={stat.id}
                 delay={350 + i * 130}
-                className="flex items-center gap-3.5 rounded-2xl border border-line/60 bg-white/95 px-5 py-3.5 shadow-card backdrop-blur"
+                className="flex items-center gap-3.5 rounded-xl border border-white/80 bg-white/94 px-5 py-3.5 shadow-card backdrop-blur"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold-faint text-gold-dark">
                   <Icon name={stat.icon} className="h-5 w-5" />

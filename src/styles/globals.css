@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/alexandria";
 
 @theme inline {
   /* Brand palette — Midnight Navy / Royal Gold / Warm Ivory */
@@ -18,8 +20,8 @@
   --color-line: #e5e7eb;
 
   /* Typography */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-ar: var(--font-plex), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-ar: "Alexandria Variable", "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
 
   /* Shadows */
   --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.06);
@@ -33,11 +35,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--color-ivory);
   color: var(--color-ink);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

@@ -3,14 +3,15 @@ import type { ReactNode } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "white" | "outline-light";
+type ButtonVariant = "primary" | "navy" | "secondary" | "ghost" | "white" | "outline-light";
 type ButtonSize = "sm" | "md" | "lg";
 
 const base =
-  "group/btn inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-gold";
+  "group/btn inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition-all duration-300 focus-visible:outline-2 focus-visible:outline-gold";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-gold text-navy shadow-gold hover:bg-gold-dark hover:shadow-card-hover",
+  navy: "bg-navy text-white shadow-card hover:bg-navy-700 hover:shadow-card-hover",
   secondary: "border border-navy/25 bg-transparent text-navy hover:border-gold hover:text-gold-dark",
   ghost: "bg-transparent px-0 text-gold-dark hover:text-navy",
   white: "bg-white text-navy shadow-card hover:bg-ivory",

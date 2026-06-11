@@ -1,26 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { IBM_Plex_Sans_Arabic, Inter } from "next/font/google";
 import { site } from "@/config/site";
 import { isLocale, isRTL, locales, type Locale } from "@/i18n/config";
-import { cn } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import "@/styles/globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const plexArabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-plex",
-  display: "swap",
-});
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -60,7 +45,6 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={isRTL(locale) ? "rtl" : "ltr"}
-      className={cn(inter.variable, plexArabic.variable)}
     >
       <body className={locale === "ar" ? "font-ar" : "font-sans"}>
         <Header locale={locale} />

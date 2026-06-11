@@ -8,24 +8,32 @@ import { Pattern } from "@/components/ui/Pattern";
 
 export type Crumb = { label: string; href?: string };
 
-export function Breadcrumb({ locale, items }: { locale: Locale; items: Crumb[] }) {
+export function Breadcrumb({
+  locale,
+  items,
+  dark,
+}: {
+  locale: Locale;
+  items: Crumb[];
+  dark?: boolean;
+}) {
   return (
     <nav aria-label="Breadcrumb" className="mb-5">
-      <ol className="flex flex-wrap items-center gap-1.5 text-xs font-medium text-muted">
+      <ol className={"flex flex-wrap items-center gap-1.5 text-xs font-medium " + (dark ? "text-white/55" : "text-muted")}>
         {items.map((item, i) => (
           <li key={i} className="flex items-center gap-1.5">
             {i > 0 && (
-              <Icon name="arrow-right" className="h-3 w-3 text-faint rtl:rotate-180" />
+              <Icon name="arrow-right" className={"h-3 w-3 rtl:rotate-180 " + (dark ? "text-white/35" : "text-faint")} />
             )}
             {item.href ? (
               <Link
                 href={localeHref(locale, item.href)}
-                className="transition-colors hover:text-gold-dark"
+                className={"transition-colors " + (dark ? "hover:text-white" : "hover:text-gold-dark")}
               >
                 {item.label}
               </Link>
             ) : (
-              <span className="text-navy">{item.label}</span>
+              <span className={dark ? "text-white" : "text-navy"}>{item.label}</span>
             )}
           </li>
         ))}
@@ -63,7 +71,7 @@ export function PageHero({
         }
       />
       <div className="container-x relative py-12 lg:py-16">
-        <Breadcrumb locale={locale} items={crumbs} />
+        <Breadcrumb locale={locale} items={crumbs} dark={dark} />
         {eyebrow && <Eyebrow className={dark ? "text-gold-soft" : undefined}>{eyebrow}</Eyebrow>}
         <h1
           className={

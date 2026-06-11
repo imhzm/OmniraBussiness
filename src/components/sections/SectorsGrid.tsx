@@ -27,6 +27,7 @@ export function SectorCard({
           src={sector.image}
           alt={t(sector.name, locale)}
           fill
+          loading="eager"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />

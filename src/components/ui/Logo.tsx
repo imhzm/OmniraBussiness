@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
@@ -46,34 +47,24 @@ export function Logo({
   className?: string;
 }) {
   const name = locale === "ar" ? "أومنيرا" : "OMNIRA";
-  const sub = locale === "ar" ? "بوابة الأعمال السعودية" : "SAUDI BUSINESS GATEWAY";
   return (
     <Link
       href={`/${locale}`}
-      className={cn("group flex items-center gap-2.5", className)}
+      className={cn("group inline-flex shrink-0 items-center", className)}
       aria-label={name}
     >
-      <LogoMark className="h-10 w-10 shrink-0 text-gold transition-transform duration-500 group-hover:rotate-45" />
-      <span className="flex flex-col leading-none">
-        <span
-          className={cn(
-            "text-xl font-bold tracking-[0.18em]",
-            locale === "ar" && "tracking-normal",
-            variant === "dark" ? "text-navy" : "text-white"
-          )}
-        >
-          {name}
-        </span>
-        <span
-          className={cn(
-            "mt-1 text-[9px] font-medium tracking-[0.22em]",
-            locale === "ar" && "text-[10px] tracking-[0.08em]",
-            variant === "dark" ? "text-muted" : "text-white/60"
-          )}
-        >
-          {sub}
-        </span>
-      </span>
+      <Image
+        src="/images/brand/omnira-gateway-logo.png"
+        alt={name}
+        width={1179}
+        height={366}
+        priority
+        sizes="(max-width: 640px) 126px, (max-width: 1536px) 148px, 168px"
+        className={cn(
+          "h-auto w-[126px] object-contain transition-opacity duration-300 group-hover:opacity-90 sm:w-[148px] 2xl:w-[168px]",
+          variant === "light" && "drop-shadow-[0_4px_10px_rgba(0,0,0,0.22)]"
+        )}
+      />
     </Link>
   );
 }

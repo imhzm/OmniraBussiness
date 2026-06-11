@@ -3,7 +3,7 @@ import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { localeHref } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
-import { LogoMark } from "@/components/ui/Logo";
+import { Logo } from "@/components/ui/Logo";
 import { Pattern } from "@/components/ui/Pattern";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -19,7 +19,7 @@ export function FinalCTA({ locale }: { locale: Locale }) {
       />
       <div className="container-x relative">
         <Reveal className="flex flex-col items-center gap-8 text-center lg:flex-row lg:text-start">
-          <LogoMark className="h-16 w-16 shrink-0 text-gold" />
+          <Logo locale={locale} variant="light" className="shrink-0" />
           <div className="flex-1">
             <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
               {dict.home.ctaTitle}

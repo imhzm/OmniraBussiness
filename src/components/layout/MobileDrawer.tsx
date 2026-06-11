@@ -37,10 +37,12 @@ export function MobileDrawer({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  if (!open) return null;
+
   return (
     <div
-      className={cn("fixed inset-0 z-[60] lg:hidden", !open && "pointer-events-none")}
-      aria-hidden={!open}
+      className="fixed inset-0 z-[60] overflow-hidden lg:hidden"
+      aria-hidden={false}
     >
       {/* Backdrop */}
       <div

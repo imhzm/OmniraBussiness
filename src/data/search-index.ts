@@ -4,6 +4,7 @@ import { sectors } from "@/data/sectors";
 import { platforms } from "@/data/platforms";
 import { articles } from "@/data/articles";
 import { events } from "@/data/events";
+import { kingdomTopics } from "@/data/kingdom-pages";
 
 export type SearchEntryType =
   | "service"
@@ -57,6 +58,27 @@ const staticPages: SearchEntry[] = [
     href: "/resources/library",
     keywords: "library downloads guides مكتبة تحميل أدلة",
   },
+  {
+    type: "page",
+    title: { en: "Sectors", ar: "القطاعات" },
+    description: { en: "High-growth Saudi sectors under Vision 2030.", ar: "قطاعات سعودية عالية النمو ضمن رؤية 2030." },
+    href: "/about-kingdom/sectors",
+    keywords: "sectors industries قطاعات صناعات فرص",
+  },
+  {
+    type: "page",
+    title: { en: "News", ar: "الأخبار" },
+    description: { en: "Regulatory and market updates.", ar: "مستجدات تنظيمية وسوقية." },
+    href: "/resources/news",
+    keywords: "news updates أخبار مستجدات",
+  },
+  {
+    type: "page",
+    title: { en: "Market Insights", ar: "رؤى السوق" },
+    description: { en: "Data-driven Saudi market views.", ar: "قراءات مبنية على البيانات للسوق السعودي." },
+    href: "/resources/market-insights",
+    keywords: "insights market رؤى السوق",
+  },
 ];
 
 export const searchIndex: SearchEntry[] = [
@@ -73,6 +95,13 @@ export const searchIndex: SearchEntry[] = [
     description: s.short,
     href: `/about-kingdom/sectors/${s.slug}`,
     keywords: `${s.slug.replace(/-/g, " ")} ${s.name.en} ${s.name.ar}`,
+  })),
+  ...kingdomTopics.map<SearchEntry>((topic) => ({
+    type: "page",
+    title: topic.title,
+    description: topic.excerpt,
+    href: `/about-kingdom/${topic.slug}`,
+    keywords: `${topic.slug.replace(/-/g, " ")} ${topic.title.en} ${topic.title.ar}`,
   })),
   ...platforms.map<SearchEntry>((p) => ({
     type: "platform",
@@ -92,7 +121,7 @@ export const searchIndex: SearchEntry[] = [
     type: "event",
     title: e.title,
     description: e.description,
-    href: "/resources/events",
+    href: `/resources/events/${e.id}`,
     keywords: `${e.title.en} ${e.title.ar} ${e.city.en} ${e.city.ar}`,
   })),
   ...staticPages,

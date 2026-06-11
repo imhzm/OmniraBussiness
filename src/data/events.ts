@@ -81,3 +81,7 @@ export function upcomingEvents(reference = new Date()): BizEvent[] {
     .filter((e) => new Date(e.endDate ?? e.date) >= reference)
     .sort((a, b) => a.date.localeCompare(b.date));
 }
+
+export function getEvent(id: string): BizEvent | undefined {
+  return events.find((event) => event.id === id);
+}
