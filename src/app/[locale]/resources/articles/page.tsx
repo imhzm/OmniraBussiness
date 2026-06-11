@@ -4,7 +4,6 @@ import { articleCategories, articles } from "@/data/articles";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
-import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
@@ -63,7 +62,7 @@ export default async function ArticlesPage({
                 className="group overflow-hidden rounded-2xl border border-line bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-card-hover"
               >
                 <div className="relative aspect-[16/9]">
-                  <Image src={assetSrc(article.image)} alt={t(article.title, l)} fill sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover" />
+                  <Image src={article.image} alt={t(article.title, l)} fill sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover" />
                   <div className="absolute start-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-gold-dark">
                     {t(articleCategories.find((cat) => cat.id === article.category)!.label, l)}
                   </div>

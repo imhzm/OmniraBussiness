@@ -1,12 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { marketStats } from "@/data/home";
 import { sectors } from "@/data/sectors";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
-import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { CountUp } from "@/components/ui/CountUp";
 import { Icon } from "@/components/ui/Icon";
@@ -79,7 +77,7 @@ export default async function AboutKingdomPage({
         <div className="container-x grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-card-hover">
             <Image
-              src={assetSrc("/images/about/kingdom.webp")}
+              src="/images/about/kingdom.webp"
               alt={l === "ar" ? "مشهد أعمال في السعودية" : "Saudi Arabia business landscape"}
               fill
               sizes="(max-width: 1024px) 100vw, 54vw"
@@ -174,18 +172,18 @@ export default async function AboutKingdomPage({
           </div>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {sectors.map((sector) => (
-              <Link
+              <a
                 key={sector.slug}
                 href={localeHref(l, `/about-kingdom/sectors/${sector.slug}`)}
                 className="group overflow-hidden rounded-2xl border border-line bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-card-hover"
               >
                 <div className="relative aspect-[4/3]">
-                  <Image src={assetSrc(sector.image)} alt={t(sector.name, l)} fill sizes="(max-width: 1024px) 50vw, 25vw" className="object-cover" />
+                  <Image src={sector.image} alt={t(sector.name, l)} fill sizes="(max-width: 1024px) 50vw, 25vw" className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/75 to-transparent" />
                   <h3 className="absolute inset-x-4 bottom-4 text-lg font-bold leading-tight text-white">{t(sector.name, l)}</h3>
                 </div>
                 <p className="line-clamp-3 p-4 text-sm leading-relaxed text-muted">{t(sector.short, l)}</p>
-              </Link>
+              </a>
             ))}
           </div>
         </div>

@@ -6,7 +6,6 @@ import { getService } from "@/data/services";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
-import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -70,7 +69,7 @@ export default async function ArticleDetailsPage({
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
           <article className="rounded-2xl border border-line bg-white p-6 shadow-card lg:p-8">
             <div className="relative mb-8 aspect-[16/8] overflow-hidden rounded-2xl">
-              <Image src={assetSrc(article.image)} alt={t(article.title, l)} fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
+              <Image src={article.image} alt={t(article.title, l)} fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
             </div>
             <div className="prose max-w-none">
               {article.body.map((block, i) => {

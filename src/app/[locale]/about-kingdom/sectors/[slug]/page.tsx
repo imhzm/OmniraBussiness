@@ -5,7 +5,6 @@ import { getService } from "@/data/services";
 import { getSector, sectors } from "@/data/sectors";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
-import { assetSrc } from "@/lib/assets";
 import { pageMetadata } from "@/lib/seo";
 import { localeHref, t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
@@ -70,7 +69,7 @@ export default async function SectorDetailsPage({
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
           <article className="space-y-10">
             <div className="relative aspect-[16/8] overflow-hidden rounded-2xl shadow-card-hover">
-              <Image src={assetSrc(sector.image)} alt={t(sector.name, l)} fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
+              <Image src={sector.image} alt={t(sector.name, l)} fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
             </div>
 
             <TextBlock title={dict.common.overview} paragraphs={sector.overview.map((item) => t(item, l))} />
