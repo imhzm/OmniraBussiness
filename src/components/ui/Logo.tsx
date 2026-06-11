@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
+import { assetSrc } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 
 /** Geometric eight-point star — the Omnira brand mark. */
@@ -54,7 +55,7 @@ export function Logo({
       aria-label={name}
     >
       <Image
-        src="/images/brand/omnira-gateway-logo.png"
+        src={assetSrc("/images/brand/omnira-gateway-logo.png")}
         alt={name}
         width={1179}
         height={366}

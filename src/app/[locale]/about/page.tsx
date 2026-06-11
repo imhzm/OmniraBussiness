@@ -4,6 +4,7 @@ import { site } from "@/config/site";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
+import { assetSrc } from "@/lib/assets";
 import { t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
@@ -74,7 +75,7 @@ export default async function AboutPage({
         <div className="container-x grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-card-hover">
             <Image
-              src="/images/about/office.webp"
+              src={assetSrc("/images/about/office.webp")}
               alt={locale === "ar" ? "فريق أومنيرا في الرياض" : "Omnira office in Riyadh"}
               fill
               sizes="(max-width: 1024px) 100vw, 44vw"

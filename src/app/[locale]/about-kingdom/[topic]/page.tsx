@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getKingdomTopic, kingdomTopics } from "@/data/kingdom-pages";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
+import { assetSrc } from "@/lib/assets";
 import { pageMetadata } from "@/lib/seo";
 import { t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
@@ -57,7 +58,7 @@ export default async function KingdomTopicPage({
       <section className="py-12 lg:py-16">
         <div className="container-x grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-card-hover">
-            <Image src={page.image} alt={t(page.title, l)} fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover" />
+            <Image src={assetSrc(page.image)} alt={t(page.title, l)} fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover" />
           </div>
           <div className="space-y-8">
             {page.sections.map((section) => (

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { heroStats, trustedMarks } from "@/data/home";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
+import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { CountUp } from "@/components/ui/CountUp";
@@ -21,7 +22,7 @@ export function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="relative overflow-hidden border-b border-line bg-ivory">
       <Image
-        src="/images/hero/omnira-riyadh-hero.png"
+        src={assetSrc("/images/hero/omnira-riyadh-hero.png")}
         alt={locale === "ar" ? "أفق أعمال حديث في الرياض" : "Modern Riyadh business skyline"}
         fill
         priority

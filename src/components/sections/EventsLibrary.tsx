@@ -4,6 +4,7 @@ import { upcomingEvents } from "@/data/events";
 import { libraryDocs } from "@/data/library";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
+import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
@@ -44,7 +45,7 @@ export function EventsLibrary({ locale }: { locale: Locale }) {
                     className="group flex items-center gap-4 rounded-2xl border border-line bg-ivory/50 p-4 transition-all duration-300 hover:border-gold/50 hover:bg-white hover:shadow-card"
                   >
                     <span className="relative hidden h-16 w-20 shrink-0 overflow-hidden rounded-xl sm:block">
-                      <Image src={event.image} alt="" fill loading="eager" sizes="80px" className="object-cover" />
+                      <Image src={assetSrc(event.image)} alt="" fill loading="eager" sizes="80px" className="object-cover" />
                     </span>
                     <span className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-navy text-white">
                       <span className="text-lg font-bold leading-none">{day}</span>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { sectors, type Sector } from "@/data/sectors";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
+import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
@@ -24,7 +25,7 @@ export function SectorCard({
         className="group relative block aspect-[4/3] overflow-hidden rounded-2xl shadow-card"
       >
         <Image
-          src={sector.image}
+          src={assetSrc(sector.image)}
           alt={t(sector.name, locale)}
           fill
           loading="eager"

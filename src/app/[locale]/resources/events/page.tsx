@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { upcomingEvents } from "@/data/events";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
+import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -52,7 +54,7 @@ export default async function EventsPage({
           {events.map((event) => (
             <article key={event.id} className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
               <div className="relative aspect-[16/8]">
-                <Image src={event.image} alt={t(event.title, l)} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+                <Image src={assetSrc(event.image)} alt={t(event.title, l)} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
               </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 text-xs font-semibold text-muted">
@@ -60,9 +62,9 @@ export default async function EventsPage({
                   {event.endDate && <span className="rounded-full bg-ivory px-3 py-1">{event.endDate}</span>}
                   <span className="rounded-full bg-ivory px-3 py-1">{t(event.city, l)}</span>
                 </div>
-                <a href={localeHref(l, `/resources/events/${event.id}`)} className="mt-4 block text-xl font-bold text-navy transition-colors hover:text-gold-dark">
+                <Link href={localeHref(l, `/resources/events/${event.id}`)} className="mt-4 block text-xl font-bold text-navy transition-colors hover:text-gold-dark">
                   {t(event.title, l)}
-                </a>
+                </Link>
                 <p className="mt-2 text-sm font-semibold text-gold-dark">{t(event.organizer, l)} · {t(event.sector, l)}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{t(event.description, l)}</p>
                 <div className="mt-5 flex flex-wrap gap-3">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { articleCategories, articles, type Article } from "@/data/articles";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
+import { assetSrc } from "@/lib/assets";
 import { localeHref, t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
@@ -36,7 +37,7 @@ export function ArticleCard({
       >
         <div className="relative aspect-[16/9] overflow-hidden">
           <Image
-            src={article.image}
+            src={assetSrc(article.image)}
             alt={t(article.title, locale)}
             fill
             loading="eager"

@@ -5,6 +5,7 @@ import { events, getEvent } from "@/data/events";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
+import { assetSrc } from "@/lib/assets";
 import { t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -60,7 +61,7 @@ export default async function EventDetailsPage({
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
           <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
             <div className="relative aspect-[16/8]">
-              <Image src={event.image} alt={t(event.title, l)} fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
+              <Image src={assetSrc(event.image)} alt={t(event.title, l)} fill sizes="(max-width: 1024px) 100vw, 70vw" className="object-cover" />
             </div>
             <div className="p-6 lg:p-8">
               <h2 className="text-2xl font-bold text-navy">{dict.resources.events}</h2>
