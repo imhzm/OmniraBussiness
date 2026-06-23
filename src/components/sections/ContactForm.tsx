@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { site, whatsappLink } from "@/config/site";
+import { site, whatsappLink, leadCapture, hasLeadBackend } from "@/config/site";
 import { services } from "@/data/services";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
@@ -65,7 +65,20 @@ export function ContactForm({ locale }: { locale: Locale }) {
         ? `مرحباً أومنيرا، أحتاج استشارة.\nالاسم: ${state.fullName}\nالشركة: ${state.companyName || "-"}\nالبريد: ${state.email}\nالجوال: ${state.phone}\nالخدمة: ${selectedService}\nوسيلة التواصل المفضلة: ${state.preferred}\nالرسالة: ${state.message}`
         : `Hello Omnira, I need a consultation.\nName: ${state.fullName}\nCompany: ${state.companyName || "-"}\nEmail: ${state.email}\nPhone: ${state.phone}\nService: ${selectedService}\nPreferred contact: ${state.preferred}\nMessage: ${state.message}`;
 
-    window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+    // When a real lead-capture backend is configured, POST the lead to it.
+    // Otherwise fall back to the WhatsApp deep-link (current default UX).
+    if (hasLeadBackend()) {
+      void fetch(leadCapture.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...state, selectedService, locale }),
+      }).catch(() => {
+        // Network/backend failure must not break the UX: fall back to WhatsApp.
+        window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+      });
+    } else {
+      window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+    }
     setSent(true);
   };
 

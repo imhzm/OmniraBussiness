@@ -39,3 +39,25 @@ export function whatsappLink(message?: string): string {
   const base = `https://wa.me/${site.whatsappNumber}`;
   return message ? `${base}?text=${encodeURIComponent(message)}` : base;
 }
+
+/**
+ * Lead-capture configuration — the single place that decides where form
+ * submissions (contact + newsletter) are sent.
+ *
+ * `endpoint` is read from the public env var `NEXT_PUBLIC_LEAD_ENDPOINT`.
+ * When it is set, the forms POST the lead there (e.g. a CRM webhook or an
+ * API route). When it is empty (the default, and the case for this static
+ * build), the forms fall back to the WhatsApp deep-link / local-confirmation
+ * UX so nothing breaks before a backend exists.
+ *
+ * TODO (go-live): provision a real lead-capture endpoint + credentials and
+ * set NEXT_PUBLIC_LEAD_ENDPOINT in the deployment environment.
+ */
+export const leadCapture = {
+  endpoint: process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "",
+} as const;
+
+/** True when a real lead-capture backend has been configured. */
+export function hasLeadBackend(): boolean {
+  return leadCapture.endpoint.trim().length > 0;
+}

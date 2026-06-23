@@ -4,8 +4,13 @@ import { useState } from "react";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { Icon } from "@/components/ui/Icon";
+import { leadCapture, hasLeadBackend } from "@/config/site";
 
-/** Static-friendly newsletter capture: confirms locally (no backend, per roadmap §4). */
+/**
+ * Newsletter capture. When a lead-capture backend is configured (see
+ * `leadCapture` in config/site.ts) the email is POSTed there; otherwise it
+ * confirms locally with no backend (static-friendly default, per roadmap §4).
+ */
 export function NewsletterForm({ locale }: { locale: Locale }) {
   const dict = getDict(locale);
   const [done, setDone] = useState(false);
@@ -25,7 +30,17 @@ export function NewsletterForm({ locale }: { locale: Locale }) {
       className="mt-4 flex max-w-md overflow-hidden rounded-full border border-white/15 bg-white/5 focus-within:border-gold"
       onSubmit={(e) => {
         e.preventDefault();
-        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) setDone(true);
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+        // POST to the lead-capture backend when configured; the local
+        // confirmation below runs either way so the UX never blocks.
+        if (hasLeadBackend()) {
+          void fetch(leadCapture.endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, type: "newsletter", locale }),
+          }).catch(() => {});
+        }
+        setDone(true);
       }}
     >
       <input
