@@ -6,7 +6,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { MarketOverview } from "@/components/sections/MarketOverview";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
-import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
+import { BusinessSetupProcess } from "@/components/sections/BusinessSetupProcess";
 import { GovernmentPlatforms } from "@/components/sections/GovernmentPlatforms";
 import { SectorsGrid } from "@/components/sections/SectorsGrid";
 import { EventsLibrary } from "@/components/sections/EventsLibrary";
@@ -44,7 +44,7 @@ export default async function HomePage({
       <TrustBar locale={l} />
       <MarketOverview locale={l} />
       <ServicesPreview locale={l} />
-      <ProcessTimeline locale={l} />
+      <BusinessSetupProcess locale={l} />
       <GovernmentPlatforms locale={l} />
       <SectorsGrid locale={l} />
       <EventsLibrary locale={l} />

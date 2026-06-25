@@ -77,6 +77,63 @@ export const serviceCategories: ServiceCategory[] = [
 export const services: Service[] = [
   // ─────────────────────────── Business Support ───────────────────────────
   {
+    slug: "license-attestation",
+    category: "business-support",
+    icon: "stamp",
+    featured: true,
+    title: { en: "License & Document Attestation", ar: "تصديق وتوثيق التراخيص والمستندات" },
+    excerpt: {
+      en: "Notarize, attest, and legalize your commercial licenses and official documents for use inside Saudi Arabia and abroad.",
+      ar: "توثيق وتصديق وتقنين تراخيصك التجارية ومستنداتك الرسمية لاستخدامها داخل السعودية وخارجها.",
+    },
+    overview: [
+      {
+        en: "Official documents — commercial registrations, licenses, powers of attorney, board resolutions, contracts, and certificates — often need to be notarized and attested before a bank, ministry, court, or foreign authority will accept them. We run the full attestation chain so your paperwork is legally recognized the first time.",
+        ar: "المستندات الرسمية — السجلات التجارية والتراخيص والوكالات وقرارات مجلس الإدارة والعقود والشهادات — غالبًا تحتاج توثيقًا وتصديقًا قبل أن يقبلها بنك أو وزارة أو محكمة أو جهة أجنبية. نتولّى سلسلة التصديق كاملة حتى تُعتمد أوراقك من المرة الأولى.",
+      },
+      {
+        en: "We cover both directions: certifying Saudi documents for use abroad (Chamber of Commerce, Ministry of Foreign Affairs, and embassy legalization), and legalizing foreign documents for use inside the Kingdom, including certified Arabic translation.",
+        ar: "نغطّي الاتجاهين: تصديق المستندات السعودية لاستخدامها بالخارج (الغرفة التجارية ووزارة الخارجية والتصديق من السفارات)، وتقنين المستندات الأجنبية لاستخدامها داخل المملكة، بما في ذلك الترجمة المعتمدة إلى العربية.",
+      },
+    ],
+    audience: [
+      { en: "Companies submitting documents to banks, tenders, or government bodies", ar: "الشركات التي تقدّم مستندات للبنوك أو المنافسات أو الجهات الحكومية" },
+      { en: "Foreign investors whose home-country documents must be legalized for Saudi Arabia", ar: "المستثمرون الأجانب الذين تحتاج مستندات بلدهم إلى تقنين للسعودية" },
+      { en: "Businesses exporting or signing contracts that require attested papers abroad", ar: "الشركات المصدّرة أو الموقّعة على عقود تتطلب أوراقًا مصدّقة بالخارج" },
+    ],
+    benefits: [
+      { en: "One team manages notary, Chamber, MoFA, and embassy steps", ar: "فريق واحد يدير كاتب العدل والغرفة والخارجية والسفارة" },
+      { en: "Documents accepted the first time — no rejected submissions", ar: "قبول المستندات من أول مرة — بلا رفض أو إعادة" },
+      { en: "Certified legal translation included where needed", ar: "ترجمة قانونية معتمدة مشمولة عند الحاجة" },
+      { en: "Clear tracking of every document and its attestation stage", ar: "تتبّع واضح لكل مستند ومرحلة تصديقه" },
+    ],
+    steps: [
+      { title: { en: "Document review", ar: "مراجعة المستندات" }, text: { en: "We check each document and map the exact attestation path it needs.", ar: "نفحص كل مستند ونحدد مسار التصديق المطلوب له بدقة." } },
+      { title: { en: "Notarization", ar: "التوثيق لدى كاتب العدل" }, text: { en: "Notarizing signatures, powers of attorney, and resolutions via the notary.", ar: "توثيق التواقيع والوكالات والقرارات عبر كاتب العدل." } },
+      { title: { en: "Chamber of Commerce attestation", ar: "تصديق الغرفة التجارية" }, text: { en: "Certifying commercial documents, signatures, and certificates of origin.", ar: "تصديق المستندات التجارية والتواقيع وشهادات المنشأ." } },
+      { title: { en: "Ministry of Foreign Affairs", ar: "تصديق وزارة الخارجية" }, text: { en: "MoFA attestation for documents that will be used outside the Kingdom.", ar: "تصديق الخارجية للمستندات التي ستُستخدم خارج المملكة." } },
+      { title: { en: "Embassy / final legalization", ar: "التصديق النهائي / السفارة" }, text: { en: "Legalization at the destination-country embassy, or Saudi legalization for inbound documents.", ar: "التقنين لدى سفارة دولة الوجهة، أو التصديق السعودي للمستندات الواردة." } },
+    ],
+    requirements: [
+      { en: "The original documents to be attested", ar: "المستندات الأصلية المراد تصديقها" },
+      { en: "Valid commercial registration / IDs of the signatories", ar: "السجل التجاري الساري / هويات الموقّعين" },
+      { en: "Destination country and the authority requesting the documents", ar: "دولة الوجهة والجهة الطالبة للمستندات" },
+    ],
+    deliverables: [
+      { en: "Fully notarized and attested documents", ar: "مستندات موثّقة ومصدّقة بالكامل" },
+      { en: "Certified Arabic / English translations where required", ar: "ترجمات معتمدة عربية / إنجليزية عند الحاجة" },
+      { en: "A status sheet for every document and stage", ar: "كشف بحالة كل مستند ومرحلة" },
+    ],
+    timeline: { en: "Typically 3–10 business days depending on the chain and destination.", ar: "عادةً 3–10 أيام عمل حسب السلسلة والوجهة." },
+    bestFor: { en: "Companies and investors who need legally recognized documents fast.", ar: "الشركات والمستثمرون المحتاجون مستندات معترفًا بها قانونيًا وبسرعة." },
+    supportType: { en: "Done-for-you attestation management", ar: "إدارة تصديق مُنجزة بالكامل نيابة عنك" },
+    faqs: [
+      { q: { en: "What is the difference between notarization and attestation?", ar: "ما الفرق بين التوثيق والتصديق؟" }, a: { en: "Notarization authenticates a signature or document before a notary; attestation is the chain of official certifications (Chamber, MoFA, embassy) that makes it valid for a specific authority or country.", ar: "التوثيق يصادق على توقيع أو مستند أمام كاتب العدل؛ أما التصديق فهو سلسلة الاعتمادات الرسمية (الغرفة، الخارجية، السفارة) التي تجعله صالحًا أمام جهة أو دولة محددة." } },
+      { q: { en: "Can you legalize documents issued outside Saudi Arabia?", ar: "هل تقنّنون مستندات صادرة خارج السعودية؟" }, a: { en: "Yes. We guide the legalization from the issuing country (its MoFA plus the Saudi embassy there) and complete Saudi-side attestation and certified translation so the document is accepted locally.", ar: "نعم. نوجّه التقنين من دولة الإصدار (خارجيتها والسفارة السعودية هناك) ونكمل التصديق السعودي والترجمة المعتمدة حتى يُقبل المستند محليًا." } },
+      { q: { en: "Do you handle certified translation too?", ar: "هل تتولّون الترجمة المعتمدة أيضًا؟" }, a: { en: "Yes — certified legal translation between Arabic and other languages is included whenever the receiving authority requires it.", ar: "نعم — الترجمة القانونية المعتمدة بين العربية واللغات الأخرى مشمولة كلما طلبتها الجهة المستلمة." } },
+    ],
+  },
+  {
     slug: "business-setup",
     category: "business-support",
     icon: "building-2",
