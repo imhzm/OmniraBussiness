@@ -157,6 +157,12 @@ export const mainNav: NavItem[] = [
             desc: { en: "Annual government-platform support", ar: "دعم سنوي للمنصات الحكومية" },
             icon: "landmark",
           },
+          {
+            label: { en: "Cost Calculator", ar: "حاسبة التكلفة" },
+            href: "/business-setup-cost-calculator",
+            desc: { en: "Estimate your setup cost in 6 steps", ar: "احسب تكلفة تأسيسك في 6 خطوات" },
+            icon: "calculator",
+          },
         ],
       },
     ],
