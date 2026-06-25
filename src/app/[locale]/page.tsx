@@ -12,6 +12,7 @@ import { SectorsGrid } from "@/components/sections/SectorsGrid";
 import { EventsLibrary } from "@/components/sections/EventsLibrary";
 import { ArticlesSection } from "@/components/sections/ArticlesSection";
 import { PricingPreview } from "@/components/sections/PricingPreview";
+import { CostEstimation } from "@/components/sections/CostEstimation";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export async function generateMetadata({
@@ -50,6 +51,7 @@ export default async function HomePage({
       <EventsLibrary locale={l} />
       <ArticlesSection locale={l} />
       <PricingPreview locale={l} />
+      <CostEstimation locale={l} />
       <FinalCTA locale={l} />
     </>
   );
