@@ -1,4 +1,4 @@
-import { pricingPackages, type PricingPackage } from "@/data/pricing";
+import { packageServiceGroups, pricingPackages, type PricingPackage } from "@/data/pricing";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { cn, localeHref, t } from "@/lib/utils";
@@ -77,14 +77,70 @@ export function PricingCard({
           {dict.pricing.idealFor}: <span className="text-navy">{t(pkg.idealFor, locale)}</span>
         </p>
 
-        <ul className="mt-5 flex-1 space-y-2.5">
-          {pkg.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-sm text-ink">
-              <Icon name="check-circle-2" className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" />
-              {t(feature, locale)}
-            </li>
-          ))}
-        </ul>
+        {(() => {
+          const groups = packageServiceGroups[pkg.id];
+          if (!groups) {
+            return (
+              <ul className="mt-5 flex-1 space-y-2.5">
+                {pkg.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-ink">
+                    <Icon name="check-circle-2" className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" />
+                    {t(feature, locale)}
+                  </li>
+                ))}
+              </ul>
+            );
+          }
+          return (
+            <div className="mt-5 flex-1">
+              <p className="mb-1.5 flex items-center gap-1.5 text-xs font-bold text-navy">
+                <Icon name="badge-check" className="h-4 w-4 text-gold-dark" />
+                {locale === "ar"
+                  ? "الخدمات المشمولة — اضغط للتفاصيل"
+                  : "Included services — tap for details"}
+              </p>
+              <div className="border-t border-line">
+                {groups.map((g, i) =>
+                  g.locked ? (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 border-b border-line py-2.5 text-sm text-faint"
+                    >
+                      <Icon name="minus" className="h-4 w-4 shrink-0" />
+                      <span className="font-semibold">{t(g.title, locale)}</span>
+                      <span className="ms-auto rounded-md bg-ivory px-2 py-0.5 text-[0.65rem] font-bold text-muted">
+                        {locale === "ar" ? "في الباقات الأعلى" : "Higher plans"}
+                      </span>
+                    </div>
+                  ) : (
+                    <details key={i} className="group border-b border-line">
+                      <summary className="flex cursor-pointer list-none items-center gap-2 py-2.5 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                        <Icon name="check-circle-2" className="h-4 w-4 shrink-0 text-gold-dark" />
+                        <span>{t(g.title, locale)}</span>
+                        <Icon
+                          name="chevron-down"
+                          className="ms-auto h-4 w-4 shrink-0 text-muted transition-transform duration-200 group-open:rotate-180"
+                        />
+                      </summary>
+                      {g.items && (
+                        <ul className="space-y-1.5 pb-2.5 ps-6">
+                          {g.items.map((it, j) => (
+                            <li
+                              key={j}
+                              className="relative ps-3 text-xs leading-relaxed text-muted before:absolute before:start-0 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full before:bg-gold-dark"
+                            >
+                              {t(it, locale)}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </details>
+                  )
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
         <Button
           href={localeHref(locale, "/contact")}

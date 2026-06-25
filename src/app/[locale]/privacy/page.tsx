@@ -34,13 +34,13 @@ export default async function PrivacyPage({
     l === "ar"
       ? [
           ["البيانات التي نجمعها", "نجمع بيانات التواصل التي ترسلها لنا طوعاً مثل الاسم والبريد ورقم الجوال واحتياج الخدمة."],
-          ["كيف نستخدم البيانات", "نستخدم البيانات للرد على الاستفسارات، ترتيب الاستشارات، وتحسين تجربة خدمات أومنيرا."],
+          ["كيف نستخدم البيانات", "نستخدم البيانات للرد على الاستفسارات، ترتيب الاستشارات، وتحسين تجربة خدمات Omnera One."],
           ["مشاركة البيانات", "لا نبيع بياناتك. قد نشارك معلومات محدودة مع مزودي خدمات يساعدوننا في التواصل أو تقديم الخدمة."],
           ["التواصل", `يمكنك مراسلتنا عبر ${site.email} لطلب تحديث أو حذف بياناتك.`],
         ]
       : [
           ["Data we collect", "We collect contact details you voluntarily submit, such as name, email, phone number, and service needs."],
-          ["How we use data", "We use data to respond to inquiries, arrange consultations, and improve the Omnira service experience."],
+          ["How we use data", "We use data to respond to inquiries, arrange consultations, and improve the Omnera One service experience."],
           ["Data sharing", "We do not sell your data. We may share limited information with service providers that help us communicate or deliver services."],
           ["Contact", `You can contact us at ${site.email} to request an update or deletion of your data.`],
         ];

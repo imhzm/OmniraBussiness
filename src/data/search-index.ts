@@ -39,7 +39,7 @@ const staticPages: SearchEntry[] = [
   },
   {
     type: "page",
-    title: { en: "About Omnira", ar: "عن أومنيرا" },
+    title: { en: "About Omnera One", ar: "عن Omnera One" },
     description: { en: "Who we are and how we work.", ar: "من نحن وكيف نعمل." },
     href: "/about",
     keywords: "about company team عن الشركة الفريق",

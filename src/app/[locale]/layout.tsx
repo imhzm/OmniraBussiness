@@ -26,8 +26,8 @@ export async function generateMetadata({
     },
     description:
       l === "ar"
-        ? "أومنيرا — بوابتك الموثوقة لتأسيس الشركات والتراخيص والإقامات والامتثال في المملكة العربية السعودية."
-        : "Omnira — your trusted gateway to company formation, licensing, residency, and compliance in Saudi Arabia.",
+        ? "Omnera One — بوابتك الموثوقة لتأسيس الشركات والتراخيص والإقامات والامتثال في المملكة العربية السعودية."
+        : "Omnera One — your trusted gateway to company formation, licensing, residency, and compliance in Saudi Arabia.",
   };
 }
 

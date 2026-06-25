@@ -220,8 +220,8 @@ const en = {
   about: {
     heroTitle: "A Partner, Not Just a Provider",
     heroText:
-      "Omnira was founded to make entering the Saudi market clear, fast, and fully compliant — for founders, SMEs, and global companies alike.",
-    storyTitle: "Why Omnira",
+      "Omnera One was founded to make entering the Saudi market clear, fast, and fully compliant — for founders, SMEs, and global companies alike.",
+    storyTitle: "Why Omnera One",
     valuesTitle: "How We Work",
     teamTitle: "Built by people who know the market",
   },
@@ -487,8 +487,8 @@ const ar: typeof en = {
   about: {
     heroTitle: "شريك حقيقي، وليس مجرد مزوّد خدمة",
     heroText:
-      "تأسست أومنيرا لتجعل دخول السوق السعودي واضحًا وسريعًا ومتوافقًا تمامًا — لروّاد الأعمال والشركات الصغيرة والعالمية على حد سواء.",
-    storyTitle: "لماذا أومنيرا",
+      "تأسست Omnera One لتجعل دخول السوق السعودي واضحًا وسريعًا ومتوافقًا تمامًا — لروّاد الأعمال والشركات الصغيرة والعالمية على حد سواء.",
+    storyTitle: "لماذا Omnera One",
     valuesTitle: "كيف نعمل",
     teamTitle: "فريق يعرف السوق عن قرب",
   },

@@ -178,8 +178,8 @@ export default async function PricingPage({
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
               {l === "ar"
-                ? "لو عندك مكتب تأسيس أو استشارات في بلدك، حوّل عملاءك الراغبين بدخول السوق السعودي إلى أومنيرا أو أعد بيع خدماتنا بعلامتك."
-                : "If you run a formation or advisory firm abroad, refer clients entering Saudi Arabia to Omnira or resell our delivery under your brand."}
+                ? "لو عندك مكتب تأسيس أو استشارات في بلدك، حوّل عملاءك الراغبين بدخول السوق السعودي إلى Omnera One أو أعد بيع خدماتنا بعلامتك."
+                : "If you run a formation or advisory firm abroad, refer clients entering Saudi Arabia to Omnera One or resell our delivery under your brand."}
             </p>
           </div>
 

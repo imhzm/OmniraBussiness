@@ -5,10 +5,10 @@ import type { L } from "@/i18n/config";
  * propagate to the header, footer, contact page, forms, and WhatsApp links.
  */
 export const site = {
-  name: { en: "Omnira", ar: "أومنيرا" } satisfies L,
+  name: { en: "Omnera One", ar: "Omnera One" } satisfies L,
   legalName: {
-    en: "Omnira Business Services",
-    ar: "أومنيرا لخدمات الأعمال",
+    en: "Omnera One Business Services",
+    ar: "Omnera One لخدمات الأعمال",
   } satisfies L,
   tagline: {
     en: "Your Gateway to Business in Saudi Arabia",

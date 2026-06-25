@@ -35,13 +35,13 @@ export default async function TermsPage({
       ? [
           ["نطاق الموقع", "يوفر الموقع معلومات عامة عن خدمات الأعمال في السعودية ولا يعد استشارة قانونية أو ضريبية نهائية."],
           ["الخدمات والعروض", "تخضع الأسعار والنطاقات للتأكيد قبل بدء أي تعاقد، وقد تختلف الرسوم الحكومية حسب الحالة."],
-          ["استخدام المحتوى", "لا يجوز نسخ أو إعادة نشر محتوى الموقع دون موافقة كتابية من أومنيرا."],
+          ["استخدام المحتوى", "لا يجوز نسخ أو إعادة نشر محتوى الموقع دون موافقة كتابية من Omnera One."],
           ["حدود المسؤولية", "نبذل العناية المهنية في تحديث المحتوى، لكن الأنظمة والرسوم الحكومية قد تتغير دون إشعار."],
         ]
       : [
           ["Website scope", "The website provides general information about business services in Saudi Arabia and is not final legal or tax advice."],
           ["Services and proposals", "Prices and scopes are confirmed before engagement, and government fees may vary by case."],
-          ["Content use", "You may not copy or republish site content without written approval from Omnira."],
+          ["Content use", "You may not copy or republish site content without written approval from Omnera One."],
           ["Liability limits", "We use professional care when updating content, but regulations and government fees may change without notice."],
         ];
 

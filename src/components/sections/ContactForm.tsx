@@ -62,8 +62,8 @@ export function ContactForm({ locale }: { locale: Locale }) {
     const selectedService = serviceOptions.find((service) => service.value === state.service)?.label ?? state.service;
     const message =
       locale === "ar"
-        ? `مرحباً أومنيرا، أحتاج استشارة.\nالاسم: ${state.fullName}\nالشركة: ${state.companyName || "-"}\nالبريد: ${state.email}\nالجوال: ${state.phone}\nالخدمة: ${selectedService}\nوسيلة التواصل المفضلة: ${state.preferred}\nالرسالة: ${state.message}`
-        : `Hello Omnira, I need a consultation.\nName: ${state.fullName}\nCompany: ${state.companyName || "-"}\nEmail: ${state.email}\nPhone: ${state.phone}\nService: ${selectedService}\nPreferred contact: ${state.preferred}\nMessage: ${state.message}`;
+        ? `مرحباً Omnera One، أحتاج استشارة.\nالاسم: ${state.fullName}\nالشركة: ${state.companyName || "-"}\nالبريد: ${state.email}\nالجوال: ${state.phone}\nالخدمة: ${selectedService}\nوسيلة التواصل المفضلة: ${state.preferred}\nالرسالة: ${state.message}`
+        : `Hello Omnera One, I need a consultation.\nName: ${state.fullName}\nCompany: ${state.companyName || "-"}\nEmail: ${state.email}\nPhone: ${state.phone}\nService: ${selectedService}\nPreferred contact: ${state.preferred}\nMessage: ${state.message}`;
 
     // When a real lead-capture backend is configured, POST the lead to it.
     // Otherwise fall back to the WhatsApp deep-link (current default UX).

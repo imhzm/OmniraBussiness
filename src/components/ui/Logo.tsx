@@ -1,9 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 
-/** Geometric eight-point star — the Omnira brand mark. */
+/** Geometric eight-point star — the Omnera One brand mark. */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
@@ -46,25 +45,40 @@ export function Logo({
   variant?: "dark" | "light";
   className?: string;
 }) {
-  const name = locale === "ar" ? "أومنيرا" : "OMNIRA";
   return (
     <Link
       href={`/${locale}`}
-      className={cn("group inline-flex shrink-0 items-center", className)}
-      aria-label={name}
+      aria-label="Omnera One"
+      className={cn("group inline-flex shrink-0 items-center gap-2.5", className)}
     >
-      <Image
-        src="/images/brand/omnira-gateway-logo.png"
-        alt={name}
-        width={1179}
-        height={366}
-        priority
-        sizes="(max-width: 640px) 126px, (max-width: 1700px) 148px, 168px"
+      <LogoMark
         className={cn(
-          "h-auto w-[126px] object-contain transition-opacity duration-300 group-hover:opacity-90 sm:w-[148px] min-[1700px]:w-[168px]",
-          variant === "light" && "drop-shadow-[0_4px_10px_rgba(0,0,0,0.22)]"
+          "h-8 w-8 shrink-0 transition-transform duration-300 group-hover:rotate-45",
+          variant === "light" ? "text-gold-soft" : "text-gold-dark"
         )}
       />
+      <span className="flex flex-col leading-none">
+        <span
+          className={cn(
+            "text-lg font-bold tracking-tight",
+            variant === "light" ? "text-white" : "text-navy"
+          )}
+        >
+          Omnera
+          <span className={variant === "light" ? "text-gold-soft" : "text-gold-dark"}>
+            {" "}
+            One
+          </span>
+        </span>
+        <span
+          className={cn(
+            "mt-0.5 text-[0.6rem] font-semibold tracking-wide",
+            variant === "light" ? "text-white/70" : "text-muted"
+          )}
+        >
+          {locale === "ar" ? "خدمات الأعمال في السعودية" : "Saudi Business Services"}
+        </span>
+      </span>
     </Link>
   );
 }

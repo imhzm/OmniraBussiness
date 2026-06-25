@@ -75,7 +75,7 @@ export default async function AboutPage({
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-card-hover">
             <Image
               src="/images/about/office.webp"
-              alt={locale === "ar" ? "فريق أومنيرا في الرياض" : "Omnira office in Riyadh"}
+              alt={locale === "ar" ? "فريق Omnera One في الرياض" : "Omnera One office in Riyadh"}
               fill
               sizes="(max-width: 1024px) 100vw, 44vw"
               className="object-cover"
@@ -91,8 +91,8 @@ export default async function AboutPage({
             <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
               <p>
                 {l === "ar"
-                  ? "أومنيرا تبني تجربة خدمات أعمال واضحة للشركات التي تريد دخول السوق السعودي بثقة. نربط بين الاستشارة، المستندات، المنصات الحكومية، والامتثال التشغيلي في رحلة واحدة منظمة."
-                  : "Omnira gives companies a clear operating path into Saudi Arabia. We connect advisory, documentation, government portals, and operational compliance into one organized journey."}
+                  ? "Omnera One تبني تجربة خدمات أعمال واضحة للشركات التي تريد دخول السوق السعودي بثقة. نربط بين الاستشارة، المستندات، المنصات الحكومية، والامتثال التشغيلي في رحلة واحدة منظمة."
+                  : "Omnera One gives companies a clear operating path into Saudi Arabia. We connect advisory, documentation, government portals, and operational compliance into one organized journey."}
               </p>
               <p>
                 {l === "ar"

@@ -187,6 +187,167 @@ export const pricingPackages: PricingPackage[] = [
   },
 ];
 
+export type ServiceGroup = { title: L; items?: L[]; locked?: boolean };
+
+/** Detailed, expandable service breakdown per package (rendered as accordions on the pricing cards). */
+export const packageServiceGroups: Record<string, ServiceGroup[]> = {
+  launch: [
+    { title: { en: "MISA investment license", ar: "ترخيص الاستثمار MISA" }, items: [
+      { en: "Activity eligibility study under investment rules", ar: "دراسة توافق نشاطك مع أنظمة الاستثمار" },
+      { en: "Document preparation, translation, and attestation", ar: "تجهيز وترجمة وتصديق المستندات" },
+      { en: "Filing and follow-up until issuance", ar: "تقديم الطلب ومتابعته حتى الإصدار" },
+    ] },
+    { title: { en: "CR + Chamber + national address", ar: "السجل التجاري + الغرفة + العنوان الوطني" }, items: [
+      { en: "Trade-name reservation and Articles of Association", ar: "حجز الاسم التجاري وعقد التأسيس" },
+      { en: "Commercial Registration issuance", ar: "إصدار السجل التجاري" },
+      { en: "Chamber of Commerce registration", ar: "تسجيل الغرفة التجارية" },
+      { en: "National address attestation", ar: "توثيق العنوان الوطني" },
+    ] },
+    { title: { en: "Corporate bank account", ar: "الحساب البنكي التجاري" }, items: [
+      { en: "Onboarding file and compliance documents", ar: "تجهيز ملف الفتح ومستندات الامتثال" },
+      { en: "Coordination with the bank", ar: "التنسيق مع البنك وحجز المواعيد" },
+      { en: "Follow-up until activation", ar: "المتابعة حتى تفعيل الحساب" },
+    ] },
+    { title: { en: "Core platform registration", ar: "التسجيل في المنصات الأساسية" }, items: [
+      { en: "Qiwa and Muqeem", ar: "قوى ومقيم" },
+      { en: "GOSI (social insurance)", ar: "التأمينات الاجتماعية" },
+      { en: "ZATCA (tax)", ar: "زاتكا (الضريبة)" },
+    ] },
+  ],
+  growth: [
+    { title: { en: "Everything in Launch", ar: "كل ما في باقة الانطلاق" }, items: [
+      { en: "MISA license, CR, Chamber, national address", ar: "ترخيص MISA والسجل والغرفة والعنوان الوطني" },
+      { en: "Corporate bank account + core platforms", ar: "الحساب البنكي + المنصات الأساسية" },
+    ] },
+    { title: { en: "General Manager iqama", ar: "إقامة المدير العام" }, items: [
+      { en: "Work visa issuance", ar: "إصدار تأشيرة العمل" },
+      { en: "Medical, insurance, and iqama processing", ar: "الفحص الطبي والتأمين وإجراءات الإقامة" },
+      { en: "Muqeem registration and iqama issuance", ar: "التسجيل في مقيم وإصدار الإقامة" },
+    ] },
+    { title: { en: "All government platforms activated", ar: "تفعيل جميع المنصات الحكومية" }, items: [
+      { en: "Absher Business and Balady", ar: "أبشر أعمال وبلدي" },
+      { en: "Mudad (payroll)", ar: "منصة مدد (الرواتب)" },
+      { en: "Full Qiwa, Muqeem, GOSI, ZATCA", ar: "تفعيل كامل لقوى ومقيم والتأمينات وزاتكا" },
+    ] },
+    { title: { en: "3 months platform management — free", ar: "3 شهور إدارة منصات مجاناً" }, items: [
+      { en: "Compliance and renewals upkeep", ar: "متابعة الالتزامات والتجديدات" },
+      { en: "Alerts before every due date", ar: "تنبيهات قبل كل استحقاق" },
+    ] },
+    { title: { en: "Market-entry blueprint — gift", ar: "مخطط دخول السوق — هدية" }, items: [
+      { en: "Detailed setup cost for your activity", ar: "تكلفة التأسيس المفصّلة لنشاطك" },
+      { en: "Expected monthly costs", ar: "المصاريف الشهرية المتوقعة" },
+      { en: "Sector profit scenarios (estimates)", ar: "سيناريوهات أرباح قطاعك (تقديرية)" },
+    ] },
+  ],
+  turnkey: [
+    { title: { en: "Everything in Growth", ar: "كل ما في باقة النمو" }, items: [
+      { en: "Full setup + GM iqama + all platforms", ar: "تأسيس كامل + إقامة المدير + كل المنصات" },
+      { en: "3 months management + market-entry blueprint", ar: "3 شهور إدارة + مخطط دخول السوق" },
+    ] },
+    { title: { en: "Office / virtual address — first year", ar: "عنوان مكتب / افتراضي للسنة الأولى" }, items: [
+      { en: "Approved national address", ar: "عنوان وطني معتمد للمنشأة" },
+      { en: "Physical office or virtual option", ar: "مكتب فعلي أو عنوان افتراضي" },
+    ] },
+    { title: { en: "Investor residency", ar: "إقامة المستثمر" }, items: [
+      { en: "Premium investor residency support", ar: "دعم إصدار إقامة المستثمر المميّز" },
+      { en: "Full document handling and follow-up", ar: "تجهيز ومتابعة المستندات" },
+    ] },
+    { title: { en: "6 months platform management — free", ar: "6 شهور إدارة منصات مجاناً" }, items: [
+      { en: "Full management for 6 months", ar: "إدارة كاملة لكل المنصات 6 شهور" },
+      { en: "Renewals, payroll, and filings included", ar: "تجديدات ورواتب وإقرارات ضمن الباقة" },
+    ] },
+    { title: { en: "Dedicated account manager + priority", ar: "مدير حساب مخصص + أولوية تنفيذ" }, items: [
+      { en: "A manager you reach directly", ar: "مدير حساب تتواصل معه مباشرة" },
+      { en: "Priority on all transactions", ar: "أولوية في تنفيذ كل معاملاتك" },
+    ] },
+  ],
+  "platform-lite": [
+    { title: { en: "Absher Business", ar: "أبشر أعمال" }, items: [
+      { en: "Electronic authorizations", ar: "إدارة التفويضات الإلكترونية" },
+      { en: "Government services execution", ar: "تنفيذ الخدمات الحكومية" },
+      { en: "Entity data attestation", ar: "توثيق وتحديث بيانات المنشأة" },
+    ] },
+    { title: { en: "Qiwa (core)", ar: "منصة قوى (أساسي)" }, items: [
+      { en: "Work permit tracking", ar: "متابعة رخص العمل وتواريخ انتهائها" },
+      { en: "Entity data updates", ar: "تحديث بيانات المنشأة" },
+      { en: "Basic Saudization (Nitaqat) tracking", ar: "متابعة نطاقات السعودة الأساسية" },
+    ] },
+    { title: { en: "Muqeem", ar: "منصة مقيم" }, items: [
+      { en: "Iqama renewals", ar: "تجديد الإقامات" },
+      { en: "Exit-reentry visas", ar: "تأشيرات الخروج والعودة" },
+      { en: "Final exit and info transfer", ar: "الخروج النهائي ونقل المعلومات" },
+    ] },
+    { title: { en: "CR & Chamber", ar: "السجل التجاري والغرفة" }, items: [
+      { en: "Annual CR renewal alerts", ar: "متابعة وتنبيه التجديد السنوي للسجل" },
+      { en: "Chamber membership renewal", ar: "تجديد عضوية الغرفة التجارية" },
+    ] },
+    { title: { en: "Alerts & compliance", ar: "التنبيهات والامتثال" }, items: [
+      { en: "Scheduled due-date alerts", ar: "تنبيهات مجدولة قبل كل استحقاق" },
+      { en: "Initial compliance audit", ar: "تدقيق امتثال أولي" },
+    ] },
+    { title: { en: "Payroll & WPS (Mudad)", ar: "الرواتب وحماية الأجور (مدد)" }, locked: true },
+    { title: { en: "Tax & e-invoicing (ZATCA)", ar: "الضريبة والفاتورة (زاتكا)" }, locked: true },
+    { title: { en: "Zakat & tenders (Etimad / Saber)", ar: "الزكاة والمناقصات (اعتماد/سابر)" }, locked: true },
+  ],
+  "platform-growth": [
+    { title: { en: "Everything in Lite", ar: "كل ما في باقة لايت" }, items: [
+      { en: "Absher, Qiwa, Muqeem", ar: "أبشر أعمال + قوى + مقيم" },
+      { en: "CR & Chamber + alerts", ar: "السجل والغرفة + التنبيهات" },
+    ] },
+    { title: { en: "Mudad — payroll & WPS", ar: "منصة مدد — الرواتب وحماية الأجور" }, items: [
+      { en: "Monthly payroll file", ar: "رفع ملف الرواتب الشهري" },
+      { en: "Wage Protection System compliance", ar: "الالتزام بنظام حماية الأجور (WPS)" },
+      { en: "Payment and reconciliation reports", ar: "تقارير المدفوعات والمطابقة" },
+    ] },
+    { title: { en: "GOSI (social insurance)", ar: "التأمينات الاجتماعية (GOSI)" }, items: [
+      { en: "Employee registration / removal", ar: "تسجيل وإلغاء الموظفين" },
+      { en: "Wage and contribution updates", ar: "تحديث الأجور والاشتراكات" },
+      { en: "Certificate issuance", ar: "إصدار شهادات التأمينات" },
+    ] },
+    { title: { en: "ZATCA — VAT & e-invoicing", ar: "زاتكا — الضريبة والفاتورة الإلكترونية" }, items: [
+      { en: "Periodic VAT returns", ar: "إعداد وتقديم إقرارات القيمة المضافة" },
+      { en: "E-invoicing (Fatoora) integration", ar: "ربط وإصدار الفاتورة الإلكترونية (فاتورة)" },
+      { en: "Tax compliance follow-up", ar: "متابعة الالتزام الضريبي" },
+    ] },
+    { title: { en: "Qiwa (advanced)", ar: "منصة قوى (متقدّم)" }, items: [
+      { en: "Work permit renewals", ar: "تجديد رخص العمل" },
+      { en: "Sponsorship transfer and contracts", ar: "نقل الخدمات (الكفالة) وتوثيق العقود" },
+      { en: "Visa and Saudization requests", ar: "إدارة طلبات التأشيرات والسعودة" },
+    ] },
+    { title: { en: "Employee iqamas", ar: "إقامات الموظفين" }, items: [
+      { en: "Bulk renewals", ar: "تجديد جماعي للإقامات" },
+      { en: "Expiry tracking and exceptions", ar: "متابعة الانتهاء ومعالجة الاستثناءات" },
+    ] },
+    { title: { en: "Zakat, income tax & tenders", ar: "الزكاة وضريبة الدخل والمناقصات" }, locked: true },
+  ],
+  "platform-complete": [
+    { title: { en: "Everything in Growth", ar: "كل ما في باقة نمو" }, items: [
+      { en: "Absher, Qiwa, Muqeem, Mudad, GOSI, ZATCA", ar: "أبشر + قوى + مقيم + مدد + التأمينات + زاتكا" },
+      { en: "Employee iqamas and alerts", ar: "إقامات الموظفين والتنبيهات" },
+    ] },
+    { title: { en: "Zakat & income tax", ar: "الزكاة وضريبة الدخل" }, items: [
+      { en: "Annual returns preparation and filing", ar: "إعداد وتقديم الإقرارات السنوية" },
+      { en: "Zakat certificate issuance", ar: "استخراج شهادة الزكاة" },
+    ] },
+    { title: { en: "Etimad", ar: "منصة اعتماد" }, items: [
+      { en: "Registration and qualification", ar: "التسجيل والتأهيل في اعتماد" },
+      { en: "Bids and government tenders", ar: "إدارة العروض والمنافسات الحكومية" },
+    ] },
+    { title: { en: "Saber", ar: "منصة سابر" }, items: [
+      { en: "Product registration", ar: "تسجيل المنتجات" },
+      { en: "Conformity certificates for importers", ar: "شهادات المطابقة للمستوردين" },
+    ] },
+    { title: { en: "Dedicated government representative", ar: "مندوب حكومي مخصص" }, items: [
+      { en: "In-person transactions handled", ar: "إنجاز المعاملات التي تتطلب حضوراً" },
+      { en: "Entity representation before authorities", ar: "تمثيل المنشأة أمام الجهات" },
+    ] },
+    { title: { en: "Monthly status report", ar: "تقرير شهري بحالة المنشأة" }, items: [
+      { en: "Summary of obligations and dates", ar: "ملخّص الالتزامات والمواعيد القادمة" },
+      { en: "Compliance and Saudization metrics", ar: "مؤشرات الامتثال والسعودة" },
+    ] },
+  ],
+};
+
 export const managementAddOns: L[] = [
   { en: "Additional employee: SAR 400", ar: "موظف إضافي: 400 ر.س" },
   { en: "Additional branch: SAR 400", ar: "فرع إضافي: 400 ر.س" },
@@ -324,7 +485,7 @@ export const pricingFaqs: PricingFaq[] = [
     },
   },
   {
-    q: { en: "Can partners resell Omnira services?", ar: "هل يمكن للشركاء إعادة بيع خدمات أومنيرا؟" },
+    q: { en: "Can partners resell Omnera One services?", ar: "هل يمكن للشركاء إعادة بيع خدمات Omnera One؟" },
     a: {
       en: "Yes. We support both referral commissions and reseller / white-label models for firms that already serve founders entering the Saudi market.",
       ar: "نعم. نوفر نموذج الإحالة بالعمولة ونموذج إعادة البيع / العلامة المشتركة للمكاتب التي تخدم مؤسسين يرغبون بدخول السوق السعودي.",
