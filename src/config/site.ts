@@ -14,11 +14,11 @@ export const site = {
     en: "Your Gateway to Business in Saudi Arabia",
     ar: "بوابتك للأعمال في المملكة العربية السعودية",
   } satisfies L,
-  url: "https://omnira.sa",
+  url: "https://omneraone.com",
   phone: "+966 55 000 0000",
   phoneHref: "tel:+966550000000",
   whatsappNumber: "966550000000",
-  email: "info@omnira.sa",
+  email: "info@omneraone.com",
   address: {
     en: "King Fahd Road, Riyadh, Saudi Arabia",
     ar: "طريق الملك فهد، الرياض، المملكة العربية السعودية",
@@ -28,10 +28,10 @@ export const site = {
     ar: "الأحد – الخميس، 9:00 ص – 6:00 م",
   } satisfies L,
   social: {
-    linkedin: "https://www.linkedin.com/company/omnira",
-    x: "https://x.com/omnira",
-    instagram: "https://www.instagram.com/omnira",
-    youtube: "https://www.youtube.com/@omnira",
+    linkedin: "https://www.linkedin.com/company/omneraone",
+    x: "https://x.com/omneraone",
+    instagram: "https://www.instagram.com/omneraone",
+    youtube: "https://www.youtube.com/@omneraone",
   },
 } as const;
 
