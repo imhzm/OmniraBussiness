@@ -189,6 +189,48 @@ export const pricingPackages: PricingPackage[] = [
 
 export type ServiceGroup = { title: L; items?: L[]; locked?: boolean };
 
+export type PackageSpec = { label: L; value: L };
+
+/** Headline specs shown as a quick-stat row on each pricing card (employees, branches, add-on costs, timeframe) — like the reference packages layout. */
+export const packageSpecs: Record<string, PackageSpec[]> = {
+  launch: [
+    { label: { en: "Setup time", ar: "مدة التأسيس" }, value: { en: "4–8 weeks", ar: "4–8 أسابيع" } },
+    { label: { en: "Bank account", ar: "الحساب البنكي" }, value: { en: "Supported", ar: "مدعوم" } },
+    { label: { en: "VAT filing", ar: "الإقرار الضريبي" }, value: { en: "3 months free", ar: "3 أشهر مجاناً" } },
+    { label: { en: "Government fees", ar: "الرسوم الحكومية" }, value: { en: "At cost", ar: "كما هي للجهات" } },
+  ],
+  growth: [
+    { label: { en: "Setup time", ar: "مدة التأسيس" }, value: { en: "4–8 weeks", ar: "4–8 أسابيع" } },
+    { label: { en: "Bank account", ar: "الحساب البنكي" }, value: { en: "Guaranteed", ar: "مضمون" } },
+    { label: { en: "GM iqama", ar: "إقامة المدير" }, value: { en: "Included", ar: "مشمولة" } },
+    { label: { en: "Free management", ar: "إدارة مجانية" }, value: { en: "3 months", ar: "3 أشهر" } },
+  ],
+  turnkey: [
+    { label: { en: "Setup time", ar: "مدة التأسيس" }, value: { en: "4–8 weeks", ar: "4–8 أسابيع" } },
+    { label: { en: "Office address", ar: "عنوان المكتب" }, value: { en: "First year", ar: "السنة الأولى" } },
+    { label: { en: "Investor residency", ar: "إقامة المستثمر" }, value: { en: "Included", ar: "مشمولة" } },
+    { label: { en: "Free management", ar: "إدارة مجانية" }, value: { en: "6 months", ar: "6 أشهر" } },
+  ],
+  "platform-lite": [
+    { label: { en: "Employees", ar: "عدد الموظفين" }, value: { en: "1–5", ar: "1–5" } },
+    { label: { en: "Additional employee", ar: "موظف إضافي" }, value: { en: "SAR 400", ar: "400 ر.س" } },
+    { label: { en: "Branches", ar: "عدد الفروع" }, value: { en: "1", ar: "1" } },
+    { label: { en: "Additional branch", ar: "فرع إضافي" }, value: { en: "SAR 400", ar: "400 ر.س" } },
+  ],
+  "platform-growth": [
+    { label: { en: "Employees", ar: "عدد الموظفين" }, value: { en: "1–10", ar: "1–10" } },
+    { label: { en: "Additional employee", ar: "موظف إضافي" }, value: { en: "SAR 400", ar: "400 ر.س" } },
+    { label: { en: "Branches", ar: "عدد الفروع" }, value: { en: "1", ar: "1" } },
+    { label: { en: "Additional branch", ar: "فرع إضافي" }, value: { en: "SAR 400", ar: "400 ر.س" } },
+  ],
+  "platform-complete": [
+    { label: { en: "Employees", ar: "عدد الموظفين" }, value: { en: "1–25", ar: "1–25" } },
+    { label: { en: "Additional employee", ar: "موظف إضافي" }, value: { en: "SAR 400", ar: "400 ر.س" } },
+    { label: { en: "Branches", ar: "عدد الفروع" }, value: { en: "Up to 3", ar: "حتى 3" } },
+    { label: { en: "Additional branch", ar: "فرع إضافي" }, value: { en: "SAR 400", ar: "400 ر.س" } },
+  ],
+};
+
 /** Detailed, expandable service breakdown per package (rendered as accordions on the pricing cards). */
 export const packageServiceGroups: Record<string, ServiceGroup[]> = {
   launch: [
@@ -271,11 +313,15 @@ export const packageServiceGroups: Record<string, ServiceGroup[]> = {
       { en: "Work permit tracking", ar: "متابعة رخص العمل وتواريخ انتهائها" },
       { en: "Entity data updates", ar: "تحديث بيانات المنشأة" },
       { en: "Basic Saudization (Nitaqat) tracking", ar: "متابعة نطاقات السعودة الأساسية" },
+      { en: "Establishment file management", ar: "إدارة ملف المنشأة" },
+      { en: "Self-evaluation and violations follow-up", ar: "متابعة التقييم الذاتي والمخالفات" },
     ] },
     { title: { en: "Muqeem", ar: "منصة مقيم" }, items: [
       { en: "Iqama renewals", ar: "تجديد الإقامات" },
       { en: "Exit-reentry visas", ar: "تأشيرات الخروج والعودة" },
       { en: "Final exit and info transfer", ar: "الخروج النهائي ونقل المعلومات" },
+      { en: "Passport data updates", ar: "تحديث بيانات الجوازات" },
+      { en: "Muqeem reports and printouts", ar: "تقارير ومطبوعات مقيم" },
     ] },
     { title: { en: "CR & Chamber", ar: "السجل التجاري والغرفة" }, items: [
       { en: "Annual CR renewal alerts", ar: "متابعة وتنبيه التجديد السنوي للسجل" },
@@ -298,13 +344,16 @@ export const packageServiceGroups: Record<string, ServiceGroup[]> = {
       { en: "Monthly payroll file", ar: "رفع ملف الرواتب الشهري" },
       { en: "Wage Protection System compliance", ar: "الالتزام بنظام حماية الأجور (WPS)" },
       { en: "Payment and reconciliation reports", ar: "تقارير المدفوعات والمطابقة" },
+      { en: "Bank salary file generation", ar: "توليد ملف الرواتب البنكي" },
     ] },
     { title: { en: "GOSI (social insurance)", ar: "التأمينات الاجتماعية (GOSI)" }, items: [
       { en: "Employee registration / removal", ar: "تسجيل وإلغاء الموظفين" },
       { en: "Wage and contribution updates", ar: "تحديث الأجور والاشتراكات" },
       { en: "Certificate issuance", ar: "إصدار شهادات التأمينات" },
+      { en: "Occupational-hazards subscription", ar: "اشتراك الأخطار المهنية" },
     ] },
     { title: { en: "ZATCA — VAT & e-invoicing", ar: "زاتكا — الضريبة والفاتورة الإلكترونية" }, items: [
+      { en: "VAT registration and amendments", ar: "التسجيل في القيمة المضافة والتعديلات" },
       { en: "Periodic VAT returns", ar: "إعداد وتقديم إقرارات القيمة المضافة" },
       { en: "E-invoicing (Fatoora) integration", ar: "ربط وإصدار الفاتورة الإلكترونية (فاتورة)" },
       { en: "Tax compliance follow-up", ar: "متابعة الالتزام الضريبي" },

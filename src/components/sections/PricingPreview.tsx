@@ -1,4 +1,9 @@
-import { packageServiceGroups, pricingPackages, type PricingPackage } from "@/data/pricing";
+import {
+  packageServiceGroups,
+  packageSpecs,
+  pricingPackages,
+  type PricingPackage,
+} from "@/data/pricing";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { cn, localeHref, t } from "@/lib/utils";
@@ -76,6 +81,22 @@ export function PricingCard({
         <p className="mt-4 rounded-xl bg-ivory px-4 py-2.5 text-xs font-semibold text-muted">
           {dict.pricing.idealFor}: <span className="text-navy">{t(pkg.idealFor, locale)}</span>
         </p>
+
+        {packageSpecs[pkg.id] && (
+          <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2 rounded-xl border border-line bg-ivory/50 p-3">
+            {packageSpecs[pkg.id].map((s, i) => (
+              <div key={i} className="flex items-baseline gap-1.5 text-xs leading-snug">
+                <span className="font-bold text-gold-dark" aria-hidden>
+                  +
+                </span>
+                <span>
+                  <span className="text-muted">{t(s.label, locale)}: </span>
+                  <span className="font-bold text-navy">{t(s.value, locale)}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
 
         {(() => {
           const groups = packageServiceGroups[pkg.id];
