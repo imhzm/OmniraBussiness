@@ -21,6 +21,7 @@ export type Service = {
   category: ServiceCategoryId;
   icon: string;
   featured?: boolean;
+  image?: string;
   title: L;
   excerpt: L;
   overview: L[];
@@ -81,6 +82,7 @@ export const services: Service[] = [
     category: "business-support",
     icon: "scroll-text",
     featured: true,
+    image: "/images/services/license-issuance.webp",
     title: { en: "License Issuance", ar: "إصدار التراخيص" },
     excerpt: {
       en: "Obtain every licence your business needs to operate legally in Saudi Arabia — investment, commercial, municipal, and activity-specific.",
@@ -88,12 +90,16 @@ export const services: Service[] = [
     },
     overview: [
       {
-        en: "Most activities in Saudi Arabia need more than one licence: a MISA investment licence for foreign ownership, the Commercial Registration, a municipal (Balady) licence, and often an activity-specific permit from a sector regulator (SFDA, CITC, SAMA, the Ministry of Tourism, and others). We identify exactly which licences your activity requires and issue them in the right order.",
-        ar: "معظم الأنشطة في السعودية تحتاج أكثر من ترخيص: ترخيص استثمار من وزارة الاستثمار للملكية الأجنبية، والسجل التجاري، ورخصة بلدية، وغالبًا تصريح خاص بالنشاط من جهة منظِّمة (الغذاء والدواء، الاتصالات، البنك المركزي، وزارة السياحة وغيرها). نحدد بدقة التراخيص التي يحتاجها نشاطك ونصدرها بالترتيب الصحيح.",
+        en: "Operating legally in Saudi Arabia usually requires several licences in the right sequence: for foreign-owned entities, a MISA investment licence from the Ministry of Investment; then the Commercial Registration (CR) from the Ministry of Commerce; a municipal (Balady) operating licence for your premises; and, for regulated activities, a sector permit from the relevant authority (SFDA, CST, SAMA, the Ministry of Tourism, the Ministry of Industry, and others). We identify exactly which licences your activity needs and issue them in the correct order.",
+        ar: "العمل بشكل نظامي في السعودية يتطلب عادةً عدة تراخيص بالترتيب الصحيح: للكيانات ذات الملكية الأجنبية، ترخيص استثمار من وزارة الاستثمار؛ ثم السجل التجاري من وزارة التجارة؛ ورخصة بلدية (بلدي) لمقرّك؛ وللأنشطة المنظَّمة، تصريح قطاع من الجهة المختصة (الغذاء والدواء، الاتصالات، البنك المركزي، وزارة السياحة، وزارة الصناعة وغيرها). نحدد بدقة التراخيص التي يحتاجها نشاطك ونصدرها بالترتيب الصحيح.",
       },
       {
-        en: "Choosing the correct activity classification (ISIC) up front avoids costly rework and rejected applications. We handle classification, eligibility checks, document preparation, submission, and follow-up until each licence is issued and active.",
-        ar: "اختيار التصنيف الصحيح للنشاط (ISIC) من البداية يتجنّب إعادة الإجراءات المكلِّفة ورفض الطلبات. نتولّى التصنيف وفحص الأهلية وتجهيز المستندات والتقديم والمتابعة حتى يصدر كل ترخيص ويصبح فعّالًا.",
+        en: "MISA licences cover eight activity categories — Service, Professional, Industrial, Trading (Commercial), Entrepreneurial, Agricultural, Real Estate Development, and Mining — and most sectors now allow 100% foreign ownership with no Saudi partner. As part of Vision 2030 reforms, MISA service fees are currently waived (SAR 0), and processing for a clean file can take only a few business days.",
+        ar: "تغطي تراخيص الاستثمار ثماني فئات نشاط — خدمي، مهني، صناعي، تجاري، ريادي، زراعي، تطوير عقاري، وتعدين — ومعظم القطاعات تتيح الآن ملكية أجنبية 100% بدون شريك سعودي. وضمن إصلاحات رؤية 2030، رسوم خدمة الاستثمار معفاة حاليًا (0 ر.س)، ومعالجة الملف النظيف قد تتم خلال أيام عمل قليلة.",
+      },
+      {
+        en: "Choosing the correct activity classification (ISIC) up front avoids costly rework and rejected applications. We handle classification, eligibility checks, document preparation, submission, and follow-up until every licence is issued and active — and we set you up with a renewal calendar so nothing lapses.",
+        ar: "اختيار التصنيف الصحيح للنشاط (ISIC) من البداية يتجنّب إعادة الإجراءات المكلِّفة ورفض الطلبات. نتولّى التصنيف وفحص الأهلية وتجهيز المستندات والتقديم والمتابعة حتى يصدر كل ترخيص ويصبح فعّالًا — ونجهّز لك تقويم تجديد حتى لا ينتهي شيء.",
       },
     ],
     audience: [
@@ -102,9 +108,11 @@ export const services: Service[] = [
       { en: "Businesses adding a new activity or branch that needs its own permit", ar: "الشركات التي تضيف نشاطًا أو فرعًا جديدًا يحتاج تصريحه الخاص" },
     ],
     benefits: [
+      { en: "100% foreign ownership structured where the activity allows", ar: "هيكلة ملكية أجنبية 100% حيث يسمح النشاط" },
       { en: "Correct activity (ISIC) selection from day one — no licensing rework", ar: "اختيار النشاط الصحيح من اليوم الأول — بلا إعادة إجراءات ترخيص" },
       { en: "All licences mapped and sequenced by one accountable team", ar: "كل التراخيص محدّدة ومرتّبة عبر فريق واحد مسؤول" },
-      { en: "Sector-regulator permits handled (SFDA, CITC, SAMA, MT, and more)", ar: "تصاريح الجهات المنظِّمة (الغذاء والدواء، الاتصالات، البنك المركزي، السياحة وغيرها)" },
+      { en: "Sector-regulator permits handled (SFDA, CST, SAMA, MT, and more)", ar: "تصاريح الجهات المنظِّمة (الغذاء والدواء، الاتصالات، البنك المركزي، السياحة وغيرها)" },
+      { en: "Government fees passed through at cost — full transparency", ar: "الرسوم الحكومية تُمرَّر كما هي — شفافية كاملة" },
       { en: "Renewal calendar so no licence lapses or triggers a fine", ar: "تقويم تجديد حتى لا ينتهي ترخيص أو تُفرض غرامة" },
     ],
     steps: [
@@ -129,9 +137,11 @@ export const services: Service[] = [
     bestFor: { en: "Anyone who needs to be fully licensed to start or expand operations.", ar: "كل من يحتاج ترخيصًا كاملًا لبدء أو توسيع نشاطه." },
     supportType: { en: "Done-for-you licensing across all authorities", ar: "ترخيص مُنجز بالكامل عبر جميع الجهات" },
     faqs: [
-      { q: { en: "Which licences does my business actually need?", ar: "ما التراخيص التي يحتاجها نشاطي فعلًا؟" }, a: { en: "It depends on your activity and ownership. Most companies need a CR and municipal licence; foreign owners need a MISA licence; and regulated activities (health, food, finance, telecom, tourism) need a sector permit. We map the exact list for your case.", ar: "يعتمد على نشاطك وملكيتك. معظم الشركات تحتاج سجلًا تجاريًا ورخصة بلدية؛ والمالك الأجنبي يحتاج ترخيص استثمار؛ والأنشطة المنظَّمة (صحة، غذاء، مالية، اتصالات، سياحة) تحتاج تصريح قطاع. نحدد لك القائمة الدقيقة لحالتك." } },
-      { q: { en: "Can you issue activity-specific (regulated) licences?", ar: "هل تصدرون تراخيص النشاط المنظَّمة؟" }, a: { en: "Yes. We prepare and follow up regulated permits with the relevant authority — SFDA for health/food, CITC for telecom, SAMA for finance, the Ministry of Tourism for hospitality, and others.", ar: "نعم. نعدّ ونتابع التصاريح المنظَّمة مع الجهة المختصة — الغذاء والدواء للصحة/الغذاء، الاتصالات، البنك المركزي للمالية، وزارة السياحة للضيافة، وغيرها." } },
-      { q: { en: "Do licences need renewal?", ar: "هل التراخيص تحتاج تجديدًا؟" }, a: { en: "Yes — the CR, municipal licence, and most permits renew annually. We give you a renewal calendar and can manage the renewals so nothing lapses.", ar: "نعم — السجل التجاري والرخصة البلدية ومعظم التصاريح تُجدَّد سنويًا. نوفّر لك تقويم تجديد ويمكننا إدارة التجديدات حتى لا ينتهي شيء." } },
+      { q: { en: "Which licences does my business actually need?", ar: "ما التراخيص التي يحتاجها نشاطي فعلًا؟" }, a: { en: "It depends on your activity and ownership. Most companies need a CR and a municipal licence; foreign owners need a MISA investment licence; and regulated activities (health, food, finance, telecom, tourism) need a sector permit. We map the exact list for your case before we start.", ar: "يعتمد على نشاطك وملكيتك. معظم الشركات تحتاج سجلًا تجاريًا ورخصة بلدية؛ والمالك الأجنبي يحتاج ترخيص استثمار؛ والأنشطة المنظَّمة (صحة، غذاء، مالية، اتصالات، سياحة) تحتاج تصريح قطاع. نحدد لك القائمة الدقيقة لحالتك قبل أن نبدأ." } },
+      { q: { en: "Can a foreigner own 100% of the company?", ar: "هل يمكن للأجنبي تملّك الشركة 100%؟" }, a: { en: "In most activities, yes — a MISA investment licence allows 100% foreign ownership with no Saudi partner (e.g. IT, professional services, manufacturing, logistics, healthcare, hospitality). Some activities such as certain trading have conditions, and a few remain restricted. We confirm eligibility for your exact activity.", ar: "في معظم الأنشطة نعم — ترخيص الاستثمار يتيح ملكية أجنبية 100% بدون شريك سعودي (مثل التقنية والخدمات المهنية والصناعة واللوجستيات والصحة والضيافة). بعض الأنشطة مثل أنواع من التجارة لها شروط، وقليل منها يبقى مقيّدًا. نؤكد الأهلية لنشاطك بالتحديد." } },
+      { q: { en: "How much do the licences cost and how long do they take?", ar: "كم تكلفة التراخيص وكم تستغرق؟" }, a: { en: "Government fees are paid at cost: MISA service fees are currently waived (SAR 0), the Commercial Registration is about SAR 1,200 / year plus a SAR 500 publication fee, and municipal and sector permits vary by activity. A clean MISA file can be issued in a few business days; full licensing typically takes 3–8 weeks depending on sector approvals. Our professional fee is separate and quoted upfront.", ar: "الرسوم الحكومية تُدفع كما هي: رسوم خدمة الاستثمار معفاة حاليًا (0 ر.س)، والسجل التجاري نحو 1,200 ر.س سنويًا إضافةً إلى 500 ر.س رسوم نشر، والرخص البلدية وتصاريح القطاع تختلف حسب النشاط. الملف النظيف لترخيص الاستثمار قد يصدر خلال أيام عمل قليلة؛ والترخيص الكامل عادةً 3–8 أسابيع حسب موافقات القطاع. أتعابنا منفصلة وتُحدَّد مسبقًا." } },
+      { q: { en: "Can you issue activity-specific (regulated) licences?", ar: "هل تصدرون تراخيص النشاط المنظَّمة؟" }, a: { en: "Yes. We prepare and follow up regulated permits with the relevant authority — SFDA for health/food, CST for telecom, SAMA for finance, the Ministry of Tourism for hospitality, the Ministry of Industry for manufacturing, and others.", ar: "نعم. نعدّ ونتابع التصاريح المنظَّمة مع الجهة المختصة — الغذاء والدواء للصحة/الغذاء، الاتصالات، البنك المركزي للمالية، وزارة السياحة للضيافة، وزارة الصناعة للتصنيع، وغيرها." } },
+      { q: { en: "Do licences need renewal?", ar: "هل التراخيص تحتاج تجديدًا؟" }, a: { en: "Yes — the CR, municipal licence, and most permits renew annually. We give you a renewal calendar and can manage the renewals so nothing lapses or triggers a fine.", ar: "نعم — السجل التجاري والرخصة البلدية ومعظم التصاريح تُجدَّد سنويًا. نوفّر لك تقويم تجديد ويمكننا إدارة التجديدات حتى لا ينتهي شيء أو تُفرض غرامة." } },
     ],
   },
   {
