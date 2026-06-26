@@ -60,7 +60,7 @@ export function Header({ locale }: { locale: Locale }) {
                 <Link
                   href={localeHref(locale, item.href)}
                   className={cn(
-                    "relative flex items-center gap-1 rounded-full px-2 py-2 text-[12.5px] font-semibold leading-none whitespace-nowrap transition-colors min-[1500px]:px-2.5 min-[1500px]:text-[13px] min-[1700px]:px-4 min-[1700px]:text-sm",
+                    "relative flex items-center gap-1 rounded-full px-1.5 py-2 text-[12.5px] font-semibold leading-none whitespace-nowrap transition-colors min-[1500px]:px-2.5 min-[1500px]:text-[13px] min-[1700px]:px-4 min-[1700px]:text-sm",
                     isActive(item.href) ? "text-gold-soft" : "text-white/78 hover:text-white"
                   )}
                 >
