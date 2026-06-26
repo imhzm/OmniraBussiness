@@ -158,7 +158,7 @@ export function Header({ locale }: { locale: Locale }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold text-navy transition-colors hover:bg-gold-soft xl:flex"
+              className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold text-navy transition-colors hover:bg-gold-soft min-[1500px]:flex"
             >
               <Icon name="message-circle" className="h-4.5 w-4.5" />
             </a>

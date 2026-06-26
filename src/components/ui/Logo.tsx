@@ -8,7 +8,7 @@ export function LogoMark({ className }: { className?: string }) {
   return (
     <Image
       src="/images/brand/omnera-one-icon.png"
-      alt="Omnira One"
+      alt="Omnera One"
       width={512}
       height={512}
       className={className}
@@ -34,16 +34,16 @@ export function Logo({
   return (
     <Link
       href={`/${locale}`}
-      aria-label="Omnira One"
+      aria-label="Omnera One"
       className={cn("group inline-flex shrink-0 items-center", className)}
     >
       <Image
         src={src}
-        alt="Omnira One"
+        alt="Omnera One"
         width={900}
         height={201}
         sizes="(max-width: 640px) 150px, (max-width: 1700px) 168px, 184px"
-        className="h-auto w-[148px] object-contain transition-opacity duration-300 group-hover:opacity-90 sm:w-[160px] min-[1700px]:w-[182px]"
+        className="h-auto w-[140px] object-contain transition-opacity duration-300 group-hover:opacity-90 min-[1500px]:w-[158px] min-[1700px]:w-[180px]"
       />
     </Link>
   );
