@@ -5,6 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { MarketOverview } from "@/components/sections/MarketOverview";
+import { TargetCountries } from "@/components/sections/TargetCountries";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { BusinessSetupProcess } from "@/components/sections/BusinessSetupProcess";
 import { GovernmentPlatforms } from "@/components/sections/GovernmentPlatforms";
@@ -44,6 +45,7 @@ export default async function HomePage({
       <Hero locale={l} />
       <TrustBar locale={l} />
       <MarketOverview locale={l} />
+      <TargetCountries locale={l} />
       <ServicesPreview locale={l} />
       <BusinessSetupProcess locale={l} />
       <GovernmentPlatforms locale={l} />

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 export function LogoMark({ className }: { className?: string }) {
   return (
     <Image
-      src="/images/brand/omnira-one-icon.png"
+      src="/images/brand/omnera-one-icon.png"
       alt="Omnira One"
       width={512}
       height={512}
@@ -29,8 +29,8 @@ export function Logo({
   // `dark` variant = the full navy/gold wordmark for light backgrounds.
   const src =
     variant === "light"
-      ? "/images/brand/omnira-one-logo-light.png"
-      : "/images/brand/omnira-one-logo.png";
+      ? "/images/brand/omnera-one-logo-light.png"
+      : "/images/brand/omnera-one-logo.png";
   return (
     <Link
       href={`/${locale}`}
