@@ -54,7 +54,7 @@ export function Header({ locale }: { locale: Locale }) {
           <Logo locale={locale} variant="light" />
 
           {/* Desktop navigation */}
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0 xl:flex min-[1500px]:gap-0.5 min-[1700px]:gap-1" aria-label="Main">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0 min-[1400px]:flex min-[1500px]:gap-0.5 min-[1700px]:gap-1" aria-label="Main">
             {mainNav.map((item) => (
               <div key={item.id} className={cn("group/nav", item.columns && "static")}>
                 <Link
@@ -178,7 +178,7 @@ export function Header({ locale }: { locale: Locale }) {
               <Icon name="globe" className="h-4 w-4" />
               <span>{otherLocale === "ar" ? "العربية" : "English"}</span>
             </Link>
-            <span className="hidden shrink-0 xl:inline-flex">
+            <span className="hidden shrink-0 min-[1400px]:inline-flex">
               <Button href={localeHref(locale, "/contact")} size="sm" className="px-4 text-[13px] min-[1500px]:px-5 min-[1500px]:text-sm">
                 {dict.common.bookConsultation}
               </Button>
@@ -187,7 +187,7 @@ export function Header({ locale }: { locale: Locale }) {
               type="button"
               onClick={() => setDrawerOpen(true)}
               aria-label={dict.nav.menu}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-white/85 transition-colors hover:bg-white/10 xl:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white/85 transition-colors hover:bg-white/10 min-[1400px]:hidden"
             >
               <Icon name="menu" className="h-5 w-5" />
             </button>
