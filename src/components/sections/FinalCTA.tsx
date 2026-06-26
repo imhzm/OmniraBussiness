@@ -11,7 +11,7 @@ export function FinalCTA({ locale }: { locale: Locale }) {
   const dict = getDict(locale);
 
   return (
-    <section className="relative overflow-hidden bg-navy py-16 lg:py-20">
+    <section className="relative overflow-hidden bg-navy-gradient py-16 lg:py-20">
       <Pattern id="cta-pattern" className="absolute inset-0 text-gold opacity-[0.06]" />
       <div
         className="pointer-events-none absolute -end-32 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-gold/10 blur-3xl"

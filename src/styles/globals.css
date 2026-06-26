@@ -51,6 +51,15 @@ body {
   color: var(--color-navy);
 }
 
+/* Premium navy gradient for dark section backgrounds (hero, footer, CTAs, panels) */
+.bg-navy-gradient {
+  background-color: var(--color-navy);
+  background-image:
+    radial-gradient(125% 125% at 88% -12%, rgba(200, 162, 74, 0.14), transparent 46%),
+    radial-gradient(90% 120% at 0% 100%, rgba(31, 47, 80, 0.55), transparent 55%),
+    linear-gradient(165deg, #1d2c4d 0%, var(--color-navy) 52%, #070b16 100%);
+}
+
 /* Shared page container */
 .container-x {
   margin-inline: auto;

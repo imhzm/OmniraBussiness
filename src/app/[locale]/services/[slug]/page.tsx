@@ -71,7 +71,7 @@ export default async function ServiceDetailsPage({
       </PageHero>
 
       {service.image && (
-        <section className="bg-navy pb-10 lg:pb-14">
+        <section className="bg-navy-gradient pb-10 lg:pb-14">
           <div className="container-x">
             <div className="overflow-hidden rounded-2xl border border-white/10 shadow-card">
               <Image

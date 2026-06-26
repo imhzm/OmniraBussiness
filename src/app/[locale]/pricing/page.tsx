@@ -149,7 +149,7 @@ export default async function PricingPage({
 
       <section className="py-12 lg:py-16">
         <div className="container-x">
-          <div className="grid gap-6 rounded-2xl bg-navy p-6 text-white shadow-card lg:grid-cols-[1fr_auto] lg:items-center lg:p-8">
+          <div className="grid gap-6 rounded-2xl bg-navy-gradient p-6 text-white shadow-card lg:grid-cols-[1fr_auto] lg:items-center lg:p-8">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-soft">
                 {l === "ar" ? "العرض المدمج" : "Bundle offer"}

@@ -195,7 +195,7 @@ export function CostCalculator({ locale }: { locale: Locale }) {
 
       {/* ── Live estimate panel ── */}
       <div className="self-start lg:sticky lg:top-24">
-        <div className="rounded-2xl bg-navy p-6 text-white shadow-card">
+        <div className="rounded-2xl bg-navy-gradient p-6 text-white shadow-card">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-soft">
             {ar ? "التكلفة الأولية التقديرية" : "Estimated initial cost"}
           </p>

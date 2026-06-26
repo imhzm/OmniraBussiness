@@ -21,7 +21,7 @@ export function Footer({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-navy text-white">
+    <footer className="relative overflow-hidden bg-navy-gradient text-white">
       <Pattern id="footer-pattern" className="absolute inset-0 text-gold opacity-[0.04]" />
 
       <div className="container-x relative">

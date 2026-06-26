@@ -27,7 +27,7 @@ export function TargetCountries({ locale }: { locale: Locale }) {
   const track = [...COUNTRIES, ...COUNTRIES];
 
   return (
-    <section className="overflow-hidden bg-navy py-14 lg:py-20">
+    <section className="overflow-hidden bg-navy-gradient py-14 lg:py-20">
       <style>{`@keyframes omn-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}`}</style>
       <div className="container-x text-center">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-soft">

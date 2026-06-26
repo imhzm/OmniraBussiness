@@ -46,7 +46,7 @@ export function Header({ locale }: { locale: Locale }) {
     <>
       <header
         className={cn(
-          "sticky top-0 z-50 bg-navy transition-shadow duration-300",
+          "sticky top-0 z-50 bg-navy-gradient transition-shadow duration-300",
           scrolled ? "border-b border-white/10 shadow-card" : "border-b border-white/5"
         )}
       >
@@ -126,7 +126,7 @@ export function Header({ locale }: { locale: Locale }) {
                           ))}
 
                           {item.promo && (
-                            <div className="relative m-3 overflow-hidden rounded-2xl bg-navy p-6 text-white">
+                            <div className="relative m-3 overflow-hidden rounded-2xl bg-navy-gradient p-6 text-white">
                               <Pattern id="mega-promo" className="absolute inset-0 text-gold/40 opacity-10" />
                               <div className="relative">
                                 <p className="text-lg font-bold leading-snug">{dict.nav.megaPromoTitle}</p>

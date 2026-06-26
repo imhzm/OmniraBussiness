@@ -61,7 +61,7 @@ export function PageHero({
   dark?: boolean;
 }) {
   return (
-    <section className={dark ? "relative overflow-hidden bg-navy" : "relative overflow-hidden bg-ivory"}>
+    <section className={dark ? "relative overflow-hidden bg-navy-gradient" : "relative overflow-hidden bg-ivory"}>
       <Pattern
         id="page-hero-pattern"
         className={
