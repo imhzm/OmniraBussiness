@@ -50,11 +50,11 @@ export function Header({ locale }: { locale: Locale }) {
           scrolled ? "border-b border-white/10 shadow-card" : "border-b border-white/5"
         )}
       >
-        <div className="container-x flex h-[68px] items-center justify-between gap-2 lg:h-[78px] min-[1500px]:gap-3 min-[1700px]:gap-4">
+        <div className="mx-auto flex h-[68px] w-full max-w-[1480px] items-center justify-between gap-2 px-4 sm:px-6 lg:h-[78px] min-[1500px]:gap-3 min-[1700px]:gap-4">
           <Logo locale={locale} variant="light" />
 
           {/* Desktop navigation */}
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0 min-[1400px]:flex min-[1500px]:gap-0.5 min-[1700px]:gap-1" aria-label="Main">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0 xl:flex min-[1500px]:gap-0.5 min-[1700px]:gap-1" aria-label="Main">
             {mainNav.map((item) => (
               <div key={item.id} className={cn("group/nav", item.columns && "static")}>
                 <Link
@@ -79,7 +79,7 @@ export function Header({ locale }: { locale: Locale }) {
                 {/* Mega menu panel */}
                 {item.columns && (
                   <div className="mega-panel absolute inset-x-0 top-full z-40">
-                    <div className="container-x">
+                    <div className="mx-auto w-full max-w-[1480px] px-4 sm:px-6">
                       <div className="overflow-hidden rounded-b-3xl border border-t-0 border-line bg-white shadow-mega">
                         <div
                           className={cn(
@@ -176,9 +176,9 @@ export function Header({ locale }: { locale: Locale }) {
               aria-label={otherLocale === "ar" ? "العربية" : "English"}
             >
               <Icon name="globe" className="h-4 w-4" />
-              <span>{otherLocale === "ar" ? "العربية" : "English"}</span>
+              <span className="hidden min-[1500px]:inline">{otherLocale === "ar" ? "العربية" : "English"}</span>
             </Link>
-            <span className="hidden shrink-0 min-[1400px]:inline-flex">
+            <span className="hidden shrink-0 xl:inline-flex">
               <Button href={localeHref(locale, "/contact")} size="sm" className="px-4 text-[13px] min-[1500px]:px-5 min-[1500px]:text-sm">
                 {dict.common.bookConsultation}
               </Button>
@@ -187,7 +187,7 @@ export function Header({ locale }: { locale: Locale }) {
               type="button"
               onClick={() => setDrawerOpen(true)}
               aria-label={dict.nav.menu}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-white/85 transition-colors hover:bg-white/10 min-[1400px]:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white/85 transition-colors hover:bg-white/10 xl:hidden"
             >
               <Icon name="menu" className="h-5 w-5" />
             </button>
