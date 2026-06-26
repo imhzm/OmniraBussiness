@@ -10,6 +10,7 @@ import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
+import { TargetCountries } from "@/components/sections/TargetCountries";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export function generateStaticParams() {
@@ -166,6 +167,7 @@ export default async function ServiceDetailsPage({
         </div>
       </section>
 
+      <TargetCountries locale={l} />
       <FinalCTA locale={l} />
     </>
   );
