@@ -70,27 +70,22 @@ export default async function ServiceDetailsPage({
         </div>
       </PageHero>
 
-      {service.image && (
-        <section className="bg-navy-gradient pb-10 lg:pb-14">
-          <div className="container-x">
-            <div className="overflow-hidden rounded-2xl border border-white/10 shadow-card">
-              <Image
-                src={service.image}
-                alt={t(service.title, l)}
-                width={1280}
-                height={720}
-                priority
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                className="h-auto w-full object-cover"
-              />
-            </div>
-          </div>
-        </section>
-      )}
-
       <section className="py-12 lg:py-16">
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
           <article className="space-y-10">
+            {service.image && (
+              <div className="overflow-hidden rounded-2xl border border-line shadow-card">
+                <Image
+                  src={service.image}
+                  alt={t(service.title, l)}
+                  width={1280}
+                  height={720}
+                  priority
+                  sizes="(max-width: 900px) 100vw, 760px"
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            )}
             <Block title={dict.common.overview}>
               {service.overview.map((paragraph, i) => (
                 <p key={i} className="text-base leading-relaxed text-muted">
