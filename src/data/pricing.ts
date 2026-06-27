@@ -454,7 +454,7 @@ export const partnerPrograms: { title: L; subtitle: L; value: L; features: L[] }
       { en: "10% for 1-3 clients per year", ar: "1-3 عملاء/سنة: 10%" },
       { en: "15% for 4-10 clients", ar: "4-10 عملاء: 15%" },
       { en: "20% + priority for more than 10 clients", ar: "أكثر من 10 عملاء: 20% + أولوية" },
-      { en: "Recurring commission on platform-management renewals", ar: "عمولة متكررة على تجديدات إدارة المنصات" },
+      { en: "Instant payout after every closing — no minimums", ar: "دفعات فورية بعد كل إغلاق — بدون حد أدنى" },
     ],
   },
   {
