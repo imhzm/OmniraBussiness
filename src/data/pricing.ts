@@ -410,8 +410,8 @@ export const bundleOffer = {
     ar: "اجمع باقة التأسيس مع إدارة المنصات (نمو) لمدة 12 شهر.",
   },
   value: {
-    en: "SAR 5,000 discount + two extra management months free",
-    ar: "خصم 5,000 ر.س + شهران إدارة إضافيان مجاناً",
+    en: "SAR 3,999 discount + two months management free",
+    ar: "خصم 3,999 ر.س + شهران إدارة مجاناً",
   },
 };
 
