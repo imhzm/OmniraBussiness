@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 import { TargetCountries } from "@/components/sections/TargetCountries";
+import { StartFromZero } from "@/components/sections/StartFromZero";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export function generateStaticParams() {
@@ -161,6 +162,10 @@ export default async function ServiceDetailsPage({
           </aside>
         </div>
       </section>
+
+      {service.slug === "business-setup" && (
+        <StartFromZero locale={l} ctaHref="/pricing#setup" />
+      )}
 
       <TargetCountries locale={l} />
       <FinalCTA locale={l} />

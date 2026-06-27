@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function StartFromZero({ locale }: { locale: Locale }) {
+export function StartFromZero({
+  locale,
+  ctaHref = "/services/business-setup",
+}: {
+  locale: Locale;
+  ctaHref?: string;
+}) {
   const ar = locale === "ar";
   const points = ar
     ? [
@@ -45,7 +51,7 @@ export function StartFromZero({ locale }: { locale: Locale }) {
                     : "You don't need anything in place — you pick your activity, and we handle the licence, the commercial registration, the bank account, and every government platform afterwards — fully done for you."}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Button href={localeHref(locale, "/services/business-setup")} arrow>
+                  <Button href={localeHref(locale, ctaHref)} arrow>
                     {ar ? "ابدأ تأسيس شركتك" : "Start your company"}
                   </Button>
                   <Button href={localeHref(locale, "/contact")} variant="secondary">

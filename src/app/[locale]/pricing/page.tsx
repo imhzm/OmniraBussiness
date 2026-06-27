@@ -19,6 +19,7 @@ import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 import { PricingCard } from "@/components/sections/PricingPreview";
 import { BuildYourPlan } from "@/components/sections/BuildYourPlan";
+import { StartFromZero } from "@/components/sections/StartFromZero";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export async function generateMetadata({
@@ -57,6 +58,8 @@ export default async function PricingPage({
         title={dict.pricing.heroTitle}
         text={dict.pricing.heroText}
       />
+
+      <StartFromZero locale={l} />
 
       <section id="setup" className="py-12 lg:py-16">
         <div className="container-x">
