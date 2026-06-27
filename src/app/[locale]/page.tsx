@@ -7,6 +7,7 @@ import { TrustBar } from "@/components/sections/TrustBar";
 import { MarketOverview } from "@/components/sections/MarketOverview";
 import { TargetCountries } from "@/components/sections/TargetCountries";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
+import { StartFromZero } from "@/components/sections/StartFromZero";
 import { BusinessSetupProcess } from "@/components/sections/BusinessSetupProcess";
 import { GovernmentPlatforms } from "@/components/sections/GovernmentPlatforms";
 import { SectorsGrid } from "@/components/sections/SectorsGrid";
@@ -47,6 +48,7 @@ export default async function HomePage({
       <MarketOverview locale={l} />
       <TargetCountries locale={l} />
       <ServicesPreview locale={l} />
+      <StartFromZero locale={l} />
       <BusinessSetupProcess locale={l} />
       <GovernmentPlatforms locale={l} />
       <SectorsGrid locale={l} />
