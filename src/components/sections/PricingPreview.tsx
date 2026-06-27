@@ -188,74 +188,74 @@ export function PricingPreview({ locale }: { locale: Locale }) {
           text={dict.home.pricingText}
           action={{ label: dict.home.viewAllPackages, href: localeHref(locale, "/pricing") }}
         />
-        <div className="grid gap-5 pt-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 pt-4 md:grid-cols-3">
           {setupPackages.map((pkg, i) => (
             <PricingCard key={pkg.id} locale={locale} pkg={pkg} delay={i * 80} />
           ))}
-          <BuildPlanCard locale={locale} />
         </div>
+
+        <AddonsCard locale={locale} />
       </div>
     </section>
   );
 }
 
-function BuildPlanCard({ locale }: { locale: Locale }) {
-  const dict = getDict(locale);
+function AddonsCard({ locale }: { locale: Locale }) {
   const ar = locale === "ar";
-  const features = ar
+  const services: { icon: string; label: string; desc: string }[] = ar
     ? [
-        "اختر المنصات اللي تحتاجها فقط",
-        "حدّد عدد موظفيك وفروعك",
-        "سعرك السنوي يظهر فورًا",
-        "بدون باقات ثابتة — مرونة كاملة",
+        { icon: "heart-pulse", label: "تأمين الموظفين", desc: "تأمين طبي وفق متطلبات مجلس الضمان الصحي." },
+        { icon: "shield-check", label: "تأمين السيارات", desc: "تأمين المركبات — ضد الغير أو شامل." },
+        { icon: "scroll-text", label: "نقل ملكية السيارات", desc: "إنهاء إجراءات بيع ونقل ملكية المركبات." },
+        { icon: "map-pin", label: "خدمات المرور", desc: "تجديد استمارة، لوحات، مخالفات وغيرها." },
       ]
     : [
-        "Choose only the platforms you need",
-        "Set your team and branch count",
-        "See your annual price instantly",
-        "No fixed tiers — full flexibility",
+        { icon: "heart-pulse", label: "Employee insurance", desc: "Medical cover per CCHI requirements." },
+        { icon: "shield-check", label: "Car insurance", desc: "Vehicle cover — third-party or comprehensive." },
+        { icon: "scroll-text", label: "Car ownership transfer", desc: "Complete vehicle sale & title transfer." },
+        { icon: "map-pin", label: "Traffic services", desc: "Registration renewal, plates, fines & more." },
       ];
   return (
-    <Reveal delay={240} className="h-full">
-      <div className="relative flex h-full flex-col rounded-2xl border border-gold/50 bg-gold-faint/40 p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
-        <span className="absolute -top-3.5 start-6 rounded-full bg-gold px-4 py-1 text-xs font-bold text-navy shadow-gold">
-          {ar ? "مرن" : "Flexible"}
-        </span>
-        <h3 className="text-lg font-bold text-navy">{ar ? "صمّم باقتك" : "Build your plan"}</h3>
-        <p className="mt-1 text-sm text-muted">
-          {ar ? "ادفع للخدمات اللي تحتاجها بس." : "Pay only for the services you need."}
-        </p>
-
-        <div className="mt-5 flex items-baseline gap-2">
-          <span className="text-sm font-semibold text-muted">{ar ? "من" : "from"}</span>
-          <span className="text-4xl font-bold tracking-tight text-navy">4,800</span>
-          <span className="text-sm font-semibold text-muted">
-            {dict.common.sar} · {ar ? "/ سنة" : "/year"}
-          </span>
+    <Reveal delay={120}>
+      <div className="mt-6 rounded-2xl border border-line bg-ivory/50 p-6 lg:p-8">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-dark">
+              {ar ? "عند الطلب" : "On demand"}
+            </p>
+            <h3 className="mt-1.5 text-xl font-bold text-navy lg:text-2xl">
+              {ar ? "خدمات إضافية تطلبها لوحدها" : "Additional services, à la carte"}
+            </h3>
+            <p className="mt-1 text-sm text-muted">
+              {ar ? "اطلب أي خدمة بمفردها — من غير باقة." : "Order any single service — no package required."}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2.5">
+            <Button href={localeHref(locale, "/pricing#build")} variant="secondary">
+              {ar ? "صمّم باقتك" : "Build your plan"}
+            </Button>
+            <Button href={localeHref(locale, "/contact")} arrow>
+              {ar ? "اطلب الخدمة" : "Request a service"}
+            </Button>
+          </div>
         </div>
-        <p className="mt-2 text-xs font-semibold text-gold-dark">
-          {ar ? "سعر فوري حسب اختيارك" : "Instant price by your selection"}
-        </p>
 
-        <p className="mt-4 rounded-xl bg-white px-4 py-2.5 text-xs font-semibold text-muted">
-          {dict.pricing.idealFor}:{" "}
-          <span className="text-navy">
-            {ar ? "من يريد الدفع لما يحتاجه فقط" : "Anyone who wants to pay only for what they use"}
-          </span>
-        </p>
-
-        <ul className="mt-5 flex-1 space-y-2.5">
-          {features.map((f, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-sm text-ink">
-              <Icon name="check-circle-2" className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" />
-              {f}
-            </li>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((s, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-3 rounded-xl border border-line bg-white p-4 transition-colors hover:border-gold/50"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-faint text-gold-dark">
+                <Icon name={s.icon} className="h-5 w-5" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-bold text-navy">{s.label}</span>
+                <span className="mt-0.5 block text-xs leading-snug text-muted">{s.desc}</span>
+              </span>
+            </div>
           ))}
-        </ul>
-
-        <Button href={localeHref(locale, "/pricing#build")} variant="primary" className="mt-6 w-full" arrow>
-          {ar ? "صمّمها الآن" : "Build it now"}
-        </Button>
+        </div>
       </div>
     </Reveal>
   );
