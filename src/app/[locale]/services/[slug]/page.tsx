@@ -12,6 +12,7 @@ import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 import { TargetCountries } from "@/components/sections/TargetCountries";
 import { StartFromZero } from "@/components/sections/StartFromZero";
+import { LicenseTypesGrid } from "@/components/sections/LicenseTypesGrid";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export function generateStaticParams() {
@@ -162,6 +163,8 @@ export default async function ServiceDetailsPage({
           </aside>
         </div>
       </section>
+
+      {service.slug === "license-issuance" && <LicenseTypesGrid locale={l} />}
 
       {service.slug === "business-setup" && (
         <StartFromZero locale={l} ctaHref="/pricing#setup" />
