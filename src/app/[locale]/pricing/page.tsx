@@ -12,6 +12,7 @@ import {
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/config/site";
 import { localeHref, t } from "@/lib/utils";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
@@ -49,8 +50,33 @@ export default async function PricingPage({
   const setupPackages = pricingPackages.filter((pkg) => pkg.group === "setup");
   const managementPackages = pricingPackages.filter((pkg) => pkg.group === "management");
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        mainEntity: pricingFaqs.map((faq) => ({
+          "@type": "Question",
+          name: t(faq.q, l),
+          acceptedAnswer: { "@type": "Answer", text: t(faq.a, l) },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: dict.nav.home, item: `${site.url}/${l}` },
+          { "@type": "ListItem", position: 2, name: dict.nav.pricing, item: `${site.url}/${l}/pricing` },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         locale={l}
         dark

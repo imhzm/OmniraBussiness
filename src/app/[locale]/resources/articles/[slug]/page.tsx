@@ -6,6 +6,7 @@ import { getService } from "@/data/services";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/config/site";
 import { localeHref, t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -46,8 +47,43 @@ export default async function ArticleDetailsPage({
 
   const relatedServices = article.relatedServices.map(getService).filter(Boolean);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        headline: t(article.title, l),
+        description: t(article.excerpt, l),
+        image: `${site.url}${article.image}`,
+        datePublished: article.date,
+        dateModified: article.date,
+        inLanguage: l === "ar" ? "ar-SA" : "en-US",
+        author: { "@type": "Organization", name: "Omnera One", url: site.url },
+        publisher: {
+          "@type": "Organization",
+          name: "Omnera One",
+          logo: { "@type": "ImageObject", url: `${site.url}/images/brand/omnera-one-logo.png` },
+        },
+        mainEntityOfPage: `${site.url}/${l}/resources/articles/${slug}`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: dict.nav.home, item: `${site.url}/${l}` },
+          { "@type": "ListItem", position: 2, name: dict.nav.resources, item: `${site.url}/${l}/resources` },
+          { "@type": "ListItem", position: 3, name: dict.resources.articles, item: `${site.url}/${l}/resources/articles` },
+          { "@type": "ListItem", position: 4, name: t(article.title, l), item: `${site.url}/${l}/resources/articles/${slug}` },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         locale={l}
         crumbs={[

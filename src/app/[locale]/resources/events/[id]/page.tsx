@@ -5,6 +5,7 @@ import { events, getEvent } from "@/data/events";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/config/site";
 import { t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
@@ -43,8 +44,48 @@ export default async function EventDetailsPage({
   const event = getEvent(id);
   if (!event) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Event",
+        name: t(event.title, l),
+        description: t(event.description, l),
+        startDate: event.date,
+        ...(event.endDate ? { endDate: event.endDate } : {}),
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        image: `${site.url}${event.image}`,
+        location: {
+          "@type": "Place",
+          name: t(event.city, l),
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: t(event.city, l),
+            addressCountry: "SA",
+          },
+        },
+        organizer: { "@type": "Organization", name: t(event.organizer, l) },
+        ...(event.url ? { url: event.url } : {}),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: dict.nav.home, item: `${site.url}/${l}` },
+          { "@type": "ListItem", position: 2, name: dict.nav.resources, item: `${site.url}/${l}/resources` },
+          { "@type": "ListItem", position: 3, name: dict.resources.events, item: `${site.url}/${l}/resources/events` },
+          { "@type": "ListItem", position: 4, name: t(event.title, l), item: `${site.url}/${l}/resources/events/${id}` },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         locale={l}
         crumbs={[
