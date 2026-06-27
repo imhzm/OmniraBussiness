@@ -15,6 +15,7 @@ import { EventsLibrary } from "@/components/sections/EventsLibrary";
 import { ArticlesSection } from "@/components/sections/ArticlesSection";
 import { PricingPreview } from "@/components/sections/PricingPreview";
 import { CostEstimation } from "@/components/sections/CostEstimation";
+import { FreeCostStudy } from "@/components/sections/FreeCostStudy";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export async function generateMetadata({
@@ -56,6 +57,7 @@ export default async function HomePage({
       <ArticlesSection locale={l} />
       <PricingPreview locale={l} />
       <CostEstimation locale={l} />
+      <FreeCostStudy locale={l} />
       <FinalCTA locale={l} />
     </>
   );

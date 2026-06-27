@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 import { CostCalculator } from "@/components/sections/CostCalculator";
+import { FreeCostStudy } from "@/components/sections/FreeCostStudy";
 import { PricingCard } from "@/components/sections/PricingPreview";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { pricingFaqs, pricingPackages } from "@/data/pricing";
@@ -118,6 +119,8 @@ export default async function CostCalculatorPage({
           </Button>
         </div>
       </section>
+
+      <FreeCostStudy locale={l} />
 
       {/* Understanding setup costs */}
       <section className="py-12 lg:py-16">
