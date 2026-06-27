@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 import { PricingCard } from "@/components/sections/PricingPreview";
+import { BuildYourPlan } from "@/components/sections/BuildYourPlan";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export async function generateMetadata({
@@ -143,6 +144,30 @@ export default async function PricingPage({
                 <p className="mt-2 text-sm leading-relaxed text-muted">{t(item.text, l)}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Build your own plan */}
+      <section id="build" className="scroll-mt-24 bg-ivory/40 py-12 lg:py-16">
+        <div className="container-x">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-dark">
+              {l === "ar" ? "صمّم باقتك" : "Build your plan"}
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-navy lg:text-3xl">
+              {l === "ar"
+                ? "اختر خدماتك وعدد موظفيك — ونعطيك السعر"
+                : "Pick your services and team size — get your price"}
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              {l === "ar"
+                ? "مش محتاج كل المنصات؟ اختر اللي تحتاجه بس، حدّد عدد موظفيك وفروعك، وشوف سعرك السنوي فورًا."
+                : "Don't need every platform? Select only what you need, set your team and branches, and see your annual price instantly."}
+            </p>
+          </div>
+          <div className="mt-8">
+            <BuildYourPlan locale={l} />
           </div>
         </div>
       </section>

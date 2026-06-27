@@ -210,3 +210,34 @@ export const teaserEstimate = {
     { label: { en: "Operational (monthly)", ar: "تشغيلي (شهري)" }, range: { en: "SAR 800 – 5,500", ar: "800 – 5,500 ر.س" }, pct: 0.35, icon: "users" },
   ],
 };
+
+// ── Build-your-own platform-management plan ────────────────────────────────
+// Pick the government services you need + your team size → get an annual price.
+export type PlanService = { id: string; label: L; desc: L; price: number; icon: string };
+
+export const planBaseFee = 4800;        // annual base (account, dashboard, alerts, up to 5 employees, 1 branch)
+export const planEmployeesIncluded = 5; // employees covered by the base
+export const planEmployeeFee = 150;     // per extra employee / year
+export const planBranchFee = 400;       // per extra branch / year
+
+export const planServices: PlanService[] = [
+  { id: "absher", label: { en: "Absher Business", ar: "أبشر أعمال" }, desc: { en: "Authorizations & gov services", ar: "التفويضات والخدمات الحكومية" }, price: 1000, icon: "shield-check" },
+  { id: "qiwa", label: { en: "Qiwa", ar: "منصة قوى" }, desc: { en: "Work permits, contracts & Saudization", ar: "رخص العمل والعقود والسعودة" }, price: 1800, icon: "users" },
+  { id: "muqeem", label: { en: "Muqeem", ar: "منصة مقيم" }, desc: { en: "Iqama renewals & visas", ar: "تجديد الإقامات والتأشيرات" }, price: 1500, icon: "file-text" },
+  { id: "chamber", label: { en: "CR & Chamber", ar: "السجل والغرفة" }, desc: { en: "Annual renewals", ar: "التجديدات السنوية" }, price: 900, icon: "building-2" },
+  { id: "mudad", label: { en: "Mudad — Payroll", ar: "مدد — الرواتب" }, desc: { en: "WPS & payroll filing", ar: "حماية الأجور ورفع الرواتب" }, price: 2200, icon: "line-chart" },
+  { id: "gosi", label: { en: "GOSI", ar: "التأمينات الاجتماعية" }, desc: { en: "Registrations & certificates", ar: "التسجيلات والشهادات" }, price: 1600, icon: "heart-pulse" },
+  { id: "zatca", label: { en: "ZATCA — VAT", ar: "زاتكا — الضريبة" }, desc: { en: "VAT & e-invoicing", ar: "القيمة المضافة والفاتورة الإلكترونية" }, price: 2400, icon: "receipt-text" },
+  { id: "balady", label: { en: "Balady", ar: "بلدي" }, desc: { en: "Municipal licences", ar: "الرخص البلدية" }, price: 1000, icon: "landmark" },
+  { id: "zakat", label: { en: "Zakat & Income Tax", ar: "الزكاة وضريبة الدخل" }, desc: { en: "Annual returns & certificate", ar: "الإقرارات السنوية والشهادة" }, price: 2200, icon: "file-text" },
+  { id: "etimad", label: { en: "Etimad", ar: "اعتماد" }, desc: { en: "Government tenders & bids", ar: "المناقصات والعروض الحكومية" }, price: 2800, icon: "scroll-text" },
+  { id: "saber", label: { en: "Saber", ar: "سابر" }, desc: { en: "Product conformity (importers)", ar: "مطابقة المنتجات للمستوردين" }, price: 1600, icon: "badge-check" },
+];
+
+export function planEstimate(serviceIds: string[], employees: number, branches: number) {
+  const services = planServices.filter((s) => serviceIds.includes(s.id)).reduce((a, s) => a + s.price, 0);
+  const empExtra = Math.max(0, employees - planEmployeesIncluded) * planEmployeeFee;
+  const brExtra = Math.max(0, branches - 1) * planBranchFee;
+  const annual = serviceIds.length > 0 ? planBaseFee + services + empExtra + brExtra : 0;
+  return { annual, monthly: Math.round(annual / 12), services, empExtra, brExtra };
+}
