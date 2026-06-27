@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { isLocale, type L, type Locale } from "@/i18n/config";
 import { getDict } from "@/i18n/dictionary";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/config/site";
 import { localeHref, t } from "@/lib/utils";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
@@ -20,6 +21,10 @@ const HEADING: L = {
 const SUBTEXT: L = {
   en: "Get an indicative budget in a few steps — MISA and Commercial Registration, office, visas, compliance, and typical monthly operations. Tailored to your activity, structure, and team size. Guidance only; an Omnera One advisor can confirm figures for your case.",
   ar: "احصل على ميزانية إرشادية في خطوات — ترخيص الاستثمار والسجل التجاري، المكتب، التأشيرات، الامتثال، والتشغيل الشهري المعتاد. مخصّصة حسب نشاطك وشكلك القانوني وحجم فريقك. إرشاد فقط؛ مستشار Omnera One يؤكد الأرقام لحالتك.",
+};
+const SEO_TITLE: L = {
+  en: "Business Setup Cost Calculator in Saudi Arabia — Free Estimate",
+  ar: "حاسبة تكلفة تأسيس شركة في السعودية — تقدير مجاني",
 };
 
 const infoCards: { q: L; a: L }[] = [
@@ -76,7 +81,7 @@ export async function generateMetadata({
   const l: Locale = isLocale(locale) ? locale : "ar";
   return pageMetadata({
     locale: l,
-    title: t(HEADING, l),
+    title: t(SEO_TITLE, l),
     description: t(SUBTEXT, l),
     path: "/business-setup-cost-calculator",
   });
@@ -93,8 +98,39 @@ export default async function CostCalculatorPage({
   const dict = getDict(l);
   const setupPackages = pricingPackages.filter((p) => p.group === "setup");
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        mainEntity: infoCards.map((c) => ({
+          "@type": "Question",
+          name: t(c.q, l),
+          acceptedAnswer: { "@type": "Answer", text: t(c.a, l) },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: dict.nav.home, item: `${site.url}/${l}` },
+          { "@type": "ListItem", position: 2, name: dict.nav.pricing, item: `${site.url}/${l}/pricing` },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: ar ? "حاسبة التكلفة" : "Cost calculator",
+            item: `${site.url}/${l}/business-setup-cost-calculator`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         locale={l}
         dark

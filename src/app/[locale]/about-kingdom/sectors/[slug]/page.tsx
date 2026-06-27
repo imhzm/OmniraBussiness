@@ -25,9 +25,13 @@ export async function generateMetadata({
   const l: Locale = isLocale(locale) ? locale : "ar";
   const sector = getSector(slug);
   if (!sector) return {};
+  const sectorName = t(sector.name, l);
   return pageMetadata({
     locale: l,
-    title: t(sector.name, l),
+    title:
+      l === "ar"
+        ? `الاستثمار في قطاع ${sectorName} في السعودية`
+        : `Investing in ${sectorName} in Saudi Arabia`,
     description: t(sector.short, l),
     path: `/about-kingdom/sectors/${slug}`,
   });
