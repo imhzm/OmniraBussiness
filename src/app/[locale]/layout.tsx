@@ -40,6 +40,38 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const l = locale as Locale;
+
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${site.url}/#organization`,
+        name: site.name[l],
+        legalName: site.legalName[l],
+        url: `${site.url}/${l}`,
+        logo: `${site.url}/images/brand/omnera-one-logo.png`,
+        description:
+          l === "ar"
+            ? "Omnera One لخدمات الأعمال — تأسيس الشركات والتراخيص وإدارة المنصات الحكومية في المملكة العربية السعودية."
+            : "Omnera One Business Services — company formation, licensing, and government-platform management in Saudi Arabia.",
+        areaServed: {
+          "@type": "Country",
+          name: l === "ar" ? "المملكة العربية السعودية" : "Saudi Arabia",
+        },
+        sameAs: [site.social.linkedin, site.social.x, site.social.instagram, site.social.youtube],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: `${site.url}/${l}`,
+        name: site.name[l],
+        inLanguage: l === "ar" ? "ar-SA" : "en-US",
+        publisher: { "@id": `${site.url}/#organization` },
+      },
+    ],
+  };
 
   return (
     <html
@@ -47,6 +79,10 @@ export default async function LocaleLayout({
       dir={isRTL(locale) ? "rtl" : "ltr"}
     >
       <body className={locale === "ar" ? "font-ar" : "font-sans"}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+        />
         <Header locale={locale} />
         <main>{children}</main>
         <Footer locale={locale} />
