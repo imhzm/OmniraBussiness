@@ -4,6 +4,7 @@ import {
   pricingPackages,
   type PricingPackage,
 } from "@/data/pricing";
+import Link from "next/link";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { cn, localeHref, t } from "@/lib/utils";
@@ -202,19 +203,32 @@ export function PricingPreview({ locale }: { locale: Locale }) {
 
 function AddonsCard({ locale }: { locale: Locale }) {
   const ar = locale === "ar";
-  const services: { icon: string; label: string; desc: string }[] = ar
-    ? [
-        { icon: "heart-pulse", label: "تأمين الموظفين", desc: "تأمين طبي وفق متطلبات مجلس الضمان الصحي." },
-        { icon: "shield-check", label: "تأمين السيارات", desc: "تأمين المركبات — ضد الغير أو شامل." },
-        { icon: "scroll-text", label: "نقل ملكية السيارات", desc: "إنهاء إجراءات بيع ونقل ملكية المركبات." },
-        { icon: "map-pin", label: "خدمات المرور", desc: "تجديد استمارة، لوحات، مخالفات وغيرها." },
-      ]
-    : [
-        { icon: "heart-pulse", label: "Employee insurance", desc: "Medical cover per CCHI requirements." },
-        { icon: "shield-check", label: "Car insurance", desc: "Vehicle cover — third-party or comprehensive." },
-        { icon: "scroll-text", label: "Car ownership transfer", desc: "Complete vehicle sale & title transfer." },
-        { icon: "map-pin", label: "Traffic services", desc: "Registration renewal, plates, fines & more." },
-      ];
+  const services = [
+    {
+      slug: "employee-insurance",
+      icon: "heart-pulse",
+      label: ar ? "تأمين الموظفين" : "Employee insurance",
+      desc: ar ? "تأمين طبي وفق متطلبات مجلس الضمان الصحي." : "Medical cover per CCHI requirements.",
+    },
+    {
+      slug: "car-insurance",
+      icon: "shield-check",
+      label: ar ? "تأمين السيارات" : "Car insurance",
+      desc: ar ? "تأمين المركبات — ضد الغير أو شامل." : "Vehicle cover — third-party or comprehensive.",
+    },
+    {
+      slug: "vehicle-ownership-transfer",
+      icon: "scroll-text",
+      label: ar ? "نقل ملكية السيارات" : "Car ownership transfer",
+      desc: ar ? "إنهاء إجراءات بيع ونقل ملكية المركبات." : "Complete vehicle sale & title transfer.",
+    },
+    {
+      slug: "traffic-services",
+      icon: "map-pin",
+      label: ar ? "خدمات المرور" : "Traffic services",
+      desc: ar ? "تجديد استمارة، لوحات، مخالفات وغيرها." : "Registration renewal, plates, fines & more.",
+    },
+  ];
   return (
     <Reveal delay={120}>
       <div className="mt-6 rounded-2xl border border-line bg-ivory/50 p-6 lg:p-8">
@@ -241,19 +255,22 @@ function AddonsCard({ locale }: { locale: Locale }) {
         </div>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s, i) => (
-            <div
-              key={i}
-              className="flex items-start gap-3 rounded-xl border border-line bg-white p-4 transition-colors hover:border-gold/50"
+          {services.map((s) => (
+            <Link
+              key={s.slug}
+              href={localeHref(locale, `/services/${s.slug}`)}
+              className="group flex items-start gap-3 rounded-xl border border-line bg-white p-4 transition-colors hover:border-gold/50 hover:shadow-card"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-faint text-gold-dark">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-faint text-gold-dark transition-colors group-hover:bg-gold group-hover:text-navy">
                 <Icon name={s.icon} className="h-5 w-5" />
               </span>
               <span className="min-w-0">
-                <span className="block text-sm font-bold text-navy">{s.label}</span>
+                <span className="block text-sm font-bold text-navy transition-colors group-hover:text-gold-dark">
+                  {s.label}
+                </span>
                 <span className="mt-0.5 block text-xs leading-snug text-muted">{s.desc}</span>
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -83,13 +83,16 @@ export function Header({ locale }: { locale: Locale }) {
                       <div className="overflow-hidden rounded-b-3xl border border-t-0 border-line bg-white shadow-mega">
                         <div
                           className={cn(
-                            "grid gap-0 divide-line p-2",
-                            item.promo
-                              ? "grid-cols-[repeat(4,1fr)_280px] divide-x rtl:divide-x-reverse"
-                              : item.columns.length >= 3
-                                ? "grid-cols-3 divide-x rtl:divide-x-reverse"
-                                : "grid-cols-2 divide-x rtl:divide-x-reverse"
+                            "grid gap-0 divide-x divide-line p-2 rtl:divide-x-reverse",
+                            !item.promo && (item.columns.length >= 3 ? "grid-cols-3" : "grid-cols-2")
                           )}
+                          style={
+                            item.promo
+                              ? {
+                                  gridTemplateColumns: `repeat(${item.columns.length}, minmax(0, 1fr)) 280px`,
+                                }
+                              : undefined
+                          }
                         >
                           {item.columns.map((col, ci) => (
                             <div key={ci} className="px-5 py-6">
