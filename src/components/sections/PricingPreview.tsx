@@ -188,12 +188,75 @@ export function PricingPreview({ locale }: { locale: Locale }) {
           text={dict.home.pricingText}
           action={{ label: dict.home.viewAllPackages, href: localeHref(locale, "/pricing") }}
         />
-        <div className="grid gap-5 pt-4 md:grid-cols-3">
+        <div className="grid gap-5 pt-4 sm:grid-cols-2 xl:grid-cols-4">
           {setupPackages.map((pkg, i) => (
             <PricingCard key={pkg.id} locale={locale} pkg={pkg} delay={i * 80} />
           ))}
+          <BuildPlanCard locale={locale} />
         </div>
       </div>
     </section>
+  );
+}
+
+function BuildPlanCard({ locale }: { locale: Locale }) {
+  const dict = getDict(locale);
+  const ar = locale === "ar";
+  const features = ar
+    ? [
+        "اختر المنصات اللي تحتاجها فقط",
+        "حدّد عدد موظفيك وفروعك",
+        "سعرك السنوي يظهر فورًا",
+        "بدون باقات ثابتة — مرونة كاملة",
+      ]
+    : [
+        "Choose only the platforms you need",
+        "Set your team and branch count",
+        "See your annual price instantly",
+        "No fixed tiers — full flexibility",
+      ];
+  return (
+    <Reveal delay={240} className="h-full">
+      <div className="relative flex h-full flex-col rounded-2xl border border-gold/50 bg-gold-faint/40 p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+        <span className="absolute -top-3.5 start-6 rounded-full bg-gold px-4 py-1 text-xs font-bold text-navy shadow-gold">
+          {ar ? "مرن" : "Flexible"}
+        </span>
+        <h3 className="text-lg font-bold text-navy">{ar ? "صمّم باقتك" : "Build your plan"}</h3>
+        <p className="mt-1 text-sm text-muted">
+          {ar ? "ادفع للخدمات اللي تحتاجها بس." : "Pay only for the services you need."}
+        </p>
+
+        <div className="mt-5 flex items-baseline gap-2">
+          <span className="text-sm font-semibold text-muted">{ar ? "من" : "from"}</span>
+          <span className="text-4xl font-bold tracking-tight text-navy">4,800</span>
+          <span className="text-sm font-semibold text-muted">
+            {dict.common.sar} · {ar ? "/ سنة" : "/year"}
+          </span>
+        </div>
+        <p className="mt-2 text-xs font-semibold text-gold-dark">
+          {ar ? "سعر فوري حسب اختيارك" : "Instant price by your selection"}
+        </p>
+
+        <p className="mt-4 rounded-xl bg-white px-4 py-2.5 text-xs font-semibold text-muted">
+          {dict.pricing.idealFor}:{" "}
+          <span className="text-navy">
+            {ar ? "من يريد الدفع لما يحتاجه فقط" : "Anyone who wants to pay only for what they use"}
+          </span>
+        </p>
+
+        <ul className="mt-5 flex-1 space-y-2.5">
+          {features.map((f, i) => (
+            <li key={i} className="flex items-start gap-2.5 text-sm text-ink">
+              <Icon name="check-circle-2" className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" />
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        <Button href={localeHref(locale, "/pricing#build")} variant="primary" className="mt-6 w-full" arrow>
+          {ar ? "صمّمها الآن" : "Build it now"}
+        </Button>
+      </div>
+    </Reveal>
   );
 }
