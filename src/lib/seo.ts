@@ -14,6 +14,7 @@ export function pageMetadata({
   path: string;
 }): Metadata {
   const suffix = path === "/" ? "" : path;
+  const ogImage = { url: "/images/og.png", width: 1200, height: 630, alt: "Omnera One" };
   return {
     title,
     description,
@@ -27,8 +28,17 @@ export function pageMetadata({
     openGraph: {
       title,
       description,
+      url: `/${locale}${suffix}`,
+      siteName: "Omnera One",
       locale: locale === "ar" ? "ar_SA" : "en_US",
       type: "website",
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage.url],
     },
   };
 }
