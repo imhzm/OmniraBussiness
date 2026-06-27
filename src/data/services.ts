@@ -25,6 +25,10 @@ export type Service = {
   image?: string;
   title: L;
   excerpt: L;
+  /** SEO <title> (keyword-rich). Falls back to `${title} in Saudi Arabia`. */
+  seoTitle?: L;
+  /** SEO meta description. Falls back to `excerpt`. */
+  seoDescription?: L;
   overview: L[];
   audience: L[];
   benefits: L[];
@@ -97,6 +101,14 @@ export const services: Service[] = [
     excerpt: {
       en: "Obtain every licence your business needs to operate legally in Saudi Arabia — investment, commercial, municipal, and activity-specific.",
       ar: "احصل على كل ترخيص تحتاجه شركتك للعمل بشكل نظامي في السعودية — استثماري وتجاري وبلدي وحسب النشاط.",
+    },
+    seoTitle: {
+      en: "Business License Issuance in Saudi Arabia — All Activity Types",
+      ar: "إصدار التراخيص التجارية في السعودية — لجميع الأنشطة",
+    },
+    seoDescription: {
+      en: "Issue every licence your business needs in Saudi Arabia — commercial, industrial, professional, MISA investment and more. 100% foreign ownership where allowed. Get a free quote.",
+      ar: "أصدر كل ترخيص يحتاجه نشاطك في السعودية — تجاري، صناعي، مهني، استثمار أجنبي وأكثر. ملكية أجنبية 100% حيثما يُسمح. احصل على عرض سعر مجاني.",
     },
     overview: [
       {

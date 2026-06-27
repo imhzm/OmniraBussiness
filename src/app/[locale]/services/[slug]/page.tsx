@@ -5,6 +5,7 @@ import { getService, services } from "@/data/services";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/config/site";
 import { localeHref, t } from "@/lib/utils";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
@@ -28,10 +29,22 @@ export async function generateMetadata({
   const l: Locale = isLocale(locale) ? locale : "ar";
   const service = getService(slug);
   if (!service) return {};
+  const baseTitle = t(service.title, l);
+  const hasLocation = /saudi|السعود/i.test(baseTitle);
+  const seoTitle = service.seoTitle
+    ? t(service.seoTitle, l)
+    : hasLocation
+      ? baseTitle
+      : l === "ar"
+        ? `${baseTitle} في السعودية`
+        : `${baseTitle} in Saudi Arabia`;
+  const seoDescription = service.seoDescription
+    ? t(service.seoDescription, l)
+    : t(service.excerpt, l);
   return pageMetadata({
     locale: l,
-    title: t(service.title, l),
-    description: t(service.excerpt, l),
+    title: seoTitle,
+    description: seoDescription,
     path: `/services/${slug}`,
   });
 }
@@ -49,8 +62,55 @@ export default async function ServiceDetailsPage({
 
   const related = services.filter((item) => item.category === service.category && item.slug !== service.slug).slice(0, 3);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        name: t(service.title, l),
+        description: t(service.excerpt, l),
+        serviceType: t(service.title, l),
+        provider: { "@type": "Organization", name: "Omnera One", url: site.url },
+        areaServed: {
+          "@type": "Country",
+          name: l === "ar" ? "المملكة العربية السعودية" : "Saudi Arabia",
+        },
+        url: `${site.url}/${l}/services/${slug}`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: dict.nav.home, item: `${site.url}/${l}` },
+          { "@type": "ListItem", position: 2, name: dict.nav.services, item: `${site.url}/${l}/services` },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: t(service.title, l),
+            item: `${site.url}/${l}/services/${slug}`,
+          },
+        ],
+      },
+      ...(service.faqs.length
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: service.faqs.map((f) => ({
+                "@type": "Question",
+                name: t(f.q, l),
+                acceptedAnswer: { "@type": "Answer", text: t(f.a, l) },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         locale={l}
         dark
