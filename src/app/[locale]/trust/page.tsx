@@ -237,8 +237,8 @@ export default async function TrustPage({
                       </p>
                     </figcaption>
                   </figure>
-                ))}
-              </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
