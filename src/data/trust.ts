@@ -138,29 +138,53 @@ export const trustFaqs: TrustFaq[] = [
   {
     q: { en: "Are you a registered, licensed firm?", ar: "هل أنتم جهة نظامية ومرخّصة؟" },
     a: {
-      en: "Yes. Omnera One operates as a registered Saudi business-services firm and works only through the Kingdom's official platforms and authorities. Every transaction we complete is recorded with the relevant government body in your name.",
-      ar: "نعم. تعمل Omnera One كجهة سعودية مرخّصة لخدمات الأعمال، وعبر المنصات والجهات الرسمية في المملكة حصرًا. وكل معاملة نُنجزها تُسجَّل لدى الجهة الحكومية المختصة باسمك أنت.",
+      en: "Yes. Omnera One is a registered Saudi business-services firm that works exclusively through the Kingdom's official platforms and authorities. Every transaction we complete is recorded with the relevant government body in your name and remains fully yours.",
+      ar: "نعم، Omnera One جهة سعودية مرخّصة لخدمات الأعمال، وتعمل حصرًا عبر المنصات والجهات الرسمية في المملكة. وكل معاملة نُنجزها تُسجَّل لدى الجهة الحكومية المختصة باسمك أنت، وتبقى ملكًا لك بالكامل.",
     },
   },
   {
-    q: { en: "How is my money and my government fees protected?", ar: "كيف أضمن أموالي ورسومي الحكومية؟" },
+    q: { en: "How do I start, and how long does setup take?", ar: "كيف أبدأ معكم؟ وكم يستغرق التأسيس؟" },
     a: {
-      en: "Our professional fee and the government fees are itemized separately. Official fees are paid directly to the authorities and are verifiable, and our fee is fixed and agreed in writing before any work begins.",
-      ar: "أتعابنا والرسوم الحكومية تُفصَّل كلٌّ على حدة. الرسوم الرسمية تُدفع مباشرةً للجهات وقابلة للتحقق، وأتعابنا ثابتة ومتفق عليها كتابيًا قبل بدء أي عمل.",
+      en: "You begin with a free consultation: we understand your activity and goals, then send a clear written scope and price. Once your documents are ready, company formation typically takes 4–8 weeks depending on the activity and sector approvals — and we update you at every milestone.",
+      ar: "تبدأ باستشارة مجانية: نفهم نشاطك وأهدافك، ثم نرسل لك نطاق عمل وسعرًا مكتوبَين بوضوح. وبعد جاهزية مستنداتك، يستغرق التأسيس عادةً 4–8 أسابيع حسب النشاط وموافقات القطاع — ونوافيك بالتحديثات في كل مرحلة.",
     },
   },
   {
-    q: { en: "What happens if a step doesn't go through?", ar: "ماذا لو لم تكتمل إحدى الخطوات؟" },
+    q: { en: "How is the cost calculated — are there hidden fees?", ar: "كيف تُحسب التكلفة؟ وهل توجد رسوم خفية؟" },
     a: {
-      en: "We define the scope and requirements up front to avoid rejections. If an issue arises within our scope of work, we resolve and re-submit it — you don't pay our fee twice for the same step.",
-      ar: "نحدّد النطاق والمتطلبات مسبقًا لتجنّب الرفض. وإذا ظهرت مشكلة ضمن نطاق عملنا، نعالجها ونعيد التقديم — ولا تدفع أتعابنا مرتين عن الخطوة نفسها.",
+      en: "No hidden fees. Your quote separates our fixed professional fee from the government fees, which are paid at cost directly to the authorities and itemized for you line by line. You approve the full breakdown in writing before any work begins.",
+      ar: "لا رسوم خفية. عرض السعر يفصل أتعابنا الثابتة عن الرسوم الحكومية التي تُدفع كما هي مباشرةً للجهات وتُفصَّل لك بندًا بندًا. وتعتمد التفصيل الكامل كتابيًا قبل بدء أي عمل.",
     },
   },
   {
-    q: { en: "Is my data and are my documents safe?", ar: "هل بياناتي ومستنداتي آمنة؟" },
+    q: { en: "How are my money and government fees protected?", ar: "كيف أضمن أموالي والرسوم الحكومية؟" },
     a: {
-      en: "Your identification, contracts, and corporate documents are kept confidential and used solely to complete the transactions you've engaged us for — never shared beyond what each authority requires.",
-      ar: "هوياتك وعقودك ومستنداتك تُحفَظ بسرية وتُستخدم فقط لإنجاز المعاملات التي وكّلتنا بها — ولا تُشارَك إلا بالقدر الذي تتطلبه كل جهة رسمية.",
+      en: "Official fees are paid directly to the government authorities and are fully verifiable on your own accounts (Absher, the Ministry of Commerce, ZATCA, and others). Our professional fee is fixed and agreed in writing, so there are no surprises along the way.",
+      ar: "الرسوم الرسمية تُدفع مباشرةً للجهات الحكومية وقابلة للتحقق بالكامل من حساباتك أنت (أبشر، وزارة التجارة، هيئة الزكاة والضريبة وغيرها). وأتعابنا ثابتة ومتفق عليها كتابيًا، فلا مفاجآت في الطريق.",
+    },
+  },
+  {
+    q: { en: "What if an application is rejected or a step stalls?", ar: "ماذا لو رُفض طلب أو تعطّلت إحدى الخطوات؟" },
+    a: {
+      en: "We define the requirements precisely up front to avoid rejections in the first place. If an issue arises within our scope of work, we resolve it and re-submit at no extra professional fee for that step — you're never left to chase an authority alone.",
+      ar: "نحدّد المتطلبات بدقة من البداية لتفادي الرفض أصلًا. وإذا ظهرت مشكلة ضمن نطاق عملنا، نعالجها ونعيد التقديم دون أتعاب إضافية عن تلك الخطوة — ولا نتركك تطارد أي جهة بمفردك.",
+    },
+  },
+  {
+    q: {
+      en: "Do you work with investors outside Saudi Arabia? Do I need to be present?",
+      ar: "هل تتعاملون مع مستثمرين من خارج السعودية؟ وهل يلزم حضوري شخصيًا؟",
+    },
+    a: {
+      en: "Yes — a large part of what we do is helping international founders enter the Saudi market. Most of the process is completed remotely on your behalf; we tell you in advance the few steps (if any) that require your physical presence or a power of attorney.",
+      ar: "نعم — جزء كبير من عملنا هو مساعدة المؤسسين الدوليين على دخول السوق السعودي. ومعظم الإجراءات تُنجَز عن بُعد نيابةً عنك؛ ونخبرك مسبقًا بالخطوات القليلة (إن وُجدت) التي تتطلب حضورك شخصيًا أو وكالة.",
+    },
+  },
+  {
+    q: { en: "Are my data and documents kept secure and confidential?", ar: "هل بياناتي ومستنداتي آمنة وسرية؟" },
+    a: {
+      en: "Yes. Your identification, contracts, and corporate documents are handled confidentially and used solely to complete the transactions you've engaged us for — never shared beyond what each official authority requires.",
+      ar: "نعم. هوياتك وعقودك ومستنداتك تُعامَل بسرية تامة وتُستخدم فقط لإنجاز المعاملات التي وكّلتنا بها — ولا تُشارَك إلا بالقدر الذي تتطلبه كل جهة رسمية.",
     },
   },
 ];

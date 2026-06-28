@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { isLocale, type L, type Locale } from "@/i18n/config";
 import { getDict } from "@/i18n/dictionary";
 import { pageMetadata } from "@/lib/seo";
@@ -138,6 +139,55 @@ export default async function TrustPage({
         </div>
       </PageHero>
 
+      {/* Feature — image + the promise of a clear written agreement */}
+      <section className="py-14 lg:py-20">
+        <div className="container-x">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <Reveal>
+              <div className="overflow-hidden rounded-3xl border border-line shadow-card">
+                <Image
+                  src="/images/trust/trust-agreement.webp"
+                  alt={ar ? "اتفاقية موثّقة مع Omnera One" : "A documented agreement with Omnera One"}
+                  width={1376}
+                  height={768}
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </Reveal>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-dark">
+                {ar ? "اتفاق واضح من البداية" : "A clear agreement from day one"}
+              </p>
+              <h2 className="mt-2 text-2xl font-bold text-navy lg:text-3xl">
+                {ar ? "نتعامل بعقد ونطاق وسعر مكتوب" : "We work with a written contract, scope & price"}
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted lg:text-base">
+                {ar
+                  ? "قبل أي خطوة، تعرف بالضبط ما الذي نُنجزه ومتى وبكم. لا التزامات مبهمة ولا رسوم تظهر لاحقًا — فقط اتفاق واضح ننفّذه كما هو."
+                  : "Before any step, you know exactly what we deliver, when, and for how much. No vague commitments and no fees that appear later — just a clear agreement we execute as written."}
+              </p>
+              <ul className="mt-6 space-y-3">
+                {(ar
+                  ? ["نطاق وسعر مكتوبان قبل البدء", "الرسوم الحكومية تُدفع كما هي للجهات", "تحديثات في كل مرحلة"]
+                  : [
+                      "Written scope & price before we start",
+                      "Government fees passed through at cost",
+                      "Updates at every milestone",
+                    ]
+                ).map((p, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm font-semibold text-navy">
+                    <Icon name="check-circle-2" className="mt-0.5 h-5 w-5 shrink-0 text-gold-dark" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pillars */}
       <section className="py-14 lg:py-20">
         <div className="container-x">
@@ -196,14 +246,44 @@ export default async function TrustPage({
         </div>
       </section>
 
-      {/* Protections */}
-      <section className="py-14 lg:py-20">
+      {/* Protections — how we safeguard your money & documents, with imagery */}
+      <section className="bg-white py-14 lg:py-20">
         <div className="container-x">
-          <SectionHead
-            eyebrow={ar ? "حماية" : "Protection"}
-            title={ar ? "كيف نحمي أموالك ومعاملاتك" : "How we protect your money & transactions"}
-          />
-          <CardGrid locale={l} items={trustProtections} />
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-dark">
+                {ar ? "حماية" : "Protection"}
+              </p>
+              <h2 className="mt-2 text-2xl font-bold text-navy lg:text-3xl">
+                {ar ? "كيف نحمي أموالك ومعاملاتك" : "How we protect your money & transactions"}
+              </h2>
+              <ul className="mt-6 space-y-5">
+                {trustProtections.map((it, i) => (
+                  <li key={i} className="flex gap-3.5">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-faint text-gold-dark">
+                      <Icon name={it.icon} className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h3 className="text-sm font-bold text-navy">{t(it.title, l)}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted">{t(it.text, l)}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Reveal>
+              <div className="overflow-hidden rounded-3xl border border-line shadow-card">
+                <Image
+                  src="/images/trust/trust-portfolio.webp"
+                  alt={ar ? "حفظ منظَّم وآمن لمستنداتك" : "Organized, secure handling of your documents"}
+                  width={1376}
+                  height={768}
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
