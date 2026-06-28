@@ -249,7 +249,7 @@ export default async function TrustPage({
         <div className="container-x max-w-3xl">
           <SectionHead
             eyebrow={ar ? "أسئلة الثقة" : "Trust questions"}
-            title={ar ? "أسئلة يسألها كل عميل ذكي" : "Questions every smart client asks"}
+            title={ar ? "أسئلة قبل أن تثق بنا" : "Questions before you trust us"}
           />
           <Accordion items={trustFaqs.map((f) => ({ title: t(f.q, l), content: t(f.a, l) }))} />
         </div>
