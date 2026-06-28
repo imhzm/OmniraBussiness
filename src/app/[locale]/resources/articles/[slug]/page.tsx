@@ -159,7 +159,7 @@ export default async function ArticleDetailsPage({
                   </a>
                 ))}
               </div>
-              <Button href={localeHref(l, "/contact")} className="mt-6 w-full" arrow>
+              <Button href={localeHref(l, "/book")} className="mt-6 w-full" arrow>
                 {dict.common.bookConsultation}
               </Button>
             </div>

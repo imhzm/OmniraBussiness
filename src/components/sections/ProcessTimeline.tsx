@@ -16,7 +16,7 @@ export function ProcessTimeline({ locale }: { locale: Locale }) {
           eyebrow={dict.home.howItWorks}
           title={dict.home.processTitle}
           text={dict.home.processText}
-          action={{ label: dict.common.bookConsultation, href: localeHref(locale, "/contact") }}
+          action={{ label: dict.common.bookConsultation, href: localeHref(locale, "/book") }}
         />
 
         <ol className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">

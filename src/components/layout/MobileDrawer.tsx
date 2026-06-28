@@ -168,7 +168,7 @@ export function MobileDrawer({
               <Icon name="message-circle" className="h-5 w-5" />
             </a>
           </div>
-          <Button href={localeHref(locale, "/contact")} className="w-full">
+          <Button href={localeHref(locale, "/book")} className="w-full">
             {dict.common.bookConsultation}
           </Button>
         </div>

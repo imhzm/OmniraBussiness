@@ -88,7 +88,7 @@ export default async function SectorDetailsPage({
               <Icon name={sector.icon} className="h-7 w-7 text-gold-dark" />
               <h2 className="mt-4 text-xl font-bold text-navy">{t(sector.name, l)}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted">{t(sector.short, l)}</p>
-              <Button href={localeHref(l, "/contact")} className="mt-6 w-full" arrow>
+              <Button href={localeHref(l, "/book")} className="mt-6 w-full" arrow>
                 {dict.common.bookConsultation}
               </Button>
             </div>

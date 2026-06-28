@@ -32,7 +32,7 @@ export function FinalCTA({ locale }: { locale: Locale }) {
             <Button href={whatsappLink()} external size="lg" arrow>
               {dict.common.talkToExpert}
             </Button>
-            <Button href={localeHref(locale, "/contact")} variant="outline-light" size="lg">
+            <Button href={localeHref(locale, "/book")} variant="outline-light" size="lg">
               {dict.common.bookConsultation}
             </Button>
           </div>

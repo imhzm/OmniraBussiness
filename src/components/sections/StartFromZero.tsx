@@ -54,7 +54,7 @@ export function StartFromZero({
                   <Button href={localeHref(locale, ctaHref)} arrow>
                     {ar ? "ابدأ تأسيس شركتك" : "Start your company"}
                   </Button>
-                  <Button href={localeHref(locale, "/contact")} variant="secondary">
+                  <Button href={localeHref(locale, "/book")} variant="secondary">
                     {ar ? "احجز استشارة مجانية" : "Book a free consultation"}
                   </Button>
                 </div>

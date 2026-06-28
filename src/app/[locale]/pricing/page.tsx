@@ -212,7 +212,7 @@ export default async function PricingPage({
               <p className="mt-2 text-sm leading-relaxed text-white/72">{t(bundleOffer.text, l)}</p>
               <p className="mt-4 text-xl font-bold text-gold-soft">{t(bundleOffer.value, l)}</p>
             </div>
-            <Button href={localeHref(l, "/contact")} size="lg">
+            <Button href={localeHref(l, "/book")} size="lg">
               {dict.common.bookConsultation}
             </Button>
           </div>

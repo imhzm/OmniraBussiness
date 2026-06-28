@@ -123,7 +123,7 @@ export default async function ServiceDetailsPage({
         text={t(service.excerpt, l)}
       >
         <div className="mt-8 flex flex-wrap gap-3">
-          <Button href={localeHref(l, "/contact")} size="lg" arrow>
+          <Button href={localeHref(l, "/book")} size="lg" arrow>
             {dict.common.bookConsultation}
           </Button>
           <Button href={localeHref(l, "/pricing")} variant="outline-light" size="lg">

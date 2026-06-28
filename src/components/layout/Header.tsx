@@ -182,7 +182,7 @@ export function Header({ locale }: { locale: Locale }) {
               <span className="hidden min-[1500px]:inline">{otherLocale === "ar" ? "العربية" : "English"}</span>
             </Link>
             <span className="hidden shrink-0 xl:inline-flex">
-              <Button href={localeHref(locale, "/contact")} size="sm" className="px-4 text-[13px] min-[1500px]:px-5 min-[1500px]:text-sm">
+              <Button href={localeHref(locale, "/book")} size="sm" className="px-4 text-[13px] min-[1500px]:px-5 min-[1500px]:text-sm">
                 {dict.common.bookConsultation}
               </Button>
             </span>
