@@ -29,7 +29,7 @@ export function LicenseTypesGrid({ locale }: { locale: Locale }) {
           {licenseTypes.map((lt) => (
             <Link
               key={lt.id}
-              href={localeHref(locale, "/contact")}
+              href={localeHref(locale, `/licenses/${lt.id}`)}
               className="group flex flex-col rounded-2xl border border-line bg-white p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-gold/50"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold-faint text-gold-dark transition-colors group-hover:bg-gold group-hover:text-navy">
@@ -38,7 +38,7 @@ export function LicenseTypesGrid({ locale }: { locale: Locale }) {
               <h3 className="mt-4 text-base font-bold text-navy">{t(lt.name, locale)}</h3>
               <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted">{t(lt.desc, locale)}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-gold-dark">
-                {ar ? "اطلب هذا الترخيص" : "Request this licence"}
+                {ar ? "اعرف أكثر" : "Learn more"}
                 <Icon
                   name="arrow-right"
                   className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1"

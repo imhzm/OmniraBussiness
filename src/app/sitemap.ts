@@ -6,6 +6,7 @@ import { sectors } from "@/data/sectors";
 import { kingdomTopics } from "@/data/kingdom-pages";
 import { articles } from "@/data/articles";
 import { events } from "@/data/events";
+import { licenseTypes } from "@/data/license-types";
 
 /**
  * Sitemap covering every real route for both locales (ar/en).
@@ -30,6 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources/market-insights",
     "/resources/news",
     "/resources/platforms",
+    "/business-setup-cost-calculator",
+    "/faq",
     "/contact",
     "/privacy",
     "/terms",
@@ -41,6 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const service of services) paths.push(`/services/${service.slug}`);
   for (const article of articles) paths.push(`/resources/articles/${article.slug}`);
   for (const event of events) paths.push(`/resources/events/${event.id}`);
+  for (const lt of licenseTypes) paths.push(`/licenses/${lt.id}`);
 
   const lastModified = new Date();
 
