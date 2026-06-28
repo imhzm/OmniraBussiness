@@ -182,6 +182,7 @@ export const footerGroups: { title: L; items: NavLeaf[] }[] = [
     title: { en: "Company", ar: "الشركة" },
     items: [
       { label: { en: "About Us", ar: "من نحن" }, href: "/about" },
+      { label: { en: "Why Trust Us", ar: "لماذا تثق بنا" }, href: "/trust" },
       { label: { en: "Pricing", ar: "الباقات" }, href: "/pricing" },
       { label: { en: "FAQ", ar: "الأسئلة الشائعة" }, href: "/faq" },
       { label: { en: "Book a Meeting", ar: "احجز موعد" }, href: "/book" },

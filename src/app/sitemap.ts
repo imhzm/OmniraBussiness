@@ -34,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/business-setup-cost-calculator",
     "/faq",
     "/book",
+    "/trust",
     "/contact",
     "/privacy",
     "/terms",
