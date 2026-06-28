@@ -108,15 +108,36 @@ export default async function BookPage({
                 </div>
               </div>
 
-              {/* Booking calendar — embedded inline, flush with the page */}
+              {/* Booking calendar — in a clean card that matches the page */}
               <div>
-                <iframe
-                  src={booking.url}
-                  title={ar ? "حجز موعد" : "Book a meeting"}
-                  className="h-[720px] w-full"
-                  style={{ border: 0, colorScheme: "light" }}
-                  loading="lazy"
-                />
+                <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
+                  <iframe
+                    src={booking.url}
+                    title={ar ? "حجز موعد" : "Book a meeting"}
+                    className="h-[720px] w-full"
+                    style={{ border: 0, colorScheme: "light" }}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="mt-4 flex flex-col items-center gap-3 rounded-2xl border border-line bg-ivory/60 p-4 text-center sm:flex-row sm:justify-between sm:text-start">
+                  <p className="text-sm leading-relaxed text-muted">
+                    {ar
+                      ? "بعد الحجز يصلك تأكيد بالبريد. لأي استفسار قبل موعدك، تواصل معنا على واتساب."
+                      : "You'll get an email confirmation after booking. For any question before your meeting, reach us on WhatsApp."}
+                  </p>
+                  <Button
+                    href={whatsappLink(
+                      ar
+                        ? "مرحبًا، حجزت استشارة وأريد الاستفسار."
+                        : "Hello, I booked a consultation and have a question."
+                    )}
+                    external
+                    variant="secondary"
+                    className="shrink-0"
+                  >
+                    {ar ? "تواصل واتساب" : "WhatsApp us"}
+                  </Button>
+                </div>
                 <p className="mt-2 text-center text-xs text-faint">
                   {ar ? "لا يظهر التقويم؟ " : "Calendar not loading? "}
                   <a
