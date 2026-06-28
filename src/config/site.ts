@@ -71,7 +71,7 @@ export function hasLeadBackend(): boolean {
  * Empty = the /book page gracefully falls back to WhatsApp / the contact form.
  */
 export const booking = {
-  url: "",
+  url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3LH-JpXsijwkNsaN3DGZ9G68os9IZxeoDk-UsQPR9YO4UAjLlqh5Vx8lHbZV9yUNZ9D6Y4IMw3?gv=true",
 } as const;
 
 /** True when a booking page URL has been configured. */
