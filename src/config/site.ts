@@ -61,3 +61,20 @@ export const leadCapture = {
 export function hasLeadBackend(): boolean {
   return leadCapture.endpoint.trim().length > 0;
 }
+
+/**
+ * Booking configuration — the public booking-page URL.
+ *
+ * Paste the link from your Google Calendar "Appointment schedule" (or Cal.com /
+ * Calendly) here. When set, the /book page embeds it and "Book a meeting" CTAs
+ * point to it; bookings then land directly in your Google Calendar + Gmail.
+ * Empty = the /book page gracefully falls back to WhatsApp / the contact form.
+ */
+export const booking = {
+  url: "",
+} as const;
+
+/** True when a booking page URL has been configured. */
+export function hasBooking(): boolean {
+  return booking.url.trim().length > 0;
+}

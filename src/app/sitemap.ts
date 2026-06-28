@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources/platforms",
     "/business-setup-cost-calculator",
     "/faq",
+    "/book",
     "/contact",
     "/privacy",
     "/terms",

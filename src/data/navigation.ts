@@ -184,6 +184,7 @@ export const footerGroups: { title: L; items: NavLeaf[] }[] = [
       { label: { en: "About Us", ar: "من نحن" }, href: "/about" },
       { label: { en: "Pricing", ar: "الباقات" }, href: "/pricing" },
       { label: { en: "FAQ", ar: "الأسئلة الشائعة" }, href: "/faq" },
+      { label: { en: "Book a Meeting", ar: "احجز موعد" }, href: "/book" },
       { label: { en: "Contact Us", ar: "تواصل معنا" }, href: "/contact" },
     ],
   },
