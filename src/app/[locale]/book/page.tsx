@@ -62,26 +62,73 @@ export default async function BookPage({
       <section className="py-12 lg:py-16">
         <div className="container-x">
           {hasBooking() ? (
-            <div className="mx-auto max-w-3xl space-y-4">
-              <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-card">
+            <div className="grid gap-8 lg:grid-cols-[290px_minmax(0,1fr)] lg:items-start">
+              {/* What to expect — makes the calendar feel part of a designed page */}
+              <div className="space-y-4 lg:sticky lg:top-28">
+                <div className="rounded-2xl border border-line bg-white p-6 shadow-card">
+                  <h2 className="text-lg font-bold text-navy">
+                    {ar ? "استشارتك المجانية" : "Your free consultation"}
+                  </h2>
+                  <ul className="mt-4 space-y-3.5 text-sm leading-relaxed text-ink">
+                    {(ar
+                      ? [
+                          ["calendar-days", "جلسة في الوقت اللي يناسبك"],
+                          ["message-circle", "عبر Google Meet — الرابط يصلك تلقائيًا"],
+                          ["check-circle-2", "نفهم نشاطك ونرسم لك المسار الأنسب"],
+                          ["shield-check", "مجانية بالكامل وبدون أي التزام"],
+                        ]
+                      : [
+                          ["calendar-days", "A session at a time that suits you"],
+                          ["message-circle", "Over Google Meet — link sent automatically"],
+                          ["check-circle-2", "We map your activity and the best path"],
+                          ["shield-check", "Entirely free, with no obligation"],
+                        ]
+                    ).map(([icon, text], i) => (
+                      <li key={i} className="flex items-start gap-2.5">
+                        <Icon name={icon} className="mt-0.5 h-5 w-5 shrink-0 text-gold-dark" />
+                        {text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-2xl bg-navy-gradient p-6 text-white shadow-card">
+                  <p className="text-sm font-semibold">
+                    {ar ? "تفضّل التواصل المباشر؟" : "Prefer to talk now?"}
+                  </p>
+                  <Button
+                    href={whatsappLink(
+                      ar ? "مرحبًا، أريد حجز استشارة مجانية." : "Hello, I'd like to book a free consultation."
+                    )}
+                    external
+                    className="mt-3 w-full"
+                    arrow
+                  >
+                    {ar ? "راسلنا على واتساب" : "Message us on WhatsApp"}
+                  </Button>
+                </div>
+              </div>
+
+              {/* Booking calendar — embedded inline, flush with the page */}
+              <div>
                 <iframe
                   src={booking.url}
                   title={ar ? "حجز موعد" : "Book a meeting"}
-                  className="h-[760px] w-full"
+                  className="h-[720px] w-full"
+                  style={{ border: 0, colorScheme: "light" }}
                   loading="lazy"
                 />
+                <p className="mt-2 text-center text-xs text-faint">
+                  {ar ? "لا يظهر التقويم؟ " : "Calendar not loading? "}
+                  <a
+                    href={booking.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-gold-dark underline"
+                  >
+                    {ar ? "افتحه في نافذة جديدة" : "Open in a new tab"}
+                  </a>
+                </p>
               </div>
-              <p className="text-center text-sm text-muted">
-                {ar ? "لا تظهر صفحة الحجز؟ " : "Booking page not loading? "}
-                <a
-                  href={booking.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-gold-dark underline"
-                >
-                  {ar ? "افتحها في نافذة جديدة" : "Open it in a new tab"}
-                </a>
-              </p>
             </div>
           ) : (
             <div className="mx-auto max-w-xl rounded-2xl border border-line bg-white p-8 text-center shadow-card">
