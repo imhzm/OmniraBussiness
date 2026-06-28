@@ -110,6 +110,12 @@ export const mainNav: NavItem[] = [
             desc: { en: "Data-driven market views", ar: "قراءات مبنية على البيانات" },
             icon: "line-chart",
           },
+          {
+            label: { en: "FAQ", ar: "الأسئلة الشائعة" },
+            href: "/faq",
+            desc: { en: "Answers to common questions", ar: "إجابات للأسئلة الشائعة" },
+            icon: "messages-square",
+          },
         ],
       },
       {
@@ -177,6 +183,7 @@ export const footerGroups: { title: L; items: NavLeaf[] }[] = [
     items: [
       { label: { en: "About Us", ar: "من نحن" }, href: "/about" },
       { label: { en: "Pricing", ar: "الباقات" }, href: "/pricing" },
+      { label: { en: "FAQ", ar: "الأسئلة الشائعة" }, href: "/faq" },
       { label: { en: "Contact Us", ar: "تواصل معنا" }, href: "/contact" },
     ],
   },
