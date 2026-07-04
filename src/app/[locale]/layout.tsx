@@ -60,7 +60,13 @@ export default async function LocaleLayout({
           "@type": "Country",
           name: l === "ar" ? "المملكة العربية السعودية" : "Saudi Arabia",
         },
-        sameAs: [site.social.linkedin, site.social.x, site.social.instagram, site.social.youtube],
+        sameAs: [
+          site.social.facebook,
+          site.social.tiktok,
+          site.social.x,
+          site.social.instagram,
+          site.social.youtube,
+        ],
       },
       {
         "@type": "WebSite",
