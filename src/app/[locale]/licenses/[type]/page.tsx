@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
@@ -34,14 +35,18 @@ export async function generateMetadata({
   const name = t(lt.name, l);
   return pageMetadata({
     locale: l,
-    title:
-      l === "ar"
-        ? `${name} في السعودية — الإصدار والمتطلبات`
-        : `${name} in Saudi Arabia — Issuance & Requirements`,
-    description: t(detail.excerpt, l),
+    title: detail.seoTitle
+      ? t(detail.seoTitle, l)
+      : l === "ar"
+        ? `${name} في السعودية 2026 — الشروط والإصدار`
+        : `${name} in Saudi Arabia 2026 — Requirements & Issuance`,
+    description: detail.seoDescription ? t(detail.seoDescription, l) : t(detail.excerpt, l),
     path: `/licenses/${type}`,
   });
 }
+
+/** Freshness signal — bump when license content is re-reviewed. */
+const CONTENT_REVIEWED = { iso: "2026-07-06", en: "July 2026", ar: "يوليو 2026" };
 
 export default async function LicenseTypePage({
   params,
@@ -73,6 +78,16 @@ export default async function LicenseTypePage({
           name: ar ? "المملكة العربية السعودية" : "Saudi Arabia",
         },
         url: `${site.url}/${l}/licenses/${type}`,
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${site.url}/${l}/licenses/${type}`,
+        url: `${site.url}/${l}/licenses/${type}`,
+        name: detail.seoTitle ? t(detail.seoTitle, l) : name,
+        inLanguage: ar ? "ar-SA" : "en-US",
+        dateModified: CONTENT_REVIEWED.iso,
+        isPartOf: { "@id": `${site.url}/#website` },
+        ...(detail.image ? { primaryImageOfPage: `${site.url}${detail.image}` } : {}),
       },
       {
         "@type": "BreadcrumbList",
@@ -134,7 +149,26 @@ export default async function LicenseTypePage({
       <section className="py-12 lg:py-16">
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
           <article className="space-y-10">
+            {detail.image && (
+              <div className="overflow-hidden rounded-2xl border border-line shadow-card">
+                <Image
+                  src={detail.image}
+                  alt={name}
+                  width={1376}
+                  height={768}
+                  priority
+                  sizes="(max-width: 900px) 100vw, 760px"
+                  className="h-auto w-full object-cover"
+                />
+              </div>
+            )}
             <Block title={ar ? "نظرة عامة" : "Overview"}>
+              <p className="flex items-center gap-1.5 text-xs font-semibold text-faint">
+                <Icon name="calendar-days" className="h-3.5 w-3.5" />
+                {ar
+                  ? `آخر مراجعة للمحتوى: ${CONTENT_REVIEWED.ar}`
+                  : `Content last reviewed: ${CONTENT_REVIEWED.en}`}
+              </p>
               {detail.overview.map((p, i) => (
                 <p key={i} className="text-base leading-relaxed text-muted">
                   {t(p, l)}

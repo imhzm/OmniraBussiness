@@ -77,6 +77,20 @@ export default async function ServiceDetailsPage({
         },
         url: `${site.url}/${l}/services/${slug}`,
       },
+      ...(service.updated
+        ? [
+            {
+              "@type": "WebPage",
+              "@id": `${site.url}/${l}/services/${slug}`,
+              url: `${site.url}/${l}/services/${slug}`,
+              name: t(service.title, l),
+              inLanguage: l === "ar" ? "ar-SA" : "en-US",
+              dateModified: service.updated,
+              isPartOf: { "@id": `${site.url}/#website` },
+              ...(service.image ? { primaryImageOfPage: `${site.url}${service.image}` } : {}),
+            },
+          ]
+        : []),
       {
         "@type": "BreadcrumbList",
         itemListElement: [
