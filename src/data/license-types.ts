@@ -5,6 +5,15 @@ export type LicenseType = { id: string; icon: string; name: L; desc: L };
 /** MISA / authority license types issued for the license-issuance service page. */
 export const licenseTypes: LicenseType[] = [
   {
+    id: "misa-investment",
+    icon: "landmark",
+    name: { en: "MISA Investment License", ar: "رخصة الاستثمار الأجنبي (ميسا)" },
+    desc: {
+      en: "The Ministry of Investment licence every foreign-owned company needs — 100% ownership in most sectors.",
+      ar: "رخصة وزارة الاستثمار التي يحتاجها كل كيان مملوك لأجانب — ملكية 100% في معظم القطاعات.",
+    },
+  },
+  {
     id: "commercial",
     icon: "receipt-text",
     name: { en: "Commercial License", ar: "ترخيص تجاري" },

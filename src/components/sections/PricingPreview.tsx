@@ -228,6 +228,18 @@ function AddonsCard({ locale }: { locale: Locale }) {
       label: ar ? "خدمات المرور" : "Traffic services",
       desc: ar ? "تجديد استمارة، لوحات، مخالفات وغيرها." : "Registration renewal, plates, fines & more.",
     },
+    {
+      slug: "labor-office-services",
+      icon: "briefcase",
+      label: ar ? "خدمات مكتب العمل" : "Labor Office services",
+      desc: ar ? "رخص عمل، نطاقات، توثيق عقود عبر قوى." : "Work permits, Nitaqat & contracts via Qiwa.",
+    },
+    {
+      slug: "jawazat-services",
+      icon: "plane",
+      label: ar ? "خدمات الجوازات" : "Jawazat services",
+      desc: ar ? "إقامات، خروج وعودة، نقل كفالة ومرافقين." : "Iqamas, exit/re-entry, sponsorship transfer.",
+    },
   ];
   return (
     <Reveal delay={120}>
@@ -254,7 +266,7 @@ function AddonsCard({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <Link
               key={s.slug}
