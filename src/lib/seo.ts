@@ -23,6 +23,7 @@ export function pageMetadata({
       languages: {
         en: `/en${suffix}`,
         ar: `/ar${suffix}`,
+        "x-default": `/en${suffix}`,
       },
     },
     openGraph: {
