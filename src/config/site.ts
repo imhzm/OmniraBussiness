@@ -20,8 +20,8 @@ export const site = {
   whatsappNumber: "966540646566",
   email: "support@omneraone.com",
   address: {
-    en: "King Abdullah Financial District (KAFD), Zone 4, Parcel 4.07, Level 7, Riyadh, Saudi Arabia",
-    ar: "مركز الملك عبدالله المالي (KAFD)، المنطقة 4، قطعة 4.07، الدور 7، الرياض، المملكة العربية السعودية",
+    en: "King Abdullah Financial District (KAFD), Zone 4, Building 4.07, Floor 7, Riyadh, Saudi Arabia",
+    ar: "مركز الملك عبدالله المالي (KAFD)، المنطقة 4، مبنى 4.07، الدور 7، الرياض، المملكة العربية السعودية",
   } satisfies L,
   workingHours: {
     en: "Sun – Thu, 9:00 AM – 6:00 PM",
