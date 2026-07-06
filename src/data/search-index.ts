@@ -5,6 +5,7 @@ import { platforms } from "@/data/platforms";
 import { articles } from "@/data/articles";
 import { events } from "@/data/events";
 import { kingdomTopics } from "@/data/kingdom-pages";
+import { licenseTypes } from "@/data/license-types";
 
 export type SearchEntryType =
   | "service"
@@ -79,6 +80,34 @@ const staticPages: SearchEntry[] = [
     href: "/resources/market-insights",
     keywords: "insights market رؤى السوق",
   },
+  {
+    type: "page",
+    title: { en: "Why Trust Us", ar: "لماذا تثق بنا" },
+    description: { en: "Guarantees, transparency, and how we protect your money and documents.", ar: "الضمانات والشفافية وكيف نحمي أموالك ومستنداتك." },
+    href: "/trust",
+    keywords: "trust guarantees transparency ثقة ضمانات شفافية حماية",
+  },
+  {
+    type: "page",
+    title: { en: "FAQ", ar: "الأسئلة الشائعة" },
+    description: { en: "Answers about setup, licensing, residency, insurance, and pricing.", ar: "إجابات عن التأسيس والتراخيص والإقامات والتأمين والأسعار." },
+    href: "/faq",
+    keywords: "faq questions answers أسئلة شائعة إجابات",
+  },
+  {
+    type: "page",
+    title: { en: "Book a Meeting", ar: "احجز موعد" },
+    description: { en: "Pick a time and book a free consultation — confirmed to your calendar.", ar: "اختر وقتك واحجز استشارة مجانية — بتأكيد فوري على التقويم." },
+    href: "/book",
+    keywords: "book meeting consultation calendar حجز موعد استشارة",
+  },
+  {
+    type: "page",
+    title: { en: "Business Setup Cost Calculator", ar: "حاسبة تكلفة تأسيس الأعمال" },
+    description: { en: "Estimate your Saudi company setup cost in six quick steps.", ar: "قدّر تكلفة تأسيس شركتك في السعودية في ست خطوات سريعة." },
+    href: "/business-setup-cost-calculator",
+    keywords: "calculator cost setup estimate حاسبة تكلفة تأسيس تقدير",
+  },
 ];
 
 export const searchIndex: SearchEntry[] = [
@@ -88,6 +117,13 @@ export const searchIndex: SearchEntry[] = [
     description: s.excerpt,
     href: `/services/${s.slug}`,
     keywords: `${s.slug.replace(/-/g, " ")} ${s.title.en} ${s.title.ar}`,
+  })),
+  ...licenseTypes.map<SearchEntry>((lt) => ({
+    type: "service",
+    title: lt.name,
+    description: lt.desc,
+    href: `/licenses/${lt.id}`,
+    keywords: `${lt.id.replace(/-/g, " ")} license رخصة ترخيص ${lt.name.en} ${lt.name.ar}`,
   })),
   ...sectors.map<SearchEntry>((s) => ({
     type: "sector",

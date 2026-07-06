@@ -193,6 +193,7 @@ export const footerGroups: { title: L; items: NavLeaf[] }[] = [
     title: { en: "Services", ar: "الخدمات" },
     items: [
       { label: { en: "Business Setup", ar: "تأسيس الأعمال" }, href: "/services/business-setup" },
+      { label: { en: "MISA Investment License", ar: "رخصة الاستثمار (ميسا)" }, href: "/licenses/misa-investment" },
       { label: { en: "Premium Residency", ar: "الإقامة المميزة" }, href: "/services/premium-residency" },
       { label: { en: "Visa & Iqama", ar: "التأشيرات والإقامة" }, href: "/services/visa-issuance" },
       { label: { en: "ZAKAT & Tax", ar: "الزكاة والضرائب" }, href: "/services/zakat-tax" },
