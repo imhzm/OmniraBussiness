@@ -19,8 +19,8 @@ export function CalculatorCTA({ locale }: { locale: Locale }) {
             className="pointer-events-none absolute -end-24 top-1/2 h-[360px] w-[360px] -translate-y-1/2 rounded-full bg-gold/10 blur-3xl"
             aria-hidden="true"
           />
-          <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
+          <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <div className="min-w-0">
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold-soft">
                 <Icon name="calculator" className="h-4 w-4" />
                 {t(c.eyebrow, locale)}
