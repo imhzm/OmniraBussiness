@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { trustedMarks } from "@/data/home";
 import { serviceCategories, servicesByCategory } from "@/data/services";
 import { serviceCoverage } from "@/data/coverage";
 import { getDict } from "@/i18n/dictionary";
@@ -58,19 +57,17 @@ export function Hero({ locale }: { locale: Locale }) {
             </Button>
           </div>
 
-          {/* Trusted-by text marks */}
-          <div className="mt-10 hidden lg:block">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-faint">{dict.home.trustedBy}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3">
-              {trustedMarks.map((mark, i) => (
-                <span
-                  key={i}
-                  className="text-sm font-bold tracking-wide text-navy/35 transition-colors hover:text-navy/60"
-                >
-                  {t(mark, locale)}
-                </span>
-              ))}
-            </div>
+          {/* Quick reassurance chips */}
+          <div className="mt-8 hidden flex-wrap items-center gap-x-6 gap-y-2 lg:flex">
+            {[
+              { icon: "briefcase", label: ar ? "أكثر من 30 خدمة حكومية" : "30+ government services" },
+              { icon: "map-pin", label: ar ? "تغطية 13 منطقة" : "All 13 regions covered" },
+            ].map((chip) => (
+              <span key={chip.icon} className="flex items-center gap-2 text-sm font-semibold text-navy/70">
+                <Icon name={chip.icon} className="h-4 w-4 text-gold-dark" />
+                {chip.label}
+              </span>
+            ))}
           </div>
         </Reveal>
 
