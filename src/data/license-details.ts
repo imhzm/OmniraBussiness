@@ -8,6 +8,8 @@ export type LicenseDetail = {
   seoDescription?: L;
   /** Optional article image path under /public. */
   image?: string;
+  /** If set, the image only renders on this locale (e.g. banners with baked-in Arabic text). */
+  imageLocale?: "ar" | "en";
   excerpt: L;
   overview: L[];
   whoFor: L[];
@@ -22,6 +24,8 @@ export type LicenseDetail = {
 export const licenseDetails: LicenseDetail[] = [
   {
     id: "misa-investment",
+    image: "/images/licenses/misa-investment.webp",
+    imageLocale: "ar",
     seoTitle: {"en": "MISA License Saudi Arabia 2026 | Investor Registration", "ar": "رخصة ميسا 2026 | التسجيل الاستثماري في السعودية"},
     seoDescription: {"en": "MISA license — now investor registration: 100% foreign ownership, MISA fees currently waived, approval in 3–10 days. Start your Saudi company with Omnera One.", "ar": "رخصة ميسا (التسجيل الاستثماري): تملّك أجنبي 100%، رسوم ميسا معلّقة حاليًا، وإصدار خلال 3–10 أيام عمل. أسّس شركتك في السعودية مع Omnera One اليوم."},
     excerpt: {"en": "The MISA investment licence from the Ministry of Investment is the gateway document every foreign-owned company needs before it can register in Saudi Arabia — with 100% foreign ownership available in most sectors. We prepare and attest your file and obtain the licence for you, often within days for clean applications.", "ar": "رخصة الاستثمار الأجنبي من وزارة الاستثمار (ميسا) هي الوثيقة الأساسية التي تحتاجها كل شركة مملوكة لمستثمر أجنبي قبل تسجيلها في المملكة العربية السعودية، مع إتاحة التملك الأجنبي بنسبة 100% في معظم القطاعات. نتولّى نيابةً عنك إعداد الملف وتصديق المستندات واستخراج الرخصة، وغالبًا خلال أيام للملفات المكتملة."},

@@ -87,7 +87,9 @@ export default async function LicenseTypePage({
         inLanguage: ar ? "ar-SA" : "en-US",
         dateModified: CONTENT_REVIEWED.iso,
         isPartOf: { "@id": `${site.url}/#website` },
-        ...(detail.image ? { primaryImageOfPage: `${site.url}${detail.image}` } : {}),
+        ...(detail.image && (!detail.imageLocale || detail.imageLocale === l)
+          ? { primaryImageOfPage: `${site.url}${detail.image}` }
+          : {}),
       },
       {
         "@type": "BreadcrumbList",
@@ -149,7 +151,7 @@ export default async function LicenseTypePage({
       <section className="py-12 lg:py-16">
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
           <article className="space-y-10">
-            {detail.image && (
+            {detail.image && (!detail.imageLocale || detail.imageLocale === l) && (
               <div className="overflow-hidden rounded-2xl border border-line shadow-card">
                 <Image
                   src={detail.image}

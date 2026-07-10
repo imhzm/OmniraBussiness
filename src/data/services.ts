@@ -24,6 +24,8 @@ export type Service = {
   icon: string;
   featured?: boolean;
   image?: string;
+  /** If set, the image only renders on this locale (e.g. banners with baked-in Arabic text). */
+  imageLocale?: "ar" | "en";
   title: L;
   excerpt: L;
   /** SEO <title> (keyword-rich). Falls back to `${title} in Saudi Arabia`. */
@@ -239,6 +241,8 @@ export const services: Service[] = [
   },
   {
     slug: "business-setup",
+    image: "/images/services/business-setup.webp",
+    imageLocale: "ar",
     category: "business-support",
     icon: "building-2",
     featured: true,
@@ -1349,6 +1353,8 @@ export const services: Service[] = [
   },
   {
     slug: "labor-office-services",
+    image: "/images/services/labor-office-services.webp",
+    imageLocale: "ar",
     category: "government-services",
     icon: "briefcase",
     updated: "2026-07-06",
@@ -1369,6 +1375,8 @@ export const services: Service[] = [
   },
   {
     slug: "jawazat-services",
+    image: "/images/services/jawazat-services.webp",
+    imageLocale: "ar",
     category: "government-services",
     icon: "plane",
     updated: "2026-07-06",
@@ -1389,6 +1397,8 @@ export const services: Service[] = [
   },
   {
     slug: "legal-consultations",
+    image: "/images/services/legal-consultations.webp",
+    imageLocale: "ar",
     category: "legal-services",
     icon: "file-text",
     updated: "2026-07-06",
@@ -1409,6 +1419,8 @@ export const services: Service[] = [
   },
   {
     slug: "litigation-representation",
+    image: "/images/services/litigation-representation.webp",
+    imageLocale: "ar",
     category: "legal-services",
     icon: "landmark",
     updated: "2026-07-06",
@@ -1429,6 +1441,8 @@ export const services: Service[] = [
   },
   {
     slug: "debt-collection",
+    image: "/images/services/debt-collection.webp",
+    imageLocale: "ar",
     category: "legal-services",
     icon: "banknote",
     updated: "2026-07-06",
@@ -1449,6 +1463,8 @@ export const services: Service[] = [
   },
   {
     slug: "driving-license-services",
+    image: "/images/services/driving-license-services.webp",
+    imageLocale: "ar",
     category: "government-services",
     icon: "badge-check",
     updated: "2026-07-06",
@@ -1469,6 +1485,8 @@ export const services: Service[] = [
   },
   {
     slug: "comprehensive-insurance",
+    image: "/images/services/comprehensive-insurance.webp",
+    imageLocale: "ar",
     category: "government-services",
     icon: "shield-check",
     updated: "2026-07-06",
@@ -1489,6 +1507,8 @@ export const services: Service[] = [
   },
   {
     slug: "transport-authority-services",
+    image: "/images/services/transport-authority-services.webp",
+    imageLocale: "ar",
     category: "government-services",
     icon: "truck",
     updated: "2026-07-06",
@@ -1509,6 +1529,8 @@ export const services: Service[] = [
   },
   {
     slug: "other-ministries-services",
+    image: "/images/services/other-ministries-services.webp",
+    imageLocale: "ar",
     category: "government-services",
     icon: "building",
     updated: "2026-07-06",
@@ -1529,6 +1551,8 @@ export const services: Service[] = [
   },
   {
     slug: "shop-licenses-balady",
+    image: "/images/services/shop-licenses-balady.webp",
+    imageLocale: "ar",
     category: "government-services",
     icon: "stamp",
     updated: "2026-07-06",

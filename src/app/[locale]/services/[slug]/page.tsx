@@ -61,6 +61,7 @@ export default async function ServiceDetailsPage({
   if (!service) notFound();
 
   const related = services.filter((item) => item.category === service.category && item.slug !== service.slug).slice(0, 3);
+  const showImage = Boolean(service.image) && (!service.imageLocale || service.imageLocale === l);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -87,7 +88,7 @@ export default async function ServiceDetailsPage({
               inLanguage: l === "ar" ? "ar-SA" : "en-US",
               dateModified: service.updated,
               isPartOf: { "@id": `${site.url}/#website` },
-              ...(service.image ? { primaryImageOfPage: `${site.url}${service.image}` } : {}),
+              ...(showImage ? { primaryImageOfPage: `${site.url}${service.image}` } : {}),
             },
           ]
         : []),
@@ -149,10 +150,10 @@ export default async function ServiceDetailsPage({
       <section className="py-12 lg:py-16">
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
           <article className="space-y-10">
-            {service.image && (
+            {showImage && (
               <div className="overflow-hidden rounded-2xl border border-line shadow-card">
                 <Image
-                  src={service.image}
+                  src={service.image!}
                   alt={t(service.title, l)}
                   width={1280}
                   height={720}
