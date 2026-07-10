@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { whatsappLink } from "@/config/site";
 import { mainNav } from "@/data/navigation";
+import { serviceCategories, services, servicesByCategory, type ServiceCategoryId } from "@/data/services";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { cn, localeHref, switchLocalePath, t } from "@/lib/utils";
@@ -81,6 +82,9 @@ export function Header({ locale }: { locale: Locale }) {
                   <div className="mega-panel absolute inset-x-0 top-full z-40">
                     <div className="mx-auto w-full max-w-[1480px] px-4 sm:px-6">
                       <div className="overflow-hidden rounded-b-3xl border border-t-0 border-line bg-white shadow-mega">
+                        {item.id === "services" ? (
+                          <ServicesMega locale={locale} allLabel={dict.nav.allServices} />
+                        ) : (
                         <div
                           className={cn(
                             "grid gap-0 divide-x divide-line p-2 rtl:divide-x-reverse",
@@ -146,6 +150,7 @@ export function Header({ locale }: { locale: Locale }) {
                             </div>
                           )}
                         </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -201,5 +206,89 @@ export function Header({ locale }: { locale: Locale }) {
       <MobileDrawer locale={locale} open={drawerOpen} onClose={() => setDrawerOpen(false)} />
       <SearchOverlay locale={locale} open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
+  );
+}
+
+/**
+ * Tabbed services mega menu — category rail on the start side, the active
+ * category's services in a grid. Scales cleanly as the catalog grows.
+ */
+function ServicesMega({ locale, allLabel }: { locale: Locale; allLabel: string }) {
+  const [active, setActive] = useState<ServiceCategoryId>("business-support");
+  const activeCat = serviceCategories.find((c) => c.id === active)!;
+  const list = servicesByCategory(active);
+
+  return (
+    <div className="grid grid-cols-[270px_minmax(0,1fr)]">
+      {/* Category rail */}
+      <div className="flex flex-col gap-1 border-e border-line bg-ivory/50 p-3">
+        {serviceCategories.map((cat) => {
+          const isOn = cat.id === active;
+          return (
+            <button
+              key={cat.id}
+              type="button"
+              onMouseEnter={() => setActive(cat.id)}
+              onFocus={() => setActive(cat.id)}
+              onClick={() => setActive(cat.id)}
+              className={cn(
+                "flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-start transition-colors",
+                isOn ? "bg-white text-navy shadow-card" : "text-muted hover:bg-white/70 hover:text-navy"
+              )}
+            >
+              <span
+                className={cn(
+                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
+                  isOn ? "bg-gold text-navy" : "bg-gold-faint text-gold-dark"
+                )}
+              >
+                <Icon name={cat.icon} className="h-4 w-4" />
+              </span>
+              <span className="min-w-0 flex-1 truncate text-sm font-bold">{t(cat.label, locale)}</span>
+              <span
+                className={cn(
+                  "shrink-0 rounded-full px-2 py-0.5 text-[11px] font-bold tabular-nums",
+                  isOn ? "bg-gold-faint text-gold-dark" : "bg-ivory text-faint"
+                )}
+              >
+                {servicesByCategory(cat.id).length}
+              </span>
+            </button>
+          );
+        })}
+        <Link
+          href={localeHref(locale, "/services")}
+          className="mt-2 flex items-center justify-center gap-1.5 rounded-xl border border-gold/40 bg-white px-3 py-2.5 text-sm font-bold text-gold-dark transition-colors hover:bg-gold hover:text-navy"
+        >
+          {allLabel} ({services.length})
+          <Icon name="arrow-right" className="h-4 w-4 rtl:rotate-180" />
+        </Link>
+      </div>
+
+      {/* Active category services */}
+      <div className="p-5">
+        <p className="mb-3 px-2 text-xs font-semibold text-faint">{t(activeCat.blurb, locale)}</p>
+        <ul className="grid grid-cols-2 gap-1 min-[1500px]:grid-cols-3">
+          {list.map((s) => (
+            <li key={s.slug}>
+              <Link
+                href={localeHref(locale, `/services/${s.slug}`)}
+                className="group/leaf flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-ivory"
+              >
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gold-faint text-gold-dark">
+                  <Icon name={s.icon} className="h-3.5 w-3.5" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block truncate text-sm font-semibold text-navy transition-colors group-hover/leaf:text-gold-dark">
+                    {t(s.title, locale)}
+                  </span>
+                  <span className="mt-0.5 block truncate text-xs text-muted">{t(s.excerpt, locale)}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
