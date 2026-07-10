@@ -16,7 +16,7 @@ export function CalculatorCTA({ locale }: { locale: Locale }) {
         <Reveal className="relative overflow-hidden rounded-3xl bg-navy-gradient p-8 lg:p-12">
           <Pattern id="calc-cta" className="absolute inset-0 text-gold opacity-[0.06]" />
           <div
-            className="pointer-events-none absolute -end-24 top-1/2 h-[360px] w-[360px] -translate-y-1/2 rounded-full bg-gold/10 blur-3xl"
+            className="pointer-events-none absolute end-0 top-1/2 h-[360px] w-[360px] -translate-y-1/2 translate-x-1/3 rounded-full bg-gold/10 blur-3xl rtl:-translate-x-1/3"
             aria-hidden="true"
           />
           <div className="relative flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
