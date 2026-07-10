@@ -1,28 +1,37 @@
 import Image from "next/image";
-import { heroStats, trustedMarks } from "@/data/home";
+import { trustedMarks } from "@/data/home";
+import { serviceCategories, servicesByCategory } from "@/data/services";
+import { serviceCoverage } from "@/data/coverage";
 import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { localeHref, t } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
-import { CountUp } from "@/components/ui/CountUp";
 import { Icon } from "@/components/ui/Icon";
 import { Pattern } from "@/components/ui/Pattern";
 import { Reveal } from "@/components/ui/Reveal";
+import { HeroFinder, type FinderGroup } from "@/components/sections/HeroFinder";
 
 export function Hero({ locale }: { locale: Locale }) {
   const dict = getDict(locale);
+  const ar = locale === "ar";
 
-  const statLabels: Record<(typeof heroStats)[number]["id"], string> = {
-    businesses: dict.home.heroStats.businesses,
-    satisfaction: dict.home.heroStats.satisfaction,
-    support: dict.home.heroStats.support,
-  };
+  const groups: FinderGroup[] = serviceCategories.map((cat) => ({
+    label: t(cat.label, locale),
+    items: servicesByCategory(cat.id).map((s) => ({ slug: s.slug, title: t(s.title, locale) })),
+  }));
+  const cities = serviceCoverage.regions.map((r) => t(r.name, locale));
+
+  const trustStrip = [
+    { icon: "headset", label: ar ? "استشارة أولية مجانية" : "Free initial consultation" },
+    { icon: "badge-check", label: ar ? "تنفيذ موثّق ومتابعة حتى التسليم" : "Trusted execution, tracked to delivery" },
+    { icon: "shield-check", label: ar ? "متوافق مع الأنظمة الحكومية" : "Aligned with government regulations" },
+  ];
 
   return (
     <section className="relative overflow-hidden border-b border-line bg-ivory">
       <Image
         src="/images/hero/omnira-riyadh-hero.png"
-        alt={locale === "ar" ? "أفق أعمال حديث في الرياض" : "Modern Riyadh business skyline"}
+        alt={ar ? "أفق أعمال حديث في الرياض" : "Modern Riyadh business skyline"}
         fill
         priority
         sizes="100vw"
@@ -32,10 +41,10 @@ export function Hero({ locale }: { locale: Locale }) {
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ivory via-ivory/78 to-transparent" />
       <Pattern id="hero-pattern" className="absolute inset-0 text-navy opacity-[0.018]" />
 
-      <div className="container-x relative grid min-h-[590px] items-center gap-12 py-14 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
+      <div className="container-x relative grid min-h-[560px] items-center gap-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
         {/* Copy */}
         <Reveal>
-          <h1 className="max-w-xl text-4xl font-bold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-[3.55rem]">
+          <h1 className="max-w-xl text-4xl font-bold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-[3.5rem]">
             {dict.home.heroTitle}
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-navy/72 sm:text-lg">{dict.home.heroText}</p>
@@ -44,16 +53,14 @@ export function Hero({ locale }: { locale: Locale }) {
             <Button href={localeHref(locale, "/contact")} variant="navy" size="lg" arrow>
               {dict.common.startYourBusiness}
             </Button>
-            <Button href={localeHref(locale, "/about-kingdom")} variant="white" size="lg">
-              {dict.common.exploreOpportunities}
+            <Button href={localeHref(locale, "/services")} variant="white" size="lg">
+              {dict.nav.services}
             </Button>
           </div>
 
           {/* Trusted-by text marks */}
-          <div className="mt-12 hidden lg:block">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-faint">
-              {dict.home.trustedBy}
-            </p>
+          <div className="mt-10 hidden lg:block">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-faint">{dict.home.trustedBy}</p>
             <div className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3">
               {trustedMarks.map((mark, i) => (
                 <span
@@ -67,31 +74,22 @@ export function Hero({ locale }: { locale: Locale }) {
           </div>
         </Reveal>
 
-        {/* Visual */}
-        <Reveal delay={150} className="relative min-h-[330px] lg:min-h-[430px]">
-          {/* Floating stat cards */}
-          <div className="absolute bottom-4 end-0 flex w-full max-w-[300px] flex-col gap-3 sm:end-8 lg:bottom-8">
-            {heroStats.map((stat, i) => (
-              <Reveal
-                key={stat.id}
-                delay={350 + i * 130}
-                className="flex items-center gap-3.5 rounded-xl border border-white/80 bg-white/94 px-5 py-3.5 shadow-card backdrop-blur"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold-faint text-gold-dark">
-                  <Icon name={stat.icon} className="h-5 w-5" />
-                </span>
-                <span>
-                  <CountUp
-                    value={stat.value}
-                    suffix={stat.suffix}
-                    className="block text-xl font-bold text-navy"
-                  />
-                  <span className="block text-xs font-medium text-muted">{statLabels[stat.id]}</span>
-                </span>
-              </Reveal>
-            ))}
-          </div>
+        {/* Service-finder widget */}
+        <Reveal delay={150} className="flex justify-center lg:justify-end">
+          <HeroFinder locale={locale} groups={groups} cities={cities} />
         </Reveal>
+      </div>
+
+      {/* Trust strip */}
+      <div className="relative border-t border-line/70 bg-white/55 backdrop-blur">
+        <div className="container-x flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-3.5">
+          {trustStrip.map((b) => (
+            <span key={b.icon} className="flex items-center gap-2 text-xs font-semibold text-navy/75 sm:text-sm">
+              <Icon name={b.icon} className="h-4 w-4 text-gold-dark" />
+              {b.label}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
