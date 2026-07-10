@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getService, services } from "@/data/services";
+import { trustGuarantees, trustPillars } from "@/data/trust";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
-import { site } from "@/config/site";
+import { site, whatsappLink } from "@/config/site";
 import { localeHref, t } from "@/lib/utils";
 import { Accordion } from "@/components/ui/Accordion";
 import { Button } from "@/components/ui/Button";
@@ -147,6 +148,23 @@ export default async function ServiceDetailsPage({
         </div>
       </PageHero>
 
+      {/* Guarantees strip — reassurance right under the hero */}
+      <section className="border-b border-line bg-white">
+        <div className="container-x grid grid-cols-2 gap-x-6 gap-y-5 py-6 lg:grid-cols-4">
+          {trustGuarantees.map((g) => (
+            <div key={g.icon} className="flex items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-faint text-gold-dark">
+                <Icon name={g.icon} className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-bold leading-tight text-navy">{t(g.title, l)}</p>
+                <p className="mt-0.5 truncate text-xs text-muted">{t(g.text, l)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="py-12 lg:py-16">
         <div className="container-x grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
           <article className="space-y-10">
@@ -213,9 +231,16 @@ export default async function ServiceDetailsPage({
                 <Detail label={dict.common.bestFor} value={t(service.bestFor, l)} icon="target" />
                 <Detail label={dict.common.supportType} value={t(service.supportType, l)} icon="headset" />
               </dl>
-              <Button href={localeHref(l, "/contact")} className="mt-6 w-full" arrow>
-                {dict.common.getStarted}
+              <Button href={whatsappLink()} external className="mt-6 w-full" arrow>
+                {dict.common.talkToExpert}
               </Button>
+              <Button href={localeHref(l, "/book")} variant="secondary" className="mt-3 w-full">
+                {dict.common.bookConsultation}
+              </Button>
+              <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-muted">
+                <Icon name="shield-check" className="h-3.5 w-3.5 text-gold-dark" />
+                {l === "ar" ? "استشارة أولية مجانية · بدون التزام" : "Free initial consultation · No obligation"}
+              </p>
             </div>
 
             {related.length > 0 && (
@@ -245,8 +270,38 @@ export default async function ServiceDetailsPage({
         <StartFromZero locale={l} ctaHref="/pricing#setup" />
       )}
 
+      {/* Why Omnera One — value pillars */}
+      <section className="border-y border-line bg-ivory py-14 lg:py-16">
+        <div className="container-x">
+          <h2 className="text-center text-2xl font-bold text-navy sm:text-3xl">
+            {l === "ar" ? "لماذا تختار Omnera One؟" : "Why choose Omnera One?"}
+          </h2>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {trustPillars.map((p) => (
+              <div key={p.icon} className="rounded-2xl border border-line bg-white p-6 shadow-card">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold-faint text-gold-dark">
+                  <Icon name={p.icon} className="h-6 w-6" />
+                </span>
+                <h3 className="mt-4 font-bold text-navy">{t(p.title, l)}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">{t(p.text, l)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <TargetCountries locale={l} />
       <FinalCTA locale={l} />
+
+      {/* Sticky mobile CTA bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-line bg-white/95 p-3 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] backdrop-blur lg:hidden">
+        <Button href={whatsappLink()} external className="flex-1" size="sm">
+          {dict.common.talkToExpert}
+        </Button>
+        <Button href={localeHref(l, "/book")} variant="secondary" className="flex-1" size="sm">
+          {dict.common.bookConsultation}
+        </Button>
+      </div>
     </>
   );
 }
