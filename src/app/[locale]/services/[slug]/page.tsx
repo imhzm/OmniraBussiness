@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getService, services } from "@/data/services";
-import { trustGuarantees, trustPillars } from "@/data/trust";
+import { trustPillars } from "@/data/trust";
 import { getDict } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/seo";
@@ -16,6 +16,14 @@ import { TargetCountries } from "@/components/sections/TargetCountries";
 import { StartFromZero } from "@/components/sections/StartFromZero";
 import { LicenseTypesGrid } from "@/components/sections/LicenseTypesGrid";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+
+/** Universal, short guarantees shown on every service page (subtitles kept brief so they never truncate). */
+const SERVICE_GUARANTEES = [
+  { icon: "shield-check", title: { en: "Full confidentiality", ar: "سرية تامة" }, text: { en: "Your documents stay protected", ar: "بياناتك ومستنداتك محمية" } },
+  { icon: "receipt-text", title: { en: "Transparent pricing", ar: "تسعير واضح" }, text: { en: "No hidden fees", ar: "بلا رسوم خفية" } },
+  { icon: "badge-check", title: { en: "Done for you", ar: "ننجزها عنك" }, text: { en: "Followed to completion", ar: "متابعة حتى التسليم" } },
+  { icon: "headset", title: { en: "One point of contact", ar: "تواصل مباشر" }, text: { en: "Dedicated support", ar: "مسؤول مخصّص لك" } },
+] as const;
 
 export function generateStaticParams() {
   return locales.flatMap((locale) => services.map((service) => ({ locale, slug: service.slug })));
@@ -148,17 +156,17 @@ export default async function ServiceDetailsPage({
         </div>
       </PageHero>
 
-      {/* Guarantees strip — reassurance right under the hero */}
+      {/* Guarantees strip — universal reassurance right under the hero */}
       <section className="border-b border-line bg-white">
         <div className="container-x grid grid-cols-2 gap-x-6 gap-y-5 py-6 lg:grid-cols-4">
-          {trustGuarantees.map((g) => (
+          {SERVICE_GUARANTEES.map((g) => (
             <div key={g.icon} className="flex items-center gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-faint text-gold-dark">
                 <Icon name={g.icon} className="h-5 w-5" />
               </span>
               <div className="min-w-0">
                 <p className="text-sm font-bold leading-tight text-navy">{t(g.title, l)}</p>
-                <p className="mt-0.5 truncate text-xs text-muted">{t(g.text, l)}</p>
+                <p className="mt-0.5 text-xs leading-tight text-muted">{t(g.text, l)}</p>
               </div>
             </div>
           ))}
