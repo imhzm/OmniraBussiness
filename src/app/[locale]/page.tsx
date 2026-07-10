@@ -7,6 +7,7 @@ import { TrustBar } from "@/components/sections/TrustBar";
 import { MarketOverview } from "@/components/sections/MarketOverview";
 import { TargetCountries } from "@/components/sections/TargetCountries";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
+import { HowToOrder } from "@/components/sections/HowToOrder";
 import { StartFromZero } from "@/components/sections/StartFromZero";
 import { BusinessSetupProcess } from "@/components/sections/BusinessSetupProcess";
 import { GovernmentPlatforms } from "@/components/sections/GovernmentPlatforms";
@@ -14,8 +15,10 @@ import { SectorsGrid } from "@/components/sections/SectorsGrid";
 import { EventsLibrary } from "@/components/sections/EventsLibrary";
 import { ArticlesSection } from "@/components/sections/ArticlesSection";
 import { PricingPreview } from "@/components/sections/PricingPreview";
+import { CalculatorCTA } from "@/components/sections/CalculatorCTA";
 import { CostEstimation } from "@/components/sections/CostEstimation";
 import { FreeCostStudy } from "@/components/sections/FreeCostStudy";
+import { ServiceCoverage } from "@/components/sections/ServiceCoverage";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export async function generateMetadata({
@@ -49,6 +52,7 @@ export default async function HomePage({
       <MarketOverview locale={l} />
       <TargetCountries locale={l} />
       <ServicesPreview locale={l} />
+      <HowToOrder locale={l} />
       <StartFromZero locale={l} />
       <BusinessSetupProcess locale={l} />
       <GovernmentPlatforms locale={l} />
@@ -56,8 +60,10 @@ export default async function HomePage({
       <EventsLibrary locale={l} />
       <ArticlesSection locale={l} />
       <PricingPreview locale={l} />
+      <CalculatorCTA locale={l} />
       <CostEstimation locale={l} />
       <FreeCostStudy locale={l} />
+      <ServiceCoverage locale={l} />
       <FinalCTA locale={l} />
     </>
   );
