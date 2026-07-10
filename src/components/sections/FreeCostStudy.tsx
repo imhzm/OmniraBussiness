@@ -28,7 +28,7 @@ export function FreeCostStudy({ locale }: { locale: Locale }) {
           <div className="relative overflow-hidden rounded-3xl bg-navy-gradient p-8 text-white shadow-card lg:p-12">
             <Pattern id="coststudy-pattern" className="absolute inset-0 text-gold opacity-[0.05]" />
             <div
-              className="pointer-events-none absolute -end-24 -top-24 h-80 w-80 rounded-full bg-gold/10 blur-3xl"
+              className="pointer-events-none absolute end-0 -top-24 h-80 w-80 rounded-full bg-gold/10 blur-3xl"
               aria-hidden="true"
             />
             <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
