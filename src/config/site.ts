@@ -55,7 +55,7 @@ export function whatsappLink(message?: string): string {
  * set NEXT_PUBLIC_LEAD_ENDPOINT in the deployment environment.
  */
 export const leadCapture = {
-  endpoint: process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "",
+  endpoint: process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "/api/leads",
 } as const;
 
 /** True when a real lead-capture backend has been configured. */
