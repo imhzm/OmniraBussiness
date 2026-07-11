@@ -5,10 +5,14 @@ import { defaultLocale, locales } from "@/i18n/config";
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Expose the path to server layouts (used to hide marketing chrome on /dashboard).
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
+
   const hasLocale = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
   );
-  if (hasLocale) return NextResponse.next();
+  if (hasLocale) return NextResponse.next({ request: { headers: requestHeaders } });
 
   const url = request.nextUrl.clone();
   url.pathname = `/${defaultLocale}${pathname === "/" ? "" : pathname}`;

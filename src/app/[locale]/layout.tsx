@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { site } from "@/config/site";
 import { isLocale, isRTL, locales, type Locale } from "@/i18n/config";
 import { Header } from "@/components/layout/Header";
@@ -41,6 +42,10 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const l = locale as Locale;
+
+  // Admin dashboard renders without the marketing header/footer/chrome.
+  const pathname = (await headers()).get("x-pathname") ?? "";
+  const isDashboard = pathname.includes("/dashboard");
 
   const orgLd = {
     "@context": "https://schema.org",
@@ -85,14 +90,20 @@ export default async function LocaleLayout({
       dir={isRTL(locale) ? "rtl" : "ltr"}
     >
       <body className={locale === "ar" ? "font-ar" : "font-sans"}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
-        />
-        <Header locale={locale} />
-        <main>{children}</main>
-        <Footer locale={locale} />
-        <WhatsAppFloat locale={locale} />
+        {isDashboard ? (
+          children
+        ) : (
+          <>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+            />
+            <Header locale={locale} />
+            <main>{children}</main>
+            <Footer locale={locale} />
+            <WhatsAppFloat locale={locale} />
+          </>
+        )}
       </body>
     </html>
   );
