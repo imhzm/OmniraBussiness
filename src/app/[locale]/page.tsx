@@ -3,13 +3,14 @@ import { isLocale, type Locale } from "@/i18n/config";
 import { getDict } from "@/i18n/dictionary";
 import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/sections/Hero";
+import { AchievementStats } from "@/components/sections/AchievementStats";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { MarketOverview } from "@/components/sections/MarketOverview";
 import { TargetCountries } from "@/components/sections/TargetCountries";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
+import { SetupJourney } from "@/components/sections/SetupJourney";
 import { HowToOrder } from "@/components/sections/HowToOrder";
 import { StartFromZero } from "@/components/sections/StartFromZero";
-import { BusinessSetupProcess } from "@/components/sections/BusinessSetupProcess";
 import { GovernmentPlatforms } from "@/components/sections/GovernmentPlatforms";
 import { SectorsGrid } from "@/components/sections/SectorsGrid";
 import { EventsLibrary } from "@/components/sections/EventsLibrary";
@@ -48,17 +49,18 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={l} />
+      <AchievementStats locale={l} />
       <TrustBar locale={l} />
       <MarketOverview locale={l} />
       <TargetCountries locale={l} />
       <ServicesPreview locale={l} />
-      <HowToOrder locale={l} />
+      <SetupJourney locale={l} />
       <StartFromZero locale={l} />
-      <BusinessSetupProcess locale={l} />
       <GovernmentPlatforms locale={l} />
       <SectorsGrid locale={l} />
       <EventsLibrary locale={l} />
       <ArticlesSection locale={l} />
+      <HowToOrder locale={l} />
       <PricingPreview locale={l} />
       <CalculatorCTA locale={l} />
       <CostEstimation locale={l} />
