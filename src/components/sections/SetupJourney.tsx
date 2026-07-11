@@ -31,7 +31,7 @@ export function SetupJourney({ locale }: { locale: Locale }) {
             className="absolute inset-x-[8%] top-7 hidden h-0.5 bg-gradient-to-r from-transparent via-gold/45 to-transparent lg:block"
             aria-hidden="true"
           />
-          <ol className="grid gap-x-4 gap-y-9 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="grid gap-x-4 gap-y-9 sm:grid-cols-2 lg:grid-cols-6">
             {processSteps.map((step, i) => (
               <Reveal key={i} delay={i * 80} className="relative flex flex-col items-center text-center">
                 <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-gold text-xl font-black text-navy shadow-gold ring-4 ring-white">
@@ -44,7 +44,7 @@ export function SetupJourney({ locale }: { locale: Locale }) {
                 <p className="mt-1.5 text-xs leading-relaxed text-muted">{t(step.text, locale)}</p>
               </Reveal>
             ))}
-          </ol>
+          </div>
         </div>
 
         <div className="mt-12 text-center">
