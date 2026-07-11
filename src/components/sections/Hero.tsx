@@ -34,7 +34,7 @@ export function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="relative overflow-hidden border-b border-line bg-ivory">
       <Image
-        src="/images/hero/omnira-riyadh-hero.png"
+        src="/images/hero/omnira-riyadh-hero-cool.webp"
         alt={ar ? "أفق أعمال حديث في الرياض" : "Modern Riyadh business skyline"}
         fill
         priority
