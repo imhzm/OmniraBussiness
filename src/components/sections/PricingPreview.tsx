@@ -24,15 +24,16 @@ export function PricingCard({
 }) {
   const dict = getDict(locale);
   const isCustom = pkg.price === null;
+  const dark = !!pkg.recommended;
 
   return (
     <Reveal delay={delay} className="h-full">
       <div
         className={cn(
-          "relative flex h-full flex-col rounded-2xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover",
-          pkg.recommended
-            ? "border-gold shadow-gold ring-1 ring-gold/40"
-            : "border-line shadow-card"
+          "relative flex h-full flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover",
+          dark
+            ? "border-navy bg-navy-gradient text-white shadow-card-hover ring-1 ring-gold/30 lg:-translate-y-2"
+            : "border-line bg-white shadow-card"
         )}
       >
         {pkg.recommended && (
@@ -40,18 +41,18 @@ export function PricingCard({
             {dict.common.mostPopular}
           </span>
         )}
-        <h3 className="text-lg font-bold text-navy">{t(pkg.name, locale)}</h3>
-        <p className="mt-1 text-sm text-muted">{t(pkg.description, locale)}</p>
+        <h3 className={cn("text-lg font-bold", dark ? "text-white" : "text-navy")}>{t(pkg.name, locale)}</h3>
+        <p className={cn("mt-1 text-sm", dark ? "text-white/70" : "text-muted")}>{t(pkg.description, locale)}</p>
 
         <div className="mt-5 flex items-baseline gap-2">
           {isCustom ? (
-            <span className="text-3xl font-bold text-navy">{dict.common.customQuote}</span>
+            <span className={cn("text-3xl font-bold", dark ? "text-white" : "text-navy")}>{dict.common.customQuote}</span>
           ) : (
             <>
-              <span className="text-4xl font-bold tracking-tight text-navy">
+              <span className={cn("text-4xl font-bold tracking-tight", dark ? "text-white" : "text-navy")}>
                 {pkg.price!.toLocaleString("en-US")}
               </span>
-              <span className="text-sm font-semibold text-muted">
+              <span className={cn("text-sm font-semibold", dark ? "text-white/60" : "text-muted")}>
                 {dict.common.sar} ·{" "}
                 {pkg.period === "monthly"
                   ? locale === "ar"
@@ -68,31 +69,49 @@ export function PricingCard({
         </div>
 
         {pkg.priceNote && (
-          <p className="mt-2 text-xs font-semibold text-gold-dark">
+          <p className={cn("mt-2 text-xs font-semibold", dark ? "text-gold-soft" : "text-gold-dark")}>
             {t(pkg.priceNote, locale)}
           </p>
         )}
 
         {pkg.highlight && (
-          <p className="mt-3 rounded-xl border border-gold/30 bg-gold-faint px-4 py-2 text-xs font-bold text-gold-dark">
+          <p
+            className={cn(
+              "mt-3 rounded-xl border px-4 py-2 text-xs font-bold",
+              dark
+                ? "border-gold/40 bg-gold/15 text-gold-soft"
+                : "border-gold/30 bg-gold-faint text-gold-dark"
+            )}
+          >
             {t(pkg.highlight, locale)}
           </p>
         )}
 
-        <p className="mt-4 rounded-xl bg-ivory px-4 py-2.5 text-xs font-semibold text-muted">
-          {dict.pricing.idealFor}: <span className="text-navy">{t(pkg.idealFor, locale)}</span>
+        <p
+          className={cn(
+            "mt-4 rounded-xl px-4 py-2.5 text-xs font-semibold",
+            dark ? "bg-white/10 text-white/70" : "bg-ivory text-muted"
+          )}
+        >
+          {dict.pricing.idealFor}:{" "}
+          <span className={dark ? "text-white" : "text-navy"}>{t(pkg.idealFor, locale)}</span>
         </p>
 
         {packageSpecs[pkg.id] && (
-          <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2 rounded-xl border border-line bg-ivory/50 p-3">
+          <div
+            className={cn(
+              "mt-4 grid grid-cols-2 gap-x-3 gap-y-2 rounded-xl border p-3",
+              dark ? "border-white/10 bg-white/5" : "border-line bg-ivory/50"
+            )}
+          >
             {packageSpecs[pkg.id].map((s, i) => (
               <div key={i} className="flex items-baseline gap-1.5 text-xs leading-snug">
-                <span className="font-bold text-gold-dark" aria-hidden>
+                <span className={cn("font-bold", dark ? "text-gold-soft" : "text-gold-dark")} aria-hidden>
                   +
                 </span>
                 <span>
-                  <span className="text-muted">{t(s.label, locale)}: </span>
-                  <span className="font-bold text-navy">{t(s.value, locale)}</span>
+                  <span className={dark ? "text-white/60" : "text-muted"}>{t(s.label, locale)}: </span>
+                  <span className={cn("font-bold", dark ? "text-white" : "text-navy")}>{t(s.value, locale)}</span>
                 </span>
               </div>
             ))}
@@ -105,8 +124,11 @@ export function PricingCard({
             return (
               <ul className="mt-5 flex-1 space-y-2.5">
                 {pkg.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-ink">
-                    <Icon name="check-circle-2" className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" />
+                  <li key={i} className={cn("flex items-start gap-2.5 text-sm", dark ? "text-white/85" : "text-ink")}>
+                    <Icon
+                      name="check-circle-2"
+                      className={cn("mt-0.5 h-4 w-4 shrink-0", dark ? "text-gold-soft" : "text-gold-dark")}
+                    />
                     {t(feature, locale)}
                   </li>
                 ))}
@@ -115,33 +137,49 @@ export function PricingCard({
           }
           return (
             <div className="mt-5 flex-1">
-              <p className="mb-1.5 flex items-center gap-1.5 text-xs font-bold text-navy">
-                <Icon name="badge-check" className="h-4 w-4 text-gold-dark" />
+              <p className={cn("mb-1.5 flex items-center gap-1.5 text-xs font-bold", dark ? "text-white" : "text-navy")}>
+                <Icon name="badge-check" className={cn("h-4 w-4", dark ? "text-gold-soft" : "text-gold-dark")} />
                 {locale === "ar"
                   ? "الخدمات المشمولة — اضغط للتفاصيل"
                   : "Included services — tap for details"}
               </p>
-              <div className="border-t border-line">
+              <div className={cn("border-t", dark ? "border-white/15" : "border-line")}>
                 {groups.map((g, i) =>
                   g.locked ? (
                     <div
                       key={i}
-                      className="flex items-center gap-2 border-b border-line py-2.5 text-sm text-faint"
+                      className={cn(
+                        "flex items-center gap-2 border-b py-2.5 text-sm",
+                        dark ? "border-white/10 text-white/40" : "border-line text-faint"
+                      )}
                     >
                       <Icon name="minus" className="h-4 w-4 shrink-0" />
                       <span className="font-semibold">{t(g.title, locale)}</span>
-                      <span className="ms-auto rounded-md bg-ivory px-2 py-0.5 text-[0.65rem] font-bold text-muted">
+                      <span
+                        className={cn(
+                          "ms-auto rounded-md px-2 py-0.5 text-[0.65rem] font-bold",
+                          dark ? "bg-white/10 text-white/60" : "bg-ivory text-muted"
+                        )}
+                      >
                         {locale === "ar" ? "في الباقات الأعلى" : "Higher plans"}
                       </span>
                     </div>
                   ) : (
-                    <details key={i} className="group border-b border-line">
-                      <summary className="flex cursor-pointer list-none items-center gap-2 py-2.5 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
-                        <Icon name="check-circle-2" className="h-4 w-4 shrink-0 text-gold-dark" />
+                    <details key={i} className={cn("group border-b", dark ? "border-white/10" : "border-line")}>
+                      <summary
+                        className={cn(
+                          "flex cursor-pointer list-none items-center gap-2 py-2.5 text-sm font-semibold [&::-webkit-details-marker]:hidden",
+                          dark ? "text-white/85" : "text-ink"
+                        )}
+                      >
+                        <Icon name="check-circle-2" className={cn("h-4 w-4 shrink-0", dark ? "text-gold-soft" : "text-gold-dark")} />
                         <span>{t(g.title, locale)}</span>
                         <Icon
                           name="chevron-down"
-                          className="ms-auto h-4 w-4 shrink-0 text-muted transition-transform duration-200 group-open:rotate-180"
+                          className={cn(
+                            "ms-auto h-4 w-4 shrink-0 transition-transform duration-200 group-open:rotate-180",
+                            dark ? "text-white/50" : "text-muted"
+                          )}
                         />
                       </summary>
                       {g.items && (
@@ -149,7 +187,10 @@ export function PricingCard({
                           {g.items.map((it, j) => (
                             <li
                               key={j}
-                              className="relative ps-3 text-xs leading-relaxed text-muted before:absolute before:start-0 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full before:bg-gold-dark"
+                              className={cn(
+                                "relative ps-3 text-xs leading-relaxed before:absolute before:start-0 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full",
+                                dark ? "text-white/60 before:bg-gold-soft" : "text-muted before:bg-gold-dark"
+                              )}
                             >
                               {t(it, locale)}
                             </li>
