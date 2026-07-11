@@ -131,3 +131,32 @@ body {
   background: var(--color-line);
   border-radius: 999px;
 }
+
+/* Gold-button sheen — a soft light sweep on hover */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 68%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-sheen:hover::after {
+  transform: translateX(130%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-sheen::after {
+    transition: none;
+    display: none;
+  }
+}

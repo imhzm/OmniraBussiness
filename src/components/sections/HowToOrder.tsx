@@ -44,7 +44,7 @@ export function HowToOrder({ locale }: { locale: Locale }) {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-navy shadow-gold transition-colors hover:bg-gold-dark"
+            className="btn-sheen inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-navy shadow-gold transition-colors hover:bg-gold-dark"
           >
             <Icon name="message-circle" className="h-5 w-5" />
             {t(f.ctaLabel, locale)}

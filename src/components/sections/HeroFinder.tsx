@@ -97,7 +97,7 @@ export function HeroFinder({
 
         <button
           type="submit"
-          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gold px-5 py-3.5 text-sm font-bold text-navy shadow-gold transition-colors hover:bg-gold-dark"
+          className="btn-sheen flex w-full items-center justify-center gap-2 rounded-xl bg-gold px-5 py-3.5 text-sm font-bold text-navy shadow-gold transition-colors hover:bg-gold-dark"
         >
           <Icon name="file-search" className="h-4 w-4" />
           {ar ? "اعرض الخدمة" : "Find my service"}

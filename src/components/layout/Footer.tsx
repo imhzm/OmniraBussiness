@@ -94,7 +94,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 text-xs text-white/50 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 pb-24 text-xs text-white/50 sm:flex-row lg:pb-6">
           <p>
             © {year} {t(site.legalName, locale)}. {dict.footer.rights}
           </p>

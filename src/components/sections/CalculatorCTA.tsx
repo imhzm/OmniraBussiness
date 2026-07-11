@@ -41,7 +41,7 @@ export function CalculatorCTA({ locale }: { locale: Locale }) {
             <div className="w-full shrink-0 lg:w-auto">
               <a
                 href={localeHref(locale, "/business-setup-cost-calculator")}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-8 py-4 text-base font-bold text-navy shadow-gold transition-colors hover:bg-gold-dark lg:w-auto"
+                className="btn-sheen inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-8 py-4 text-base font-bold text-navy shadow-gold transition-colors hover:bg-gold-dark lg:w-auto"
               >
                 {t(c.ctaLabel, locale)}
                 <Icon name="arrow-right" className={ar ? "h-5 w-5 rotate-180" : "h-5 w-5"} />
