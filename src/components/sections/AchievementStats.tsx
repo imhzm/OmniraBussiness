@@ -30,26 +30,24 @@ export function AchievementStats({ locale }: { locale: Locale }) {
             <Reveal
               key={s.icon}
               delay={i * 90}
-              className="flex items-center gap-4 rounded-2xl border border-line bg-ivory/40 p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/50 hover:shadow-card sm:p-5"
+              className="flex flex-col items-center rounded-2xl border border-line bg-white p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-card-hover"
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gold-faint text-gold-dark">
-                <Icon name={s.icon} className="h-6 w-6" />
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gold-faint text-gold-dark">
+                <Icon name={s.icon} className="h-7 w-7" />
               </span>
-              <div className="min-w-0">
-                {s.value !== undefined ? (
-                  <CountUp
-                    value={s.value}
-                    prefix={s.prefix}
-                    suffix={s.suffix}
-                    className="block text-2xl font-bold leading-none text-navy sm:text-3xl"
-                  />
-                ) : (
-                  <span className="block text-2xl font-bold leading-none text-gold-dark sm:text-3xl">{s.text}</span>
-                )}
-                <span className="mt-1.5 block text-xs font-medium leading-tight text-muted sm:text-sm">
-                  {t(s.label, locale)}
-                </span>
-              </div>
+              {s.value !== undefined ? (
+                <CountUp
+                  value={s.value}
+                  prefix={s.prefix}
+                  suffix={s.suffix}
+                  className="mt-4 block text-3xl font-bold leading-none text-navy lg:text-4xl"
+                />
+              ) : (
+                <span className="mt-4 block text-3xl font-bold leading-none text-gold-dark lg:text-4xl">{s.text}</span>
+              )}
+              <span className="mt-2 block text-xs font-medium leading-tight text-muted sm:text-sm">
+                {t(s.label, locale)}
+              </span>
             </Reveal>
           ))}
         </div>

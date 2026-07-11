@@ -20,6 +20,11 @@ export function Hero({ locale }: { locale: Locale }) {
   }));
   const cities = serviceCoverage.regions.map((r) => t(r.name, locale));
 
+  // Split the headline so the closing clause can be accented in gold (reference-style).
+  const titleParts = dict.home.heroTitle.split(/[،,]/);
+  const titleLead = titleParts[0].trim();
+  const titleAccent = titleParts.slice(1).join(ar ? "، " : ", ").trim();
+
   const trustStrip = [
     { icon: "headset", label: ar ? "استشارة أولية مجانية" : "Free initial consultation" },
     { icon: "badge-check", label: ar ? "تنفيذ موثّق ومتابعة حتى التسليم" : "Trusted execution, tracked to delivery" },
@@ -36,23 +41,28 @@ export function Hero({ locale }: { locale: Locale }) {
         sizes="100vw"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#f8f5ee_0%,rgba(248,245,238,0.94)_27%,rgba(248,245,238,0.52)_55%,rgba(248,245,238,0.04)_100%)]" />
+      {/* Legible scrim behind the copy — flips side for RTL so the text always sits on ivory */}
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#f8f5ee_0%,rgba(248,245,238,0.95)_30%,rgba(248,245,238,0.55)_58%,rgba(248,245,238,0.06)_100%)] rtl:bg-[linear-gradient(270deg,#f8f5ee_0%,rgba(248,245,238,0.95)_30%,rgba(248,245,238,0.55)_58%,rgba(248,245,238,0.06)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ivory via-ivory/78 to-transparent" />
       <Pattern id="hero-pattern" className="absolute inset-0 text-navy opacity-[0.018]" />
 
       <div className="container-x relative grid min-h-[560px] items-center gap-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
         {/* Copy */}
         <Reveal>
-          <h1 className="max-w-xl text-4xl font-bold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-[3.5rem]">
-            {dict.home.heroTitle}
+          <h1 className="max-w-xl text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+            <span className="block text-navy">
+              {titleLead}
+              {titleAccent ? (ar ? "،" : ",") : ""}
+            </span>
+            {titleAccent && <span className="mt-1 block text-gold-dark">{titleAccent}</span>}
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-navy/72 sm:text-lg">{dict.home.heroText}</p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button href={localeHref(locale, "/contact")} variant="navy" size="lg" arrow>
+            <Button href={localeHref(locale, "/contact")} variant="primary" size="lg" arrow>
               {dict.common.startYourBusiness}
             </Button>
-            <Button href={localeHref(locale, "/services")} variant="white" size="lg">
+            <Button href={localeHref(locale, "/services")} variant="secondary" size="lg">
               {dict.nav.services}
             </Button>
           </div>
