@@ -5,6 +5,7 @@ import { getDict } from "@/i18n/dictionary";
 import type { Locale } from "@/i18n/config";
 import { localeHref, t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
+import { Pattern } from "@/components/ui/Pattern";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
@@ -52,9 +53,12 @@ export function SectorsGrid({ locale }: { locale: Locale }) {
   const dict = getDict(locale);
 
   return (
-    <section className="py-16 lg:py-24">
-      <div className="container-x">
+    <section className="relative overflow-hidden bg-navy-gradient py-16 lg:py-24">
+      <Pattern id="sectors-pattern" className="absolute inset-0 text-gold opacity-[0.05]" />
+      <div className="container-x relative">
         <SectionHeader
+          center
+          dark
           eyebrow={dict.kingdom.whyTitle}
           title={dict.home.sectorsTitle}
           text={dict.home.sectorsText}

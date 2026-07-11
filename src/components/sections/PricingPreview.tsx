@@ -184,10 +184,10 @@ export function PricingPreview({ locale }: { locale: Locale }) {
     <section className="bg-white py-16 lg:py-24">
       <div className="container-x">
         <SectionHeader
+          center
           eyebrow={dict.nav.pricing}
           title={dict.home.pricingTitle}
           text={dict.home.pricingText}
-          action={{ label: dict.home.viewAllPackages, href: localeHref(locale, "/pricing") }}
         />
         <div className="grid gap-5 pt-4 md:grid-cols-3">
           {setupPackages.map((pkg, i) => (

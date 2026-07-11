@@ -68,15 +68,24 @@ export function ServicesPreview({ locale }: { locale: Locale }) {
     <section className="bg-white py-16 lg:py-24">
       <div className="container-x">
         <SectionHeader
+          center
           eyebrow={dict.nav.services}
           title={dict.home.servicesTitle}
           text={dict.home.servicesText}
-          action={{ label: dict.home.viewAllServices, href: localeHref(locale, "/services") }}
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {previewSlugs.map((slug, i) => (
             <ServiceCard key={slug} locale={locale} slug={slug} delay={i * 80} />
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link
+            href={localeHref(locale, "/services")}
+            className="inline-flex items-center gap-2 rounded-full border border-navy/20 px-6 py-3 text-sm font-bold text-navy transition-colors hover:border-gold hover:text-gold-dark"
+          >
+            {dict.home.viewAllServices}
+            <Icon name="arrow-right" className="h-4 w-4 rtl:rotate-180" />
+          </Link>
         </div>
       </div>
     </section>

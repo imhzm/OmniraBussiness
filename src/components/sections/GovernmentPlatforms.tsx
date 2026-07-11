@@ -12,6 +12,7 @@ export function GovernmentPlatforms({ locale }: { locale: Locale }) {
     <section className="bg-white py-16 lg:py-24">
       <div className="container-x">
         <SectionHeader
+          center
           eyebrow={dict.resources.platforms}
           title={dict.home.platformsTitle}
           text={dict.home.platformsText}
