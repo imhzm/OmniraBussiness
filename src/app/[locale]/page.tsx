@@ -10,7 +10,7 @@ import { GovernmentPlatforms } from "@/components/sections/GovernmentPlatforms";
 import { SectorsGrid } from "@/components/sections/SectorsGrid";
 import { ArticlesSection } from "@/components/sections/ArticlesSection";
 import { PricingPreview } from "@/components/sections/PricingPreview";
-import { CostEstimation } from "@/components/sections/CostEstimation";
+import { CalculatorSection } from "@/components/sections/CalculatorSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export async function generateMetadata({
@@ -48,7 +48,7 @@ export default async function HomePage({
       <SectorsGrid locale={l} />
       <ArticlesSection locale={l} />
       <PricingPreview locale={l} />
-      <CostEstimation locale={l} />
+      <CalculatorSection locale={l} />
       <FinalCTA locale={l} />
     </>
   );
