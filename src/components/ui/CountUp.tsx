@@ -30,43 +30,49 @@ export function CountUp({
     const el = ref.current;
     if (!el) return;
 
+    // No animation available (or unwanted) → the real value is already rendered.
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || typeof IntersectionObserver === "undefined") {
-      setDisplay(value);
-      return;
-    }
+    if (reduce || typeof IntersectionObserver === "undefined") return;
 
-    setDisplay(0);
     let raf = 0;
+    let fallback = 0;
     let started = false;
-
-    const run = () => {
-      const t0 = performance.now();
-      const tick = (now: number) => {
-        const p = Math.min(1, (now - t0) / duration);
-        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-        setDisplay(value * eased);
-        if (p < 1) raf = requestAnimationFrame(tick);
-        else setDisplay(value);
-      };
-      raf = requestAnimationFrame(tick);
-    };
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) {
-          started = true;
-          run();
-          io.disconnect();
+        if (!entry.isIntersecting || started) return;
+        started = true;
+        io.disconnect();
+
+        // If the tab isn't visible, rAF is paused — just show the final value.
+        if (document.visibilityState !== "visible") {
+          setDisplay(value);
+          return;
         }
+
+        // Safety net: guarantee the final value even if rAF stalls.
+        fallback = window.setTimeout(() => setDisplay(value), duration + 500);
+
+        setDisplay(0);
+        const t0 = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min(1, (now - t0) / duration);
+          const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+          setDisplay(value * eased);
+          if (p < 1) raf = requestAnimationFrame(tick);
+          else setDisplay(value);
+        };
+        raf = requestAnimationFrame(tick);
       },
-      { threshold: 0.35 },
+      // Pre-trigger just below the viewport so the reset-to-0 happens off-screen.
+      { threshold: 0, rootMargin: "0px 0px 120px 0px" },
     );
     io.observe(el);
 
     return () => {
       io.disconnect();
       if (raf) cancelAnimationFrame(raf);
+      if (fallback) clearTimeout(fallback);
     };
   }, [value, duration]);
 
