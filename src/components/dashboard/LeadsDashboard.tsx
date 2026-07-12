@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Locale } from "@/i18n/config";
 import type { Lead, LeadStatus } from "@/lib/leads";
@@ -44,6 +44,8 @@ export function LeadsDashboard({ locale }: { locale: Locale }) {
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | LeadStatus>("all");
+  const [arrivals, setArrivals] = useState(0);
+  const knownIds = useRef<Set<string> | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -53,7 +55,21 @@ export function LeadsDashboard({ locale }: { locale: Locale }) {
         return;
       }
       const data = await res.json();
-      setLeads(Array.isArray(data.leads) ? data.leads : []);
+      const list: Lead[] = Array.isArray(data.leads) ? data.leads : [];
+      setLeads(list);
+
+      // Detect newly-arrived leads since the last poll (skip the first load).
+      const ids = new Set(list.map((l) => l.id));
+      if (knownIds.current === null) {
+        knownIds.current = ids;
+      } else {
+        let fresh = 0;
+        ids.forEach((id) => {
+          if (!knownIds.current!.has(id)) fresh += 1;
+        });
+        if (fresh > 0) setArrivals((a) => a + fresh);
+        knownIds.current = ids;
+      }
       setUpdatedAt(new Date());
     } catch {
       /* keep last data on transient failure */
@@ -61,6 +77,16 @@ export function LeadsDashboard({ locale }: { locale: Locale }) {
       setLoaded(true);
     }
   }, [locale, router]);
+
+  // Flash the browser-tab title while unseen leads are waiting.
+  useEffect(() => {
+    document.title =
+      arrivals > 0
+        ? `(${arrivals}) ${ar ? "عملاء جدد — Omnera One" : "new leads — Omnera One"}`
+        : ar
+          ? "لوحة العملاء — Omnera One"
+          : "Leads — Omnera One";
+  }, [arrivals, ar]);
 
   useEffect(() => {
     load();
@@ -150,6 +176,23 @@ export function LeadsDashboard({ locale }: { locale: Locale }) {
           </button>
         </div>
       </header>
+
+      {/* New-lead toast */}
+      {arrivals > 0 && (
+        <button
+          onClick={() => {
+            setArrivals(0);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="sticky top-[57px] z-20 flex w-full items-center justify-center gap-2 bg-gold py-2.5 text-sm font-bold text-navy shadow-card transition-colors hover:bg-gold-dark"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-navy/40" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-navy" />
+          </span>
+          {arrivals} {ar ? "عميل جديد وصل — اضغط للعرض" : arrivals === 1 ? "new lead — tap to view" : "new leads — tap to view"}
+        </button>
+      )}
 
       <div className="mx-auto max-w-[1400px] px-4 py-6 sm:px-6">
         {/* Stats */}
