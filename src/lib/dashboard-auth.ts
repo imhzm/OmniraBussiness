@@ -2,7 +2,11 @@ import crypto from "crypto";
 import { cookies } from "next/headers";
 
 const SECRET = process.env.DASHBOARD_SECRET || "omnira-dev-secret-change-me";
-const PASSWORD = process.env.DASHBOARD_PASSWORD || "";
+// Prefer a base64-encoded password (DASHBOARD_PASSWORD_B64) so passwords with
+// characters like `$` survive dotenv's variable-expansion untouched.
+const PASSWORD = process.env.DASHBOARD_PASSWORD_B64
+  ? Buffer.from(process.env.DASHBOARD_PASSWORD_B64, "base64").toString("utf8")
+  : process.env.DASHBOARD_PASSWORD || "";
 
 export const COOKIE_NAME = "omnira_dash";
 const MAX_AGE = 60 * 60 * 24 * 14; // 14 days
