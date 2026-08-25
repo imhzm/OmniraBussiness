@@ -9,7 +9,7 @@ interface PricingOrderButtonProps {
   serviceTitle: string;
   amount: number | null;
   locale: Locale;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'navy' | 'ghost' | 'white' | 'outline-light';
   className?: string;
   description?: string;
   label?: string;
