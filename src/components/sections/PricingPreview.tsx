@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { PricingOrderButton } from "@/components/payments/PricingOrderButton";
+import { PaymentMethodsGrid } from "@/components/payments/PaymentBadges";
 
 export function PricingCard({
   locale,
@@ -205,13 +207,21 @@ export function PricingCard({
           );
         })()}
 
-        <Button
-          href={localeHref(locale, "/contact")}
+        <PricingOrderButton
+          serviceTitle={t(pkg.name, locale)}
+          amount={pkg.price}
+          locale={locale}
+          description={t(pkg.description, locale)}
           variant={pkg.recommended ? "primary" : "secondary"}
           className="mt-6 w-full"
-        >
-          {isCustom ? dict.common.contactUs : dict.common.getStarted}
-        </Button>
+          label={isCustom ? dict.common.contactUs : (locale === "ar" ? "احجز وسدد الآن" : "Book & Pay Online")}
+        />
+
+        {!isCustom && (
+          <div className="mt-3 flex items-center justify-center gap-1 opacity-70 scale-90">
+            <PaymentMethodsGrid />
+          </div>
+        )}
       </div>
     </Reveal>
   );
