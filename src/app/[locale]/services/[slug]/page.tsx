@@ -16,6 +16,8 @@ import { TargetCountries } from "@/components/sections/TargetCountries";
 import { StartFromZero } from "@/components/sections/StartFromZero";
 import { LicenseTypesGrid } from "@/components/sections/LicenseTypesGrid";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { PricingOrderButton } from "@/components/payments/PricingOrderButton";
+import { PaymentMethodsGrid } from "@/components/payments/PaymentBadges";
 
 /** Universal, short guarantees shown on every service page (subtitles kept brief so they never truncate). */
 const SERVICE_GUARANTEES = [
@@ -239,15 +241,24 @@ export default async function ServiceDetailsPage({
                 <Detail label={dict.common.bestFor} value={t(service.bestFor, l)} icon="target" />
                 <Detail label={dict.common.supportType} value={t(service.supportType, l)} icon="headset" />
               </dl>
-              <Button href={whatsappLink()} external className="mt-6 w-full" arrow>
+              <PricingOrderButton
+                serviceTitle={t(service.title, l)}
+                amount={null}
+                locale={l}
+                description={t(service.excerpt, l)}
+                variant="primary"
+                className="mt-6 w-full"
+                label={l === "ar" ? "احجز الخدمة وابدأ الآن" : "Book Service Online"}
+              />
+              <div className="mt-3 flex items-center justify-center gap-1 opacity-75 scale-90">
+                <PaymentMethodsGrid />
+              </div>
+              <Button href={whatsappLink()} external variant="secondary" className="mt-3 w-full" arrow>
                 {dict.common.talkToExpert}
-              </Button>
-              <Button href={localeHref(l, "/book")} variant="secondary" className="mt-3 w-full">
-                {dict.common.bookConsultation}
               </Button>
               <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-xs text-muted">
                 <Icon name="shield-check" className="h-3.5 w-3.5 text-gold-dark" />
-                {l === "ar" ? "استشارة أولية مجانية · بدون التزام" : "Free initial consultation · No obligation"}
+                {l === "ar" ? "استشارة أولية مجانية · دفع بنكي معتمد" : "Free initial consultation · Verified secure payment"}
               </p>
             </div>
 

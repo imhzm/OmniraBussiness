@@ -6,6 +6,8 @@ import { cn, t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { whatsappLink } from "@/config/site";
 import { calcSteps, estimate, type Selections } from "@/data/calculator";
+import { PricingOrderButton } from "@/components/payments/PricingOrderButton";
+import { PaymentMethodsGrid } from "@/components/payments/PaymentBadges";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
@@ -236,17 +238,35 @@ export function CostCalculator({ locale }: { locale: Locale }) {
             </ul>
           </div>
 
-          <a
-            href={whatsappLink(
-              ar ? "مرحبًا Omnera One، أريد استشارة حول تكلفة التأسيس." : "Hello Omnera One, I'd like advice on my setup cost."
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-gold-soft underline-offset-4 hover:underline"
-          >
-            <Icon name="message-circle" className="h-4 w-4" />
-            {ar ? "كلّم مستشارًا" : "Talk to an advisor"}
-          </a>
+          <div className="mt-5 space-y-3">
+            <PricingOrderButton
+              serviceTitle={`${t(est.recommended.name, locale)} — ${ar ? "باقة التأسيس المقترحة" : "Recommended Setup Plan"}`}
+              amount={est.initial.min > 0 ? est.initial.min : 3500}
+              locale={locale}
+              description={ar ? `التقدير الأولي: ${fmt(est.initial.min)} - ${fmt(est.initial.max)} ر.س | المدة: ${t(est.timeline, locale)}` : `Initial estimate: ${fmt(est.initial.min)} - ${fmt(est.initial.max)} SAR | Timeline: ${t(est.timeline, locale)}`}
+              variant="primary"
+              className="w-full justify-center"
+              label={ar ? "احجز الباقة وابدأ التأسيس الآن" : "Book Package & Start Setup"}
+            />
+
+            <div className="flex items-center justify-center gap-1 opacity-75 scale-90">
+              <PaymentMethodsGrid />
+            </div>
+
+            <div className="pt-2 text-center border-t border-white/10">
+              <a
+                href={whatsappLink(
+                  ar ? "مرحبًا Omnera One، أريد استشارة حول تكلفة التأسيس." : "Hello Omnera One, I'd like advice on my setup cost."
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-gold-soft hover:underline"
+              >
+                <Icon name="message-circle" className="h-3.5 w-3.5" />
+                {ar ? "أو تحدث مع مستشار تأسيس عبر واتساب" : "Or speak with a setup advisor on WhatsApp"}
+              </a>
+            </div>
+          </div>
         </div>
         <p className="mt-3 px-1 text-center text-[0.7rem] text-faint">
           {ar ? "محدّث: 2026 — رسوم حكومية + تقديرات داخلية." : "Updated: 2026 — government fees + internal estimates."}

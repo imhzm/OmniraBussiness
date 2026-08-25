@@ -11,6 +11,8 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { PricingOrderButton } from "@/components/payments/PricingOrderButton";
+import { PaymentMethodsGrid } from "@/components/payments/PaymentBadges";
 import { licenseTypes } from "@/data/license-types";
 import { licenseDetails, getLicenseDetail } from "@/data/license-details";
 
@@ -235,8 +237,20 @@ export default async function LicenseTypePage({
                   ? "نتولّى إصدار ترخيصك بالكامل — تصنيف النشاط، التقديم، والمتابعة حتى يصبح فعّالًا."
                   : "We handle the whole issuance — activity classification, filing, and follow-up until it's active."}
               </p>
-              <Button href={localeHref(l, "/contact")} className="mt-5 w-full" arrow>
-                {ar ? "احصل على عرض سعر مجاني" : "Get a free quote"}
+              <PricingOrderButton
+                serviceTitle={`${name} — ${ar ? "إصدار وتخليص الترخيص" : "License Issuance"}`}
+                amount={null}
+                locale={l}
+                description={t(detail.excerpt, l)}
+                variant="primary"
+                className="mt-5 w-full"
+                label={ar ? "ابدأ إجراءات الترخيص الآن" : "Start License Issuance"}
+              />
+              <div className="mt-3 flex items-center justify-center gap-1 opacity-75 scale-90">
+                <PaymentMethodsGrid />
+              </div>
+              <Button href={whatsappLink()} external variant="outline-light" className="mt-3 w-full" arrow>
+                {ar ? "تواصل مع مستشار تراخيص" : "Consult a License Advisor"}
               </Button>
             </div>
 

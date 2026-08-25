@@ -12,15 +12,23 @@ import {
   XCircle,
   Search,
   RefreshCw,
-  MessageSquare,
-  ArrowRight,
+  MessageCircle,
+  Download,
   ShieldCheck,
   Building2,
   Users,
 } from 'lucide-react';
 import { PaymentMethodsGrid } from '@/components/payments/PaymentBadges';
-import type { PaymentLink, PaymentLinkStatus } from '@/lib/payments/types';
+import type { PaymentLink } from '@/lib/payments/types';
 import type { Locale } from '@/i18n/config';
+
+function waDigits(phone: string): string {
+  let d = phone.replace(/\D/g, '');
+  if (d.startsWith('00')) d = d.slice(2);
+  if (d.startsWith('0')) d = '966' + d.slice(1);
+  if (!d.startsWith('966') && d.length <= 9) d = '966' + d;
+  return d;
+}
 
 export function PaymentsClient({ locale = 'ar' }: { locale?: Locale }) {
   const [links, setLinks] = useState<PaymentLink[]>([]);
@@ -132,11 +140,68 @@ export function PaymentsClient({ locale = 'ar' }: { locale?: Locale }) {
     setTimeout(() => setCopiedId(null), 2500);
   };
 
+  const openWhatsApp = (link: PaymentLink) => {
+    const url = `${window.location.origin}/${locale}/pay/${link.id}`;
+    const name = link.customerName ? `الأستاذ/ة ${link.customerName}` : 'عزيزنا العميل';
+    const text = `السلام عليكم ورحمة الله وبركاته،\n${name} المحترم/ة،\n\nيسعدنا تزويدكم برابط سداد فاتورة (${link.title}) بمبلغ ${link.amount.toLocaleString('en-US')} ر.س عبر مصرف الراجحي (مدى / Apple Pay / البطاقات):\n\n🔗 ${url}\n\nشكراً لاختياركم Omnera One.`;
+    const phone = link.customerPhone ? waDigits(link.customerPhone) : '';
+    const waUrl = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(text)}` : `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+  };
+
+  const exportCsv = () => {
+    const headers = [
+      'ID',
+      'تاريخ الإنشاء',
+      'عنوان الخدمة',
+      'المبلغ (SAR)',
+      'قبل الضريبة',
+      'ضريبة 15%',
+      'الحالة',
+      'اسم العميل',
+      'جوال العميل',
+      'بريد العميل',
+      'المرجع',
+      'رقم العملية البنكية',
+      'تاريخ السداد',
+    ];
+
+    const rows = filteredLinks.map((l) => {
+      const sub = Math.round((l.amount / 1.15) * 100) / 100;
+      const vat = Math.round((l.amount - sub) * 100) / 100;
+      return [
+        l.id,
+        l.createdAt,
+        l.title,
+        l.amount,
+        sub,
+        vat,
+        l.status,
+        l.customerName || '',
+        l.customerPhone || '',
+        l.customerEmail || '',
+        l.reference || '',
+        l.bankRef || l.paymentId || '',
+        l.paidAt || '',
+      ]
+        .map((v) => `"${String(v ?? '').replace(/"/g, '""')}"`)
+        .join(',');
+    });
+
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `omnera-payments-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+  };
+
   const filteredLinks = links.filter((link) => {
     const matchSearch =
       link.title.toLowerCase().includes(search.toLowerCase()) ||
       (link.customerName && link.customerName.toLowerCase().includes(search.toLowerCase())) ||
-      (link.reference && link.reference.toLowerCase().includes(search.toLowerCase()));
+      (link.reference && link.reference.toLowerCase().includes(search.toLowerCase())) ||
+      (link.customerPhone && link.customerPhone.includes(search));
     const matchStatus = statusFilter === 'all' || link.status === statusFilter;
     return matchSearch && matchStatus;
   });
@@ -162,7 +227,7 @@ export function PaymentsClient({ locale = 'ar' }: { locale?: Locale }) {
               </div>
               <div>
                 <h1 className="text-base font-bold">Omnera One</h1>
-                <p className="text-xs text-white/50">لوحة التحكم وإدارة المدفوعات</p>
+                <p className="text-xs text-white/50">لوحة التحكم وإدارة المدفوعات البنكية</p>
               </div>
             </div>
 
@@ -185,7 +250,14 @@ export function PaymentsClient({ locale = 'ar' }: { locale?: Locale }) {
             </nav>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={exportCsv}
+              className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-3.5 py-2 text-xs font-semibold text-white transition cursor-pointer"
+            >
+              <Download className="h-3.5 w-3.5 text-emerald-400" />
+              <span>تصدير CSV</span>
+            </button>
             <button
               onClick={() => setShowModal(true)}
               className="flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-4 py-2 text-xs font-bold text-[#070b11] transition shadow-lg shadow-emerald-500/15 cursor-pointer"
@@ -240,7 +312,7 @@ export function PaymentsClient({ locale = 'ar' }: { locale?: Locale }) {
             <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
             <input
               type="text"
-              placeholder="بحث بالخدمة، العميل، أو المرجع..."
+              placeholder="بحث بالخدمة، العميل، الجوال، أو المرجع..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full rounded-xl border border-white/10 bg-[#0d141e]/70 pr-10 pl-4 py-2 text-xs text-white placeholder:text-white/30 focus:border-emerald-500 focus:outline-none"
@@ -289,7 +361,7 @@ export function PaymentsClient({ locale = 'ar' }: { locale?: Locale }) {
                     <th className="px-5 py-3.5 font-medium">المبلغ</th>
                     <th className="px-5 py-3.5 font-medium">الحالة</th>
                     <th className="px-5 py-3.5 font-medium">التاريخ</th>
-                    <th className="px-5 py-3.5 font-medium text-left">إجراءات</th>
+                    <th className="px-5 py-3.5 font-medium text-left">إجراءات سريعة</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
@@ -338,6 +410,14 @@ export function PaymentsClient({ locale = 'ar' }: { locale?: Locale }) {
                       </td>
                       <td className="px-5 py-4 text-left">
                         <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            onClick={() => openWhatsApp(link)}
+                            title="إرسال رابط الفاتورة للعميل عبر واتساب"
+                            className="inline-flex items-center gap-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1.5 text-xs transition cursor-pointer"
+                          >
+                            <MessageCircle className="h-3.5 w-3.5" />
+                            <span>واتساب</span>
+                          </button>
                           <button
                             onClick={() => copyUrl(link.id)}
                             title="نسخ رابط الدفع"
