@@ -43,9 +43,9 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
   const l = locale as Locale;
 
-  // Admin dashboard renders without the marketing header/footer/chrome.
+  // Admin dashboard & Pay pages render without marketing header/footer
   const pathname = (await headers()).get("x-pathname") ?? "";
-  const isDashboard = pathname.includes("/dashboard");
+  const isCleanView = pathname.includes("/dashboard") || pathname.includes("/pay/");
 
   const orgLd = {
     "@context": "https://schema.org",
@@ -90,7 +90,7 @@ export default async function LocaleLayout({
       dir={isRTL(locale) ? "rtl" : "ltr"}
     >
       <body className={locale === "ar" ? "font-ar" : "font-sans"}>
-        {isDashboard ? (
+        {isCleanView ? (
           children
         ) : (
           <>

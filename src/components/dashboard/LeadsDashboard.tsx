@@ -163,6 +163,13 @@ export function LeadsDashboard({ locale }: { locale: Locale }) {
               {updatedAt && ` · ${ar ? "آخر تحديث" : "updated"} ${updatedAt.toLocaleTimeString(ar ? "ar-SA" : "en-US", { hour: "2-digit", minute: "2-digit" })}`}
             </p>
           </div>
+          <a
+            href={`/${locale}/dashboard/payments`}
+            className="flex h-9 items-center gap-1.5 rounded-lg bg-emerald-500/20 border border-emerald-400/30 px-3 text-xs font-bold text-emerald-300 transition-colors hover:bg-emerald-500/30"
+          >
+            <Icon name="credit-card" className="h-4 w-4" />
+            {ar ? "روابط الدفع" : "Payments"}
+          </a>
           <button onClick={load} className="flex h-9 items-center gap-1.5 rounded-lg bg-white/10 px-3 text-xs font-semibold text-white transition-colors hover:bg-white/20">
             <Icon name="clock" className="h-4 w-4" />
             {ar ? "تحديث" : "Refresh"}
