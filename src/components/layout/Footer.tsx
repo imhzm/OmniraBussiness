@@ -98,6 +98,19 @@ export function Footer({ locale }: { locale: Locale }) {
           <p>
             © {year} {t(site.legalName, locale)}. {dict.footer.rights}
           </p>
+          <p className="flex items-center gap-1.5 text-white/70">
+            <span>تم التصميم بكل</span>
+            <span className="text-red-500 font-normal">❤️</span>
+            <span>بواسطة</span>
+            <a
+              href="https://www.skywaveads.com"
+              target="_blank"
+              rel="follow"
+              className="font-medium text-gold-soft underline underline-offset-4 transition-colors hover:text-gold"
+            >
+              Sky Wave
+            </a>
+          </p>
           <div className="flex items-center gap-5">
             <Link href={localeHref(locale, "/privacy")} className="transition-colors hover:text-gold-soft">
               {dict.footer.privacy}
@@ -106,7 +119,6 @@ export function Footer({ locale }: { locale: Locale }) {
               {dict.footer.terms}
             </Link>
           </div>
-          <p className="text-white/40">{dict.footer.madeFor}</p>
         </div>
       </div>
     </footer>
