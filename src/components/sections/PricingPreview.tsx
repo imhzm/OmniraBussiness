@@ -70,6 +70,12 @@ export function PricingCard({
           )}
         </div>
 
+        {!isCustom && (
+          <p className={cn("mt-1 text-[11px] font-medium", dark ? "text-white/60" : "text-muted")}>
+            {locale === "ar" ? "(الأسعار غير شاملة ضريبة القيمة المضافة 15%)" : "(Prices exclude 15% VAT)"}
+          </p>
+        )}
+
         {pkg.priceNote && (
           <p className={cn("mt-2 text-xs font-semibold", dark ? "text-gold-soft" : "text-gold-dark")}>
             {t(pkg.priceNote, locale)}

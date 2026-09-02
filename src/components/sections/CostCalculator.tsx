@@ -6,8 +6,6 @@ import { cn, t } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { whatsappLink } from "@/config/site";
 import { calcSteps, estimate, type Selections } from "@/data/calculator";
-import { PricingOrderButton } from "@/components/payments/PricingOrderButton";
-import { PaymentMethodsGrid } from "@/components/payments/PaymentBadges";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
@@ -239,19 +237,17 @@ export function CostCalculator({ locale }: { locale: Locale }) {
           </div>
 
           <div className="mt-5 space-y-3">
-            <PricingOrderButton
-              serviceTitle={`${t(est.recommended.name, locale)} — ${ar ? "باقة التأسيس المقترحة" : "Recommended Setup Plan"}`}
-              amount={est.initial.min > 0 ? est.initial.min : 3500}
-              locale={locale}
-              description={ar ? `التقدير الأولي: ${fmt(est.initial.min)} - ${fmt(est.initial.max)} ر.س | المدة: ${t(est.timeline, locale)}` : `Initial estimate: ${fmt(est.initial.min)} - ${fmt(est.initial.max)} SAR | Timeline: ${t(est.timeline, locale)}`}
-              variant="primary"
-              className="w-full justify-center"
-              label={ar ? "احجز الباقة وابدأ التأسيس الآن" : "Book Package & Start Setup"}
-            />
-
-            <div className="flex items-center justify-center gap-1 opacity-75 scale-90">
-              <PaymentMethodsGrid />
-            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setShowForm(true);
+                setStepIdx(last);
+              }}
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-navy shadow-gold transition-colors hover:bg-gold/90 cursor-pointer"
+            >
+              <Icon name="file-text" className="h-4 w-4" />
+              {ar ? "احصل على خطة التأسيس والاستشارة" : "Get Detailed Plan & Consultation"}
+            </button>
 
             <div className="pt-2 text-center border-t border-white/10">
               <a

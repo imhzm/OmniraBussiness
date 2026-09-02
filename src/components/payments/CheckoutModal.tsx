@@ -40,6 +40,10 @@ export function CheckoutModal({
   const hasFixedPrice = amount !== null && amount > 0;
   const [mode, setMode] = useState<'pay' | 'quote'>(hasFixedPrice ? 'pay' : 'quote');
 
+  const baseAmount = amount !== null && amount > 0 ? amount : 0;
+  const vatAmount = Math.round(baseAmount * 0.15 * 100) / 100;
+  const totalAmount = Math.round((baseAmount + vatAmount) * 100) / 100;
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -62,15 +66,17 @@ export function CheckoutModal({
     setLoading(true);
 
     if (mode === 'pay' && hasFixedPrice) {
-      // الدفع الفوري
+      // الدفع الفوري شامل ضريبة القيمة المضافة 15%
       try {
         const res = await fetch('/api/payments/checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             title: serviceTitle,
-            description: description || undefined,
-            amount: amount,
+            description: description
+              ? `${description} (شامل ضريبة القيمة المضافة 15%)`
+              : `${serviceTitle} — السعر الأساسي: ${fmtSar(baseAmount)} + الضريبة (15%): ${fmtSar(vatAmount)} = الإجمالي: ${fmtSar(totalAmount)} ر.س`,
+            amount: totalAmount,
             customerName: name.trim(),
             customerPhone: phone.trim(),
             customerEmail: email.trim() || undefined,
@@ -163,18 +169,29 @@ export function CheckoutModal({
         ) : (
           <>
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+            <div className="flex items-start gap-3 border-b border-white/10 pb-4 mb-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mt-0.5">
                 <Building2 className="h-5 w-5" />
               </div>
-              <div>
-                <h3 className="text-sm font-bold text-white">{serviceTitle}</h3>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-sm font-bold text-white leading-tight">{serviceTitle}</h3>
                 {hasFixedPrice ? (
-                  <p className="text-xs font-bold text-emerald-400">
-                    {fmtSar(amount!)} <span className="font-normal text-white/50">{isEn ? 'SAR' : 'ر.س'}</span>
-                  </p>
+                  <div className="mt-2 rounded-xl bg-white/[0.04] border border-white/10 p-2.5 text-[11px] space-y-1">
+                    <div className="flex items-center justify-between text-white/60">
+                      <span>{isEn ? 'Base price (excl. VAT):' : 'السعر الأساسي (بدون ضريبة):'}</span>
+                      <span className="font-semibold text-white/90">{fmtSar(baseAmount)} {isEn ? 'SAR' : 'ر.س'}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-white/60">
+                      <span>{isEn ? 'VAT (15%):' : 'ضريبة القيمة المضافة (15%):'}</span>
+                      <span className="font-semibold text-emerald-400">+{fmtSar(vatAmount)} {isEn ? 'SAR' : 'ر.س'}</span>
+                    </div>
+                    <div className="flex items-center justify-between pt-1 border-t border-white/10 font-bold text-xs text-white">
+                      <span>{isEn ? 'Total with 15% VAT:' : 'الإجمالي شامل الضريبة (15%):'}</span>
+                      <span className="text-emerald-400 font-extrabold text-sm">{fmtSar(totalAmount)} <span className="text-[10px] font-normal text-white/50">{isEn ? 'SAR' : 'ر.س'}</span></span>
+                    </div>
+                  </div>
                 ) : (
-                  <p className="text-xs text-white/50">{isEn ? 'Custom Enterprise Plan' : 'خطة مخصصة للشركات'}</p>
+                  <p className="text-xs text-white/50 mt-1">{isEn ? 'Custom Enterprise Plan' : 'خطة مخصصة للشركات'}</p>
                 )}
               </div>
             </div>
@@ -304,8 +321,8 @@ export function CheckoutModal({
                       : 'جارٍ المعالجة والتحويل...'
                     : mode === 'pay'
                       ? isEn
-                        ? `Book & Pay (${fmtSar(amount!)} SAR)`
-                        : `احجز الآن وسدد (${fmtSar(amount!)} ر.س)`
+                        ? `Book & Pay (${fmtSar(totalAmount)} SAR incl. VAT)`
+                        : `احجز الآن وسدد (${fmtSar(totalAmount)} ر.س شامل الضريبة)`
                       : isEn
                         ? 'Submit Request'
                         : 'إرسال طلب الاستشارة'}

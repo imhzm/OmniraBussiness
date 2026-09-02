@@ -506,10 +506,10 @@ export const setupCompare: CompareRow[] = [
 
 export const pricingFaqs: PricingFaq[] = [
   {
-    q: { en: "Do setup packages include government fees?", ar: "هل تشمل باقات التأسيس الرسوم الحكومية؟" },
+    q: { en: "Do setup packages include government fees or VAT?", ar: "هل تشمل باقات التأسيس الرسوم الحكومية أو الضريبة؟" },
     a: {
-      en: "No. Package prices are our professional fees. Government fees such as CR, Qiwa, Muqeem, visas, and official renewals are paid at cost to the relevant Saudi authorities.",
-      ar: "لا. أسعار الباقات هي أتعاب الخدمة. الرسوم الحكومية مثل السجل التجاري وقوى ومقيم والتأشيرات والتجديدات الرسمية تُدفع كما هي للجهات السعودية.",
+      en: "No. Package prices are our professional fees (excluding 15% VAT which is applied at checkout). Government fees such as CR, Qiwa, Muqeem, visas, and official renewals are paid at cost to the relevant Saudi authorities.",
+      ar: "لا. أسعار الباقات تمثل أتعاب الخدمة الأساسية (وتُضاف عليها ضريبة القيمة المضافة 15% عند السداد الإلكتروني). أما الرسوم الحكومية مثل السجل التجاري وقوى ومقيم والتأشيرات والتجديدات الرسمية فتُدفع كما هي للجهات السعودية.",
     },
   },
   {
