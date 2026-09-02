@@ -27,6 +27,31 @@ interface CheckoutModalProps {
   reference?: string;
 }
 
+const COUNTRY_CODES = [
+  { code: '+966', flag: '🇸🇦', name: 'السعودية (+966)', en: 'Saudi Arabia (+966)' },
+  { code: '+971', flag: '🇦🇪', name: 'الإمارات (+971)', en: 'UAE (+971)' },
+  { code: '+965', flag: '🇰🇼', name: 'الكويت (+965)', en: 'Kuwait (+965)' },
+  { code: '+974', flag: '🇶🇦', name: 'قطر (+974)', en: 'Qatar (+974)' },
+  { code: '+973', flag: '🇧🇭', name: 'البحرين (+973)', en: 'Bahrain (+973)' },
+  { code: '+968', flag: '🇴🇲', name: 'عمان (+968)', en: 'Oman (+968)' },
+  { code: '+20', flag: '🇪🇬', name: 'مصر (+20)', en: 'Egypt (+20)' },
+  { code: '+962', flag: '🇯🇴', name: 'الأردن (+962)', en: 'Jordan (+962)' },
+  { code: '+961', flag: '🇱🇧', name: 'لبنان (+961)', en: 'Lebanon (+961)' },
+  { code: '+964', flag: '🇮🇶', name: 'العراق (+964)', en: 'Iraq (+964)' },
+  { code: '+44', flag: '🇬🇧', name: 'المملكة المتحدة (+44)', en: 'UK (+44)' },
+  { code: '+1', flag: '🇺🇸', name: 'أمريكا / كندا (+1)', en: 'USA / Canada (+1)' },
+  { code: '+49', flag: '🇩🇪', name: 'ألمانيا (+49)', en: 'Germany (+49)' },
+  { code: '+33', flag: '🇫🇷', name: 'فرنسا (+33)', en: 'France (+33)' },
+  { code: '+39', flag: '🇮🇹', name: 'إيطاليا (+39)', en: 'Italy (+39)' },
+  { code: '+90', flag: '🇹🇷', name: 'تركيا (+90)', en: 'Turkey (+90)' },
+  { code: '+86', flag: '🇨🇳', name: 'الصين (+86)', en: 'China (+86)' },
+  { code: '+91', flag: '🇮🇳', name: 'الهند (+91)', en: 'India (+91)' },
+  { code: '+92', flag: '🇵🇰', name: 'باكستان (+92)', en: 'Pakistan (+92)' },
+  { code: '+60', flag: '🇲🇾', name: 'ماليزيا (+60)', en: 'Malaysia (+60)' },
+  { code: '+65', flag: '🇸🇬', name: 'سنغافورة (+65)', en: 'Singapore (+65)' },
+  { code: 'other', flag: '🌐', name: 'أخرى (رمز مخصص)', en: 'Other' },
+];
+
 export function CheckoutModal({
   isOpen,
   onClose,
@@ -45,6 +70,7 @@ export function CheckoutModal({
   const totalAmount = Math.round((baseAmount + vatAmount) * 100) / 100;
 
   const [name, setName] = useState('');
+  const [countryCode, setCountryCode] = useState('+966');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [notes, setNotes] = useState('');
@@ -58,10 +84,17 @@ export function CheckoutModal({
     e.preventDefault();
     setError('');
 
-    if (!name.trim() || !phone.trim()) {
+    const trimmedPhone = phone.trim();
+    if (!name.trim() || !trimmedPhone) {
       setError(isEn ? 'Please provide your name and phone number.' : 'يرجى إدخال الاسم ورقم الجوال.');
       return;
     }
+
+    const fullPhone = trimmedPhone.startsWith('+')
+      ? trimmedPhone
+      : countryCode && countryCode !== 'other'
+        ? `${countryCode}${trimmedPhone.replace(/^0+/, '')}`
+        : trimmedPhone;
 
     setLoading(true);
 
@@ -78,7 +111,7 @@ export function CheckoutModal({
               : `${serviceTitle} — السعر الأساسي: ${fmtSar(baseAmount)} + الضريبة (15%): ${fmtSar(vatAmount)} = الإجمالي: ${fmtSar(totalAmount)} ر.س`,
             amount: totalAmount,
             customerName: name.trim(),
-            customerPhone: phone.trim(),
+            customerPhone: fullPhone,
             customerEmail: email.trim() || undefined,
             reference: reference || undefined,
           }),
@@ -109,7 +142,7 @@ export function CheckoutModal({
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: name.trim(),
-            phone: phone.trim(),
+            phone: fullPhone,
             email: email.trim() || undefined,
             service: serviceTitle,
             message: notes.trim() || undefined,
@@ -244,17 +277,38 @@ export function CheckoutModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block mb-1 font-medium text-white/70">{isEn ? 'Phone Number *' : 'رقم الجوال (واتساب) *'}</label>
-                  <div className="relative">
-                    <Phone className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/40" />
-                    <input
-                      type="tel"
-                      required
-                      placeholder="05xxxxxxxx"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 pr-9 pl-3.5 py-2.5 text-white placeholder:text-white/30 focus:border-emerald-500 focus:outline-none"
-                    />
+                  <label className="block mb-1 font-medium text-white/70">{isEn ? 'Phone Number (WhatsApp) *' : 'رقم الجوال (واتساب) *'}</label>
+                  <div className="flex gap-1.5">
+                    <select
+                      value={countryCode}
+                      onChange={(e) => setCountryCode(e.target.value)}
+                      aria-label={isEn ? "Country Code" : "رمز الدولة"}
+                      className="w-[100px] shrink-0 rounded-xl border border-white/10 bg-[#141f2c] px-2 py-2.5 text-xs text-white focus:border-emerald-500 focus:outline-none cursor-pointer"
+                    >
+                      {COUNTRY_CODES.map((c) => (
+                        <option key={c.code || 'other'} value={c.code} className="bg-[#0a111a] text-white">
+                          {c.flag} {c.code === 'other' ? (isEn ? 'Other' : 'أخرى') : c.code}
+                        </option>
+                      ))}
+                    </select>
+
+                    <div className="relative flex-1 min-w-0">
+                      <Phone className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/40 pointer-events-none" />
+                      <input
+                        type="tel"
+                        required
+                        placeholder={
+                          countryCode === 'other'
+                            ? (isEn ? '+Country code & number' : '+رمز الدولة والرقم')
+                            : countryCode === '+966'
+                              ? '5xxxxxxxx'
+                              : 'xxxxxxxx'
+                        }
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 pr-9 pl-3 py-2.5 text-white placeholder:text-white/30 focus:border-emerald-500 focus:outline-none"
+                      />
+                    </div>
                   </div>
                 </div>
 
